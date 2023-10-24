@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import "./DrawCanvas.css"
 
 const DrawCanvas = () => {
   const canvasRef = useRef(null);
@@ -61,6 +62,7 @@ const DrawCanvas = () => {
       </h1> */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: "4rem" }}>
         <canvas
+        id="canvas"
           style={{ border: "1px solid black" }}
           ref={canvasRef}
           width={canvasWidth}
