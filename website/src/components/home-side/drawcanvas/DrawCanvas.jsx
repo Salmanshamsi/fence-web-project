@@ -36,7 +36,6 @@ const DrawCanvas = () => {
   };
   return (
     <>
-     <h1 style={{fontSize:"32px" , textAlign:"center" , marginTop:"3rem"}}>DRAW CANVAS</h1>
       <div style={{display:"flex" , justifyContent:"center" , marginTop:"1rem"}}>
       <canvas
         style={{border:"1px solid black"}}
