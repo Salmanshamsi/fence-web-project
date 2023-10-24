@@ -1,6 +1,13 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom"
 
 const Homeside = () => {
+
+    const navigate = useNavigate();
+
+    const navigateToMain = () => {
+        navigate("/main")
+    }
 
   return (
     <>
@@ -14,7 +21,7 @@ const Homeside = () => {
                     <li className='flex flex-row gap-4' ><h1><i class="fa-solid fa-feather-pointed"></i></h1> Draw With Google Maps</li>
                 </ul>
                 <div className='flex lg:flex-row flex-col lg:items-center items-start justify-center lg:gap-3 gap-5 ' >
-                    <button className='text-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-full bg-green-800 rounded-full ' >start design</button>
+                    <button className='text-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-full bg-green-800 rounded-full ' onClick={navigateToMain}>start design</button>
                     <button className='text-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-full bg-green-800 rounded-full ' >saved design</button>
                 </div>
                 <ul className='lg:text-xl text-sm font-medium lg:ps-5 flex flex-col gap-3'>

@@ -6,10 +6,22 @@ const DrawCanvas = () => {
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
 
+  const canvasWidth = 800;  // Width of the canvas in pixels
+  const canvasHeight = 500; // Height of the canvas in pixels
+
+  // You might need to set up a scale factor to map canvas coordinates to actual latitude and longitude.
+
   const handleMouseDown = (e) => {
     setIsDrawing(true);
     setStartX(e.nativeEvent.offsetX);
     setStartY(e.nativeEvent.offsetY);
+
+    // You can map the canvas coordinates to latitude and longitude here.
+    const latitude = (e.nativeEvent.offsetY / canvasHeight) * 180 - 90;
+    const longitude = (e.nativeEvent.offsetX / canvasWidth) * 360 - 180;
+
+    console.log("Start Latitude:", latitude);
+    console.log("Start Longitude:", longitude);
   };
 
   const handleMouseMove = (e) => {
@@ -29,23 +41,34 @@ const DrawCanvas = () => {
     context.moveTo(startX, startY);
     context.lineTo(endX, endY);
     context.stroke();
+
+    // You can map the canvas coordinates to latitude and longitude here.
+    const latitude = (endY / canvasHeight) * 180 - 90;
+    const longitude = (endX / canvasWidth) * 360 - 180;
+
+    console.log("End Latitude:", latitude);
+    console.log("End Longitude:", longitude);
   };
 
   const handleMouseUp = () => {
     setIsDrawing(false);
   };
+
   return (
     <>
-      <div style={{display:"flex" , justifyContent:"center" , marginTop:"1rem"}}>
-      <canvas
-        style={{border:"1px solid black"}}
-        ref={canvasRef}
-        width={800}
-        height={500}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-      />
+      <h1 style={{ fontSize: "32px", textAlign: "center", marginTop: "3rem" }}>
+        DRAW CANVAS
+      </h1>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+        <canvas
+          style={{ border: "1px solid black" }}
+          ref={canvasRef}
+          width={canvasWidth}
+          height={canvasHeight}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        />
       </div>
     </>
   );

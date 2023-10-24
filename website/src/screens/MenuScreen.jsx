@@ -17,9 +17,9 @@ const MenuScreen = () => {
                 
                 <Navbar/>
                 <ZipCodeBar/>
-                <DrawSelection/>
+                {/* <DrawSelection/> */}
 
-                <ToastContainer
+                {/* <ToastContainer
                 position="top-center"
                 autoClose={2000}
                 hideProgressBar={false}
@@ -30,7 +30,7 @@ const MenuScreen = () => {
                 draggable
                 pauseOnHover
                 theme="colored"
-            />
+            /> */}
     </div>
   )
 }

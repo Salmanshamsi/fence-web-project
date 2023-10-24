@@ -1,0 +1,27 @@
+.noresultmain{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.noresult{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+.noresult p{
+    color: red;
+}
+.card{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    align-items: center;
+    margin-left: 1rem;
+}
+.selectstore{
+    padding: .5rem 2rem;
+    background-color: purple;
+    color: #fff;
+    border-radius: 20px;
+}

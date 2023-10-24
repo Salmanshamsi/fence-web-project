@@ -22,7 +22,7 @@ const Canvas = () => {
                       <DrawCanvas/>
                     </div>
                 </div>
-                <ToastContainer
+                {/* <ToastContainer
                 position="top-center"
                 autoClose={2000}
                 hideProgressBar={false}
@@ -33,7 +33,7 @@ const Canvas = () => {
                 draggable
                 pauseOnHover
                 theme="colored"
-            />
+            /> */}
     </>
   )
 }
