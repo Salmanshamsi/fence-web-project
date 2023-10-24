@@ -1,12 +1,11 @@
 import React from 'react'
-import DrawCanvas from '../components/home-side/drawcanvas/DrawCanvas'
 import Navbar from '../components/Navbar/Navbar'
 import ZipCodeBar from '../components/Zip-Code-Bar/ZipCodeBar'
 import DrawSelection from '../components/drawSelection/DrawSelection'
+import DrawCanvas from '../components/drawcanvas/DrawCanvas'
+import DrawSide from "../components/DrawSide/DrawSide"
 // import { ToastContainer } from 'react-toastify'
 // import 'react-toastify/dist/ReactToastify.css';
-import DrawSide from '../components/DrawSide/DrawSide'
-
 
 const Canvas = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 
 const DrawSide = () => {
   return (
-    <div className='w-full h-auto py-8 px-5 flex flex-col border gap-9 items-center justify-center' >
+    <div className='w-full h-auto py-10 px-5 flex flex-col border gap-9 items-center justify-center' style={{marginTop:"4rem"}} >
             <div className='' >
                 <h1 className='border-b-2 border-green-700 w-auto mb-10'>Select design method ?</h1>
                 <div className='flex gap-4 p-2' >

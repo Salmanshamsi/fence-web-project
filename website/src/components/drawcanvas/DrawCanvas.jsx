@@ -6,7 +6,7 @@ const DrawCanvas = () => {
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
 
-  const canvasWidth = 800;  // Width of the canvas in pixels
+  const canvasWidth = 1050;  // Width of the canvas in pixels
   const canvasHeight = 500; // Height of the canvas in pixels
 
   // You might need to set up a scale factor to map canvas coordinates to actual latitude and longitude.
@@ -56,10 +56,10 @@ const DrawCanvas = () => {
 
   return (
     <>
-      <h1 style={{ fontSize: "32px", textAlign: "center", marginTop: "3rem" }}>
+      {/* <h1 style={{ fontSize: "32px", textAlign: "center", marginTop: "3rem" }}>
         DRAW CANVAS
-      </h1>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+      </h1> */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "4rem" }}>
         <canvas
           style={{ border: "1px solid black" }}
           ref={canvasRef}

@@ -33,6 +33,9 @@ const ZipCodeBar = () => {
           onChange={handleChange}
         />
       </div>
+
+   
+
       {/* <table>
               <tr>
                 <td>STORE</td>
@@ -42,23 +45,47 @@ const ZipCodeBar = () => {
               </tr>
             </table> */}
       {
-        inputValue.length > 0 ? <div className="maincards">
-        {filterdData.map((ele) => {
-          console.log(ele);
-          return (
-            <>
-       
-              <div className="card">
-                <p>Store : {ele.store} </p>
-                <p>Adress : {ele.adress} </p>
-                <p>Distance : {ele.distance}</p>
-                <p>Phone : {ele.phone}</p>
-                <button onClick={gotoCanvas} className="selectstore">Select this store</button>
-              </div>
-            </>
-          );
-        })}
-      </div> : <div className="noresultmain"><div className="noresult"> <p>No Result Found</p></div></div>
+        inputValue.length > 0 ?    <div>
+        <div className="content-div">
+           <div className="content">
+             <p>For proper pricing, service, and plant production please tell us which store you would like to facilitate your purchase (including delivery if applicable).</p>
+             <p>If you would like to search for stores using a different zip code other than the one above, click here.</p>
+           </div>
+          </div>
+   
+          <div className="table-header">
+           <hr className="line"/>
+           <div className="t-h">
+             <p>STORE</p>
+             <p>ADRESS</p>
+             <p>DISTANCE</p>
+             <p>PHONE</p>
+           </div>
+           <hr className="linetwo"/>
+          </div>
+          <div className="maincards">
+           {filterdData.map((ele) => {
+             console.log(ele);
+             return (
+               <>
+          
+                 <div className="card">
+                  <div className="store-div">
+                  <p>{ele.store} </p>
+                  </div>
+                   <div className="adress-div"><p>{ele.adress} </p></div>
+                 <div className="distance-div">
+                 <p>{ele.distance}</p>
+                 </div>
+                   <p>{ele.phone}</p>
+                   <button onClick={gotoCanvas} className="selectstore">Select this store</button>
+                 </div>
+                 <hr className="lastline"/>
+               </>
+             );
+           })}
+         </div>
+        </div> :  <div className="noresultmain"><div className="noresult"> <p>No Result Found</p></div></div>
       }
       
     </>
