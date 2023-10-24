@@ -18,7 +18,7 @@ const Canvas = () => {
                       <DrawSide/>
                     </div>
                     <div className='lg:w-9/12 w-full' >                  
-                      <DrawCanvas/>
+                      {/* <DrawCanvas/> */}
                     </div>
                 </div>
                 {/* <ToastContainer

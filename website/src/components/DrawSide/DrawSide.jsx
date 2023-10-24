@@ -1,4 +1,5 @@
 import React from 'react'
+import PlaceSearchBar from '../PlaceSearchBar/PlaceSearchBar'
 
 const DrawSide = () => {
   return (
@@ -16,6 +17,7 @@ const DrawSide = () => {
                     </button>
                 </div>
             </div>
+            <PlaceSearchBar/>
             <div className='w-full p-5 flex flex-col gap-4' >
                     <h1 className='text-xl font-bold' >Create your fence design</h1>
                     <ul className=' text-sm flex flex-col list-disc' >
