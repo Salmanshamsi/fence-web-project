@@ -79,9 +79,9 @@ const ZipCodeBar = () => {
                         }) : ""
                       }
                       {
-                          notFound ? <tr>
+                          notFound ? <tr className="w-full h-full flex items-center justify-center p-3 text-xl text-red-600">
                                       <td>
-                                        <div className="flex items-center justify-center p-3 text-xl text-red-600" >
+                                        <div>
                                             Result not Found
                                         </div> 
                                       </td>

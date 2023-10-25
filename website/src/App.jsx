@@ -14,7 +14,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/main' element={<MenuScreen/>}/>
       <Route path='/select' element={<SelectionScreen/>}/>
-      <Route path='/drawcanvas' element={<Canvas/>}/>
+      <Route path='/drawcanvas' element={<Canvas inCanvas={false} />}/>
      </Routes>
     </>
   )
