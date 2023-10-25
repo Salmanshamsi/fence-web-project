@@ -6,12 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 
 const ZipCodeBar = () => {
-  const [inputValue, setInputValue] = useState("");
 
+  const [inputValue, setInputValue] = useState("");
+  let notFound = false
 
   const [data,setData] = useState(jsonStores);
-
-  console.log(data)
 
   const handleChange = (event) => {
    setInputValue(event.target.value);
@@ -58,7 +57,10 @@ const ZipCodeBar = () => {
                 </tr>
                 
                       {
-                        data.map((CurEl,index)=>{
+
+                       inputValue ? data.map((CurEl,index)=>{    
+                          if(CurEl.ptCode === inputValue){
+                            notFound = false
                             return(
                               <tr key={index} className="w-full p-3 border flex  items-center justify-evenly" >
                                   <td className="w-full h-full text-center" >{CurEl.store}</td>
@@ -71,15 +73,30 @@ const ZipCodeBar = () => {
                                     className="cursor-pointer p-4 hover:bg-green-600 flex items-center w-full justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md" >select this store</a>
                                   </td>
                                </tr>
-                            )
-                        })
+                            )}else{
+                                notFound = true
+                              }
+                        }) : ""
+                      }
+                      {
+                          notFound ? <tr>
+                                      <td>
+                                        <div className="flex items-center justify-center p-3 text-xl text-red-600" >
+                                            Result not Found
+                                        </div> 
+                                      </td>
+                                    </tr>: ""
                       }
                 </tbody>
             </table>
             {/* Mobile Screen */}
                 <div  className="h-auto lg:hidden p-2 w-full flex flex-col" >
                     {
-                      data.map((CurEl,index)=>{
+                    inputValue ?  data.map((CurEl,index)=>{
+                        
+                        if(CurEl.ptCode === inputValue){
+                          
+                          notFound = false
 
                           return(
 
@@ -110,9 +127,14 @@ const ZipCodeBar = () => {
                               </tbody>
                             </table>
                           </div>
-                          )
-
-                      })
+                          )}else{
+                            notFound = true
+                          }
+                        }):""
+                    }{
+                        notFound ?  <div className="flex items-center justify-center p-3 text-red-500 " >
+                                          Result not Found
+                                    </div> : ""
                     }
                     </div>
       </div>
