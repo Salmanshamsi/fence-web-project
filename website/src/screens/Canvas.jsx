@@ -25,9 +25,10 @@ const Canvas = ({inCanvas}) => {
                     <DrawSide SearchCity={false} />
                   </div>
                   <div className='lg:w-9/12 w-full p-5 mt-5' >                  
-                    {
+                    {/* {
                      inCanvas ? <DrawCanvas/> : <G_Map selectedLocation={selectedLocation} />
-                    }
+                    } */}
+                    <DrawCanvas/>
                   </div>
               </div>
           </div>
