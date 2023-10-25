@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./DrawCanvas.css"
+import "./DrawCanvas.css";
 
 const DrawCanvas = () => {
   const canvasRef = useRef(null);
@@ -7,33 +7,29 @@ const DrawCanvas = () => {
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
 
-  const canvasWidth = 1050;  // Width of the canvas in pixels
+  const canvasWidth = 1050; // Width of the canvas in pixels
   const canvasHeight = 500; // Height of the canvas in pixels
 
-  // You might need to set up a scale factor to map canvas coordinates to actual latitude and longitude.
-
-  const handleMouseDown = (e) => {
-    
+  const handleStart = (x, y) => {
     setIsDrawing(true);
-    setStartX(e.nativeEvent.offsetX);
-    setStartY(e.nativeEvent.offsetY);
+    setStartX(x);
+    setStartY(y);
 
-    // You can map the canvas coordinates to latitude and longitude here.
-    const latitude = (e.nativeEvent.offsetY / canvasHeight) * 180 - 90;
-    const longitude = (e.nativeEvent.offsetX / canvasWidth) * 360 - 180;
+    const latitude = (y / canvasHeight) * 180 - 90;
+    const longitude = (x / canvasWidth) * 360 - 180;
 
     console.log("Start Latitude:", latitude);
     console.log("Start Longitude:", longitude);
   };
 
-  const handleMouseMove = (e) => {
+  const handleMove = (x, y) => {
     if (!isDrawing) return;
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
-    const endX = e.nativeEvent.offsetX;
-    const endY = e.nativeEvent.offsetY;
+    const endX = x;
+    const endY = y;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "#009a3d";
@@ -44,7 +40,6 @@ const DrawCanvas = () => {
     context.lineTo(endX, endY);
     context.stroke();
 
-    // You can map the canvas coordinates to latitude and longitude here.
     const latitude = (endY / canvasHeight) * 180 - 90;
     const longitude = (endX / canvasWidth) * 360 - 180;
 
@@ -52,28 +47,52 @@ const DrawCanvas = () => {
     console.log("End Longitude:", longitude);
   };
 
-  const handleMouseUp = () => {
+  const handleEnd = () => {
     setIsDrawing(false);
   };
 
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    handleStart(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    handleMove(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+  };
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    const canvasRect = canvasRef.current.getBoundingClientRect();
+    handleStart(touch.clientX - canvasRect.left, touch.clientY - canvasRect.top);
+  };
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    const canvasRect = canvasRef.current.getBoundingClientRect();
+    handleMove(touch.clientX - canvasRect.left, touch.clientY - canvasRect.top);
+  };
+
+  const handleTouchEnd = () => {
+    handleEnd();
+  };
+
   return (
-    <>
-      {/* <h1 style={{ fontSize: "32px", textAlign: "center", marginTop: "3rem" }}>
-        DRAW CANVAS
-      </h1> */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "4rem" }}>
-        <canvas
+    <div className="canvansmain">
+      <canvas
         id="canvas"
-          style={{ border: "1px solid black" }}
-          ref={canvasRef}
-          width={canvasWidth}
-          height={canvasHeight}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-        />
-      </div>
-    </>
+        style={{ border: "1px solid black" }}
+        ref={canvasRef}
+        width={canvasWidth}
+        height={canvasHeight}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      />
+    </div>
   );
 };
 
