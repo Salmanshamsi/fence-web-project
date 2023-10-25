@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <>
-    <div className='hidden h-12 lg:flex  bg-green-700 text-white fixed w-full' >
+    <div className='hidden h-12 lg:flex  bg-green-700 text-white fixed w-full z-50' >
 
             <div className='flex  w-4/12 h-full items-center pl-10' >
                 <div className='border-r border-white pr-2 ' >
