@@ -11,16 +11,20 @@ const Canvas = () => {
   return (
     <>
 
+          <div className='flex flex-col' >
+              <div>
                 <Navbar/>
-                <div className='flex items-center' >
-                      {/* <ZipCodeBar/> */}
-                    <div className='w-3/12 lg:flex flex-col hidden' >
-                      <DrawSide/>
-                    </div>
-                    <div className='lg:w-9/12 w-full' >                  
-                      {/* <DrawCanvas/> */}
-                    </div>
-                </div>
+              </div>
+              <div className='flex items-center w-full mt-14' >
+                  <div className='w-3/12 lg:flex flex-col hidden' >
+                    <DrawSide/>
+                  </div>
+                  <div className='lg:w-9/12 w-full' >                  
+                    <DrawCanvas/>
+                  </div>
+              </div>
+          </div>
+
                 {/* <ToastContainer
                 position="top-center"
                 autoClose={2000}

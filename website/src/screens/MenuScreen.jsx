@@ -13,10 +13,14 @@ const MenuScreen = () => {
     // }
 
     return (
-    <div>
-                
-                <Navbar/>
-                <ZipCodeBar/>
+    <div className='flex flex-col' >        
+                <div>
+                  <Navbar/>
+                </div>
+                <div className='mt-14'>
+                    <ZipCodeBar/>
+                </div>
+
                 {/* <DrawSelection/> */}
 
                 {/* <ToastContainer

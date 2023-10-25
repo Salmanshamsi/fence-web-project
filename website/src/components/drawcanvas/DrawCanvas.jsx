@@ -13,6 +13,7 @@ const DrawCanvas = () => {
   // You might need to set up a scale factor to map canvas coordinates to actual latitude and longitude.
 
   const handleMouseDown = (e) => {
+    
     setIsDrawing(true);
     setStartX(e.nativeEvent.offsetX);
     setStartY(e.nativeEvent.offsetY);
