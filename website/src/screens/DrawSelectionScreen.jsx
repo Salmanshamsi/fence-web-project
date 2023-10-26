@@ -1,8 +1,8 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import DrawSelection from '../components/drawSelection/DrawSelection'
+import DrawSelection from '../components/DrawMenu/DrawSelection'
 
-const SelectionScreen = () => {
+const DrawSelectionScreen = () => {
   return (
     <div className='flex flex-col' >
         <div>
@@ -15,4 +15,4 @@ const SelectionScreen = () => {
   )
 }
 
-export default SelectionScreen
+export default DrawSelectionScreen

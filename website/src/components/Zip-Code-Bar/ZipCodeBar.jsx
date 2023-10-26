@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import jsonStores from "../stores/Fences.json";
+import jsonStores from "../../assets/stores/Fences.json"
 import { useNavigate } from "react-router-dom";
 
 
@@ -7,20 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const ZipCodeBar = () => {
 
-  const [inputValue, setInputValue] = useState("");
-  let notFound = false
-
+  const [inputValue, setInputValue] = useState("");  
   const [data,setData] = useState(jsonStores);
-
-  const handleChange = (event) => {
-   setInputValue(event.target.value);
-  }
 
   const navigate = useNavigate("");
 
   const gotoCanvas = () => {
-    navigate("/select")
+    navigate("/drawselection")
   }
+
 
   return (
     <>
@@ -28,78 +23,77 @@ const ZipCodeBar = () => {
         <h1 className="lg:text-md text-sm">
           Please enter the zip code to find a store:
         </h1>
-        <input
-          type="text"
-          className="border text-sm h-full rounded-full px-4 shadow-sm"
-          placeholder="Enter Zip-Code"
-          value={inputValue}
-          onChange={handleChange}
-        />
+        <form action="">
+            <input
+                type="text"
+                className="border text-sm h-full rounded-full px-4 shadow-sm"
+                placeholder="Enter Zip-Code"
+                value={inputValue}
+                minLength={5}
+                maxLength={7}
+                onChange={(e)=>{
+                    e.preventDefault;
+                    setInputValue(e.target.value);
+                }}
+              />
+        </form>
       </div>
       
+
+
       <div className="w-full h-auto p-4 border text-sm" >
           <p>
             For proper pricing, service, and plant production please tell us which store you would like to facilitate your purchase (including delivery if applicable).
             If you would like to search for stores using a different zip code other than the one above, <a className="text-blue-700" href="">click here</a>.
           </p>
       </div>
+
+
       <div className="w-full h-full">
+            
+            
             <table className="w-full h-auto hidden flex-col lg:flex" >
-                <tbody>
-                <tr className="w-full p-3 border border-gray-800 flex items-center justify-evenly" >
-                    <td className=" w-full text-center h-full" >store</td>
-                    <td className=" w-full text-center h-full" >Adress</td>
-                    <td className=" w-full text-center h-full" >Distance</td>
-                    <td className=" w-full text-center h-full" >Phone</td>
-                    <td className=" w-full text-center h-full">
-
-                    </td>
-                </tr>
-                
-                      {
-
-                       inputValue ? data.map((CurEl,index)=>{    
-                          if(CurEl.ptCode === inputValue){
-                            notFound = false
-                            return(
-                              <tr key={index} className="w-full p-3 border flex  items-center justify-evenly" >
-                                  <td className="w-full h-full text-center" >{CurEl.store}</td>
-                                  <td className="w-full h-full text-center" >{CurEl.adress}</td>
-                                  <td className="w-full h-full text-center" >{CurEl.distance}</td>
-                                  <td className="w-full h-full text-center" >{CurEl.phone}</td>
-                                  <td className="w-full h-full text-center" >
-                                    <a
-                                    onClick={gotoCanvas}
-                                    className="cursor-pointer p-4 hover:bg-green-600 flex items-center w-full justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md" >select this store</a>
-                                  </td>
-                               </tr>
-                            )}else{
-                                notFound = true
-                              }
-                        }) : ""
-                      }
-                      {
-                          notFound ? <tr className="w-full h-full flex items-center justify-center p-3 text-xl text-red-600">
-                                      <td>
-                                        <div>
-                                            Result not Found
-                                        </div> 
-                                      </td>
-                                    </tr>: ""
-                      }
-                </tbody>
+            <tbody>
+                      <tr className={`w-full p-3 border border-gray-800 flex items-center justify-evenly`}>
+                          <td className="w-full text-center h-full">store</td>
+                          <td className="w-full text-center h-full">Address</td>
+                          <td className="w-full text-center h-full">Distance</td>
+                          <td className="w-full text-center h-full">Phone</td>
+                          <td className="w-full text-center h-full"></td>
+                    </tr>
+                  {data?.map((CurEl, index) => {
+                    if (CurEl?.ptCode === inputValue) {
+                      return (                    
+                        <tr key={index} className="w-full p-3 border flex items-center justify-evenly">
+                          <td className="w-full h-full text-center">{CurEl?.store}</td>
+                          <td className="w-full h-full text-center">{CurEl?.address}</td>
+                          <td className="w-full h-full text-center">{CurEl?.distance}</td>
+                          <td className="w-full h-full text-center">{CurEl?.phone}</td>
+                          <td className="w-full h-full text-center">
+                            <a
+                              onClick={gotoCanvas}
+                              className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
+                            >
+                              select this store
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    }
+                    return null;
+                  })}
+            </tbody>
             </table>
+
+
             {/* Mobile Screen */}
+
+
+            
                 <div  className="h-auto lg:hidden p-2 w-full flex flex-col" >
-                    {
-                    inputValue ?  data.map((CurEl,index)=>{
-                        
+                    {data.map((CurEl,index)=>{
                         if(CurEl.ptCode === inputValue){
-                          
-                          notFound = false
-
                           return(
-
                           <div key={index} className="w-full border p-3" >
                             <table className="flex flex-col gap-2 w-full" >
                               <tbody>
@@ -127,14 +121,8 @@ const ZipCodeBar = () => {
                               </tbody>
                             </table>
                           </div>
-                          )}else{
-                            notFound = true
-                          }
-                        }):""
-                    }{
-                        notFound ?  <div className="flex items-center justify-center p-3 text-red-500 " >
-                                          Result not Found
-                                    </div> : ""
+                          )}
+                        })
                     }
                     </div>
       </div>

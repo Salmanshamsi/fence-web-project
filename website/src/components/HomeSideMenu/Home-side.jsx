@@ -6,7 +6,7 @@ const Homeside = () => {
     const navigate = useNavigate();
 
     const navigateToMain = () => {
-        navigate("/main")
+        navigate("/stores")
     }
 
   return (

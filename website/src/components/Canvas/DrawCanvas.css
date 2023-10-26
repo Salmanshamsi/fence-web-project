@@ -1,0 +1,120 @@
+#canvas{
+    width: 1050px;
+    height: 500px;
+}
+.inputs{
+    padding: .4rem 1rem;
+    border: 1px solid black;
+    width: 80px;
+    border-radius: 20px;
+    margin-top: .5rem;
+
+}
+.remove-selected{
+    margin-top: .8rem;
+}
+.btns{
+    background-color: green;
+    padding: .5rem 0rem;
+    width: 100px;
+    color: #fff;
+    margin-top: .8rem;
+    border-radius: 20px;
+}
+.btn{
+    background: none;
+    border: 1px solid red;
+    color: red;
+    padding: .5rem 0rem;
+    width: 140px;
+    border-radius: 20px;
+}
+.canvasdetails{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    width: 380px;
+    border-radius: 20px;
+    height: 290px;
+}
+.selected-length{
+    padding-top: 1rem;
+}
+.details{
+    display: flex;
+    justify-content: center;
+}
+.flex-div{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+@media screen and (max-width:1445px) {
+    #canvas{
+        width: 950px;
+        height: 500px;
+    }
+}
+@media screen and (max-width:1297px) {
+    #canvas{
+        width: 850px;
+        height: 500px;
+    }
+}
+@media screen and (max-width:1153px) {
+    #canvas{
+        width: 800px;
+        height: 550px;
+    }
+}
+@media screen and (max-width:1101px) {
+    #canvas{
+        width: 700px;
+        height: 600px;
+    }
+}
+@media screen and (max-width:1017px) {
+    #canvas{
+        width: 800px;
+        height: 600px;
+        margin-top: 1rem;
+    }
+    .canvansmain{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (max-width:845px) {
+    #canvas{
+        width: 500px;
+        height: 600px;
+    }
+}
+@media screen and (max-width:546px) {
+    #canvas{
+        width: 400px;
+        height: 600px;
+    }
+}
+@media screen and (max-width:438px) {
+    #canvas{
+        width: 300px;
+        height: 600px;
+    }
+}
+@media screen and (max-width:390px) {
+    #canvas{
+        width: 290px;
+        margin-top: 2rem;
+        height: 580px;
+    }
+}
+@media screen and (max-width:304px) {
+    #canvas{
+        width: 270px;
+        margin-top: 2rem;
+        height: 580px;
+    }
+}

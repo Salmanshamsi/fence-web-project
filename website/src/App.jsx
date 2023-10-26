@@ -1,9 +1,11 @@
-import Canvas from "./screens/Canvas"
-import Home from "./screens/Home"
 import {Routes , Route} from "react-router-dom"
-import MenuScreen from "./screens/MenuScreen"
 import "./App.css";
-import SelectionScreen from "./screens/SelectionScreen"
+// screen's imports
+import CanvasScreen from "./screens/CanvasScreen";
+import Mapscreen from "./screens/Mapscreen";
+import StoreScreen from "./screens/StoresScreen";
+import DrawSelectionScreen from "./screens/DrawSelectionScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 
 function App() {
@@ -11,10 +13,11 @@ function App() {
   return (
     <>
      <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/main' element={<MenuScreen/>}/>
-      <Route path='/select' element={<SelectionScreen/>}/>
-      <Route path='/drawcanvas' element={<Canvas inCanvas={false} />}/>
+      <Route path='/' element={<HomeScreen/>}/>
+      <Route path='/stores' element={<StoreScreen/>}/>
+      <Route path='/drawselection' element={<DrawSelectionScreen/>}/>
+      <Route path='/canvas' element={<CanvasScreen/>}/>
+      <Route path='/map' element={<Mapscreen/>}/>
      </Routes>
     </>
   )

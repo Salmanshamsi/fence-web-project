@@ -1,8 +1,8 @@
 import React from 'react'
 import bg from "../assets/images/bg-picture.jpg"
-import Homeside from '../components/home-side/Home-side'
+import Homeside from '../components/HomeSideMenu/Home-side'
 
-const Home = () => {
+const HomeScreen = () => {
   return (
     <div className='w-full h-screen bg-center bg-cover flex justify-center items-center flex-row text-white'
     style={{
@@ -19,7 +19,7 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeScreen
 
 
 
