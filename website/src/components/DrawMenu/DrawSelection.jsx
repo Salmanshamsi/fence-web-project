@@ -10,11 +10,11 @@ const DrawSelection = () => {
         <div className='text-4xl m-4' >
             How would you like to estimate your fence?
         </div>
-        <div className='flex w-full lg:flex-row flex-col  lg:gap-0  gap-5' >
+        <div className='flex w-full lg:flex-row flex-col  lg:gap-0  gap-5 text-green-800' >
             <div className='w-full flex-col gap-20 lg:border-r  flex items-center justify-center' >
                 <h1>Find fence dimensions with Google Maps</h1>
                 <div className='text-7xl'>
-                    <i className="fa-solid fa-earth-europe fa-2xl"></i>
+                    <i className="fa-solid fa-map-location-dot fa-2xl"></i>
                 </div>
                 <button
                     onClick={(e)=>{

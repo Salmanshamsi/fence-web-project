@@ -21,12 +21,14 @@ const Mapscreen = () => {
               <div className='lg:hidden flex flex-col mt-20 px-4' >
                 <PlaceSearchBar/>
               </div>
-              <div className='flex items-center w-full mt-5' >
-                  <div className='w-3/12 lg:flex flex-col hidden ' >
-                    <DrawSide/>
-                  </div>
-                  <div className='lg:w-9/12 w-full p-5 mt-5' >                  
-                     <G_Map selectedLocation={selectedLocation} />
+              <div className='w-full h-screen fixed pt-10' >
+                  <div className='flex' >
+                    <div className='w-3/12 lg:flex flex-col hidden ' >
+                      <DrawSide/>
+                    </div>
+                    <div className='lg:w-9/12 w-full p-5 mt-5' >                  
+                       <G_Map selectedLocation={selectedLocation} />
+                    </div>
                   </div>
               </div>
           </div>

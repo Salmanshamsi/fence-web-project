@@ -53,7 +53,7 @@ const Navbar = () => {
             </div>
 
       </div>
-      <ul className={`w-full ${Openmenu}`} >
+      <ul className={`w-full fixed mt-14 ${Openmenu}`} >
           <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Select Store</li>
           <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Design</li>
           <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Materials</li>

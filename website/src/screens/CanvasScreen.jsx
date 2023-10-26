@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar/Navbar'
-import DrawCanvas from '../components/Canvas/DrawCanvas'
 import DrawSide from "../components/DrawSideBar/DrawSide"
+import DrawCanvas from '../components/Canvas/DrawCanvas'
 
 const CanvasScreen = () => {
   
@@ -10,12 +10,14 @@ const CanvasScreen = () => {
               <div>
                 <Navbar/>
               </div>
-              <div className='flex items-center w-full mt-5' >
-                  <div className='w-3/12 lg:flex flex-col hidden ' >
-                    <DrawSide />
-                  </div>
-                  <div className='lg:w-9/12 w-full p-5 mt-5' >                  
-                    <DrawCanvas/>
+              <div className='lg:h-screen h-full w-full'>
+                  <div className='flex pt-10 lg:fixed'>
+                    <div className='w-3/12 lg:flex flex-col hidden' >
+                      <DrawSide />
+                    </div>
+                    <div className='lg:w-9/12 w-full p-5 mt-5' >                  
+                      <DrawCanvas/>
+                    </div>
                   </div>
               </div>
           </div>

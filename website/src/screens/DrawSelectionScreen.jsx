@@ -8,8 +8,10 @@ const DrawSelectionScreen = () => {
         <div>
           <Navbar/>
         </div>
-        <div className='mt-14' >
-          <DrawSelection/>
+        <div className='lg:h-screen lg:fixed h-full w-full lg:pt-0 pt-14' >
+          <div className=''>
+            <DrawSelection/>
+          </div>
         </div>
     </div>
   )
