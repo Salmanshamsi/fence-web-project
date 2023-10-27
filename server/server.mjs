@@ -12,7 +12,6 @@ const uri = process.env.MONGO_DB_URI;
 
 //  Middlewares...
 
-app.set('trust proxy', true);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd() + "/public" )));

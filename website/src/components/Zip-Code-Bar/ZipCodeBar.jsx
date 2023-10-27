@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import jsonStores from "../../assets/stores/Fences.json";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ZipCodeBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState(jsonStores);
 
-  const navigate = useNavigate("");
-
-  const gotoCanvas = () => {
-    navigate("/drawselection");
-  };
 
   const RenderHeadHandler = (Arr, inp) => {
 
@@ -92,12 +87,11 @@ const ZipCodeBar = () => {
                       {CurEl?.phone}
                     </td>
                     <td className="w-full h-full text-center">
-                      <a
-                        onClick={gotoCanvas}
-                        className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
+                      <Link className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
+                        to={'/drawselection'}
                       >
                         select this store
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                 );
@@ -142,12 +136,11 @@ const ZipCodeBar = () => {
                       </tr>
                       <tr className="flex items-star  items-center justify-end w-full">
                         <td>
-                          <a
-                            onClick={gotoCanvas}
-                            className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
+                          <Link className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
+                            to={'/drawselection'}
                           >
                             select this store
-                          </a>
+                          </Link>
                         </td>
                       </tr>
                     </tbody>

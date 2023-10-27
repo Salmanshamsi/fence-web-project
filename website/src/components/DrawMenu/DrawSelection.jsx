@@ -1,9 +1,7 @@
 import React from 'react'
-import {useNavigate} from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 const DrawSelection = () => {
-
-    const navigate = useNavigate();
 
   return (
     <div className='h-full lg:p-24 lg:gap-8 gap-16 w-full text-gray-700 flex flex-col justify-center items-center '>
@@ -16,23 +14,18 @@ const DrawSelection = () => {
                 <div className='text-7xl'>
                     <i className="fa-solid fa-map-location-dot fa-2xl"></i>
                 </div>
-                <button
-                    onClick={(e)=>{
-                        e.preventDefault()
-                        navigate("/map")
-                        }}
-                className='text-center text-white flex items-center justify-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-12 bg-green-800 rounded-full ' >Google Map</button>
+                <Link
+                to={'/map'}
+                className='text-center text-white flex items-center justify-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-12 bg-green-800 rounded-full ' >Google Map</Link>
             </div>
             <div className='w-full flex-col gap-20 flex items-center justify-center' >
                 <h1>Manually enter my fence dimensions</h1>
                 <div className='text-7xl'>
                 <i className="fa-solid fa-compass-drafting fa-2xl"></i>
                 </div>
-                <button className='text-center text-white flex items-center justify-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-12 bg-green-800 rounded-full ' 
-                onClick={(e)=>{
-                    e.preventDefault()
-                    navigate("/canvas")
-                    }}>Draw Canvas</button>
+                <Link className='text-center text-white flex items-center justify-center w-28 transition duration-100 hover:-translate-y-1 lg:w-44 lg:p-4 p-2 lg:text-lg text-md h-12 bg-green-800 rounded-full ' 
+                 to={'/canvas'}
+                >Draw Canvas</Link>
             </div>
         </div>
     </div>
