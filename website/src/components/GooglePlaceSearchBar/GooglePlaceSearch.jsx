@@ -10,15 +10,17 @@ const loadScript = (url, callback) => {
   document.getElementsByTagName("head")[0].appendChild(script);
 };
 
-const GooglePlaceSearch = ({ setSelectedLocation }) => {
+const GooglePlaceSearch = ({ setSelectedLocation, API }) => {
+
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
+
 
   const handleScriptLoad = (updateQuery, autoCompleteRef) => {
     autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteRef.current,
       {
-        // types: ["(cities)"],
+        types: ["(cities)"],
         componentRestrictions: { country: "IN" },
       }
     );
@@ -49,7 +51,7 @@ const GooglePlaceSearch = ({ setSelectedLocation }) => {
     window[callbackName] = () => handleScriptLoad(setQuery, autoCompleteRef);
 
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_GOOGLE_MAPS_KEY}&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${API}&libraries=places`,
       callbackName
     );
 

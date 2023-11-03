@@ -1,6 +1,6 @@
 import React from 'react'
-import PlaceSearchBar from '../PlaceSearchBar/PlaceSearchBar'
 import { Link } from 'react-router-dom'
+import GooglePlaceSearch from '../GooglePlaceSearchBar/GooglePlaceSearch'
 
 const DrawSide = () => {
 
@@ -28,7 +28,7 @@ const DrawSide = () => {
                 </div>
             </div>
             {(document.URL ===  `${baseUrl1}map` || document.URL === `${baseUrl2}map`) ?<>
-            <PlaceSearchBar/>
+            {/* <GooglePlaceSearch/> */}
             <div className='w-full p-5 flex flex-col gap-4'>
                     <h1 className='text-xl font-bold' >Create your fence design</h1>
                     <ul className=' text-sm flex flex-col list-disc' >

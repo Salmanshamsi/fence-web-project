@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import jsonStores from "../../assets/stores/Fences.json";
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux"
+import { getPtCode } from "../../redux/slices/ptCodeSlice";
 
 const ZipCodeBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState(jsonStores);
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
 
   const RenderHeadHandler = (Arr, inp) => {
@@ -87,11 +92,16 @@ const ZipCodeBar = () => {
                       {CurEl?.phone}
                     </td>
                     <td className="w-full h-full text-center">
-                      <Link className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
-                        to={'/drawselection'}
+                      <button className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
+                      
+                      onClick={(e)=>{
+                        e.preventDefault();
+                        navigate("/drawselection")
+                        dispatch(getPtCode(CurEl.ptCode))
+                      }}
                       >
                         select this store
-                      </Link>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -136,11 +146,15 @@ const ZipCodeBar = () => {
                       </tr>
                       <tr className="flex items-star  items-center justify-end w-full">
                         <td>
-                          <Link className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
-                            to={'/drawselection'}
+                          <button className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
+                            onClick={(e)=>{
+                              e.preventDefault();
+                              navigate("/drawselection")
+                              dispatch(getPtCode(CurEl.ptCode))
+                            }}
                           >
                             select this store
-                          </Link>
+                          </button>
                         </td>
                       </tr>
                     </tbody>
