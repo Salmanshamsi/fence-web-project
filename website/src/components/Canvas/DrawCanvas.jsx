@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, useState} from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 const DrawCanvas = () => {
-
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lines, setLines] = useState([]);
@@ -11,17 +10,11 @@ const DrawCanvas = () => {
 
   const handleStart = (x, y) => {
     if (canvasEnabled) {
-      hasMoved.current = false;
+      // hasMoved.current = false; // Remove this line
       setIsDrawing(true);
       setCurrentLine({ startX: x, startY: y, endX: x, endY: y });
     }
   };
-
-  const resetDrawingState = () => {
-    setIsDrawing(false);
-    setCurrentLine(null);
-  };
-  
 
   const handleMove = (x, y) => {
     if (isDrawing) {
@@ -45,7 +38,6 @@ const DrawCanvas = () => {
       setCurrentLine(null);
       drawCanvas();
     }
-    resetDrawingState();
   };
 
   const drawCanvas = () => {
@@ -113,7 +105,6 @@ const DrawCanvas = () => {
 
     updateCanvasSize();
 
-    
     window.addEventListener("resize", updateCanvasSize);
 
     return () => {
@@ -124,28 +115,23 @@ const DrawCanvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
 
-const handleTouchMove = (e) => {
-  if (isDrawing) {
-    const touch = e.touches[0];
-    if (touch) {
-      const x = touch.clientX - canvas.getBoundingClientRect().left;
-      const y = touch.clientY - canvas.getBoundingClientRect().top;
-      handleMove(x, y);
-    }
-  }
-};
+    const handleTouchMove = (e) => {
+      if (isDrawing) {
+        const x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+        const y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+        handleMove(x, y);
+      }
+    };
+
     const handleTouchEnd = () => {
       handleEnd();
     };
 
     canvas.addEventListener("touchstart", (e) => {
       e.preventDefault();
-      const touch = e.touches[0];
-      if (touch) {
-        const x = touch.clientX - canvas.getBoundingClientRect().left;
-        const y = touch.clientY - canvas.getBoundingClientRect().top;
-        handleStart(x, y);
-      }
+      const x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+      const y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+      handleStart(x, y);
     });
 
     canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
@@ -153,30 +139,16 @@ const handleTouchMove = (e) => {
 
     return () => {
       canvas.removeEventListener("touchstart", handleStart);
-      canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
-      canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isDrawing]);
-
-
-  const captureInput = () => {
-    const coordinates = lines.map((line) => {
-      return {
-        startX: line.startX,
-        startY: line.startY,
-        endX: line.endX,
-        endY: line.endY,
-      };
-    });
-    alert("Drawn input coordinates:", coordinates);
-  };
-  
 
   return (
     <div className="canvasmain">
       <canvas
-      className="h-5/6 w-full"
         id="canvas"
+        className="w-full h-5/6"
         style={{
           border: "1px solid black",
           pointerEvents: canvasEnabled ? "auto" : "none",
@@ -198,12 +170,8 @@ const handleTouchMove = (e) => {
         }}
         onMouseUp={handleEnd}
       />
-        <div>
-          {/* <button onClick={clearCanvas}>Clear</button> */}
-          <button onClick={captureInput}>Capture Input</button>
-      </div>
     </div>
   );
 };
 
-export default DrawCanvas
+export default DrawCanvas;

@@ -12,10 +12,10 @@ const CanvasScreen = () => {
               </div>
               <div className='lg:h-screen h-full w-full'>
                   <div className='flex pt-10 lg:fixed'>
-                    <div className='w-3/12 lg:flex flex-col hidden' >
-                      <DrawSide />
+                    <div className='w-5/12 lg:flex flex-col hidden' >
+                      <DrawSide/>
                     </div>
-                    <div className='lg:w-9/12 w-full p-5 mt-5' >                  
+                    <div className='w-full p-5 mt-5' >                  
                       <DrawCanvas/>
                     </div>
                   </div>

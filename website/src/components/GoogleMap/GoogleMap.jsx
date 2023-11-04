@@ -12,6 +12,7 @@ const G_Map = ({API}) => {
     lat: 24.8607,
     lng: 67.0011,
   });
+
   
   const [postalCode,setpostalCode] = useState(useSelector((state) => state.ptCode.value));
 
@@ -171,8 +172,9 @@ const G_Map = ({API}) => {
         mapContainerStyle={{
           height: '480px',
         }}
+        mapTypeId="satellite"
         center={selectedLocation}
-        zoom={8}
+        zoom={25}
         onLoad={onMapLoad}
       />
     </div>
