@@ -55,18 +55,18 @@ const Navbar = () => {
 
       </div>
       <ul className={`w-full fixed mt-14 ${Openmenu}`} >
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Select Store</li>
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Design</li>
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Materials</li>
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >summary</li>
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Purchase</li>
-          <li className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >
+          <Link to={"/stores"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Select Store</Link>
+          <Link to={"/drawselection"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Design</Link>
+          <Link to={"/materials"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Materials</Link>
+          <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >summary</Link>
+          <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Purchase</Link>
+          <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >
             <ul className='flex items-center justify-center gap-3 p-3 transition-all transform duration-300' >
                 <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-sd-card "></i></h1> save</li>
                 <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-sd-card "></i></h1> save as</li>
                 <li className='flex gap-2 items-center cursor-pointer' ><i className="fa-solid fa-file-circle-question"></i> FAQ</li>
             </ul>
-          </li>
+          </Link>
       </ul>
       </>
   )

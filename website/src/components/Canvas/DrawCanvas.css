@@ -1,0 +1,159 @@
+/* Default styles for larger screens */
+
+.editcanvasheader {
+    background-color: #009a3d!important;
+    padding: 10px 10px;
+}
+
+.editcanvasheader h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.editcanvastext {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editcanvastext p {
+    font-size: 19px;
+}
+
+.editinputscontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.editinputs {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.first_editinnerBox,
+.second_editinnerBox {
+    display: flex;
+    align-items: center;
+}
+
+.first_editinnerBox input,
+.second_editinnerBox input {
+    width: 80px;
+    border-radius: 20px;
+    height: 40px;
+    outline: none;
+    border: 1px solid black;
+    padding: 0rem .5rem 0rem .5rem;
+}
+
+.first_editinnerBox p,
+.second_editinnerBox p {
+    margin-left: .5rem;
+    font-size: 20px;
+}
+
+.counts {
+    margin-left: .3rem;
+    font-size: 18px;
+}
+
+.secondcount {
+    margin-left: .8rem;
+}
+
+.nextsideand_donebtn_container {
+    display: flex;
+    justify-content: center;
+}
+
+.nextsideand_donebtn {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.nextsideand_donebtn button {
+    background-color: #009a3d;
+    border-radius: 20px;
+    padding: .5rem 3rem;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.removeselectedFenceSide {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.removeselectedFenceSide p {
+    font-size: 18px;
+}
+
+.removeSideBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.removeSideBtn button {
+    background: none;
+    outline: none;
+    border: 1px solid red;
+    padding: .5rem 1rem;
+    color: red;
+    border-radius: 20px;
+}
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    .editcanvasheader {
+        padding: 5px 5px;
+    }
+
+    .editcanvasheader h2 {
+        font-size: 18px;
+    }
+
+    .editcanvastext p {
+        font-size: 16px;
+    }
+
+    .editinputs {
+        width: 90%;
+    }
+
+    .first_editinnerBox input,
+    .second_editinnerBox input {
+        width: 60px;
+        height: 30px;
+    }
+
+    .first_editinnerBox p,
+    .second_editinnerBox p {
+        font-size: 16px;
+    }
+
+    .counts,
+    .secondcount {
+        font-size: 14px;
+    }
+
+    .nextsideand_donebtn button {
+        padding: .5rem 2rem;
+    }
+
+    .removeselectedFenceSide p {
+        font-size: 16px;
+    }
+
+    .removeSideBtn button {
+        padding: .5rem .8rem;
+    }
+}
