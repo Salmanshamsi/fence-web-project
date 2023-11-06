@@ -7,6 +7,8 @@ import StoreScreen from "./screens/StoresScreen";
 import DrawSelectionScreen from "./screens/DrawSelectionScreen";
 import HomeScreen from "./screens/HomeScreen";
 import { REACT_APP_GOOGLE_MAPS_KEY } from "./assets/mapApiKey/mapApiKey";
+import Materials from "./screens/MaterialsScreen";
+import Auth from "./screens/Auth";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <Route path='/drawselection' element={<DrawSelectionScreen/>}/>
       <Route path='/canvas' element={<CanvasScreen/>}/>
       <Route path='/map' element={<Mapscreen API={REACT_APP_GOOGLE_MAPS_KEY} />}/>
+      <Route path='/materials' element={<Materials/>}/>
+      <Route path='/login' element={<Auth/>}/>
      </Routes>
     </>
   )

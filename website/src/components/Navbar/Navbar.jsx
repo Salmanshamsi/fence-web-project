@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -17,18 +18,18 @@ const Navbar = () => {
             </div>
 
             <ul className='flex  w-full gap-5 justify-center h-full items-center ' >
-                <li className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Select Store</li>
-                <li className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Design</li>
-                <li className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Materials</li>
-                <li className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</li>
-                <li className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Purchase</li>
+                <Link to={"/stores"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Select Store</Link>
+                <Link to={"/drawselection"}  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Design</Link>
+                <Link to={"/materials"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Materials</Link>
+                <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</Link>
+                <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Purchase</Link>
             </ul>
 
             <ul className='flex  w-full gap-10 justify-end pr-20 h-full items-center p-2' >
                 <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-sd-card "></i></h1> save</li>
                 <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-sd-card "></i></h1> save as</li>
                 <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-file-circle-question"></i></h1> FAQ</li>
-                <li className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-user"></i></h1> Login</li>
+                <Link to={"/login"} className='flex gap-2 items-center cursor-pointer' ><h1><i className="fa-solid fa-user"></i></h1> Login</Link>
             </ul>
             {/* Mobile screen */}
     </div>

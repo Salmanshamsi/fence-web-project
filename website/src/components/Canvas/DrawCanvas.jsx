@@ -1,174 +1,146 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState, useEffect } from 'react';
 
 const DrawCanvas = () => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lines, setLines] = useState([]);
-  const [canvasEnabled, setCanvasEnabled] = useState(true);
-  const [currentLine, setCurrentLine] = useState(null);
-  const hasMoved = useRef(false); // Add a ref to track mouse movement
+  const [startX, setStartX] = useState(null);
+  const [startY, setStartY] = useState(null);
+  const [endX, setEndX] = useState(null);
+  const [endY, setEndY] = useState(null);
 
-  const handleStart = (x, y) => {
-    if (canvasEnabled) {
-      // hasMoved.current = false; // Remove this line
-      setIsDrawing(true);
-      setCurrentLine({ startX: x, startY: y, endX: x, endY: y });
-    }
-  };
-
-  const handleMove = (x, y) => {
-    if (isDrawing) {
-      hasMoved.current = true; // Set the flag to true on any mouse movement
-      setCurrentLine({
-        ...currentLine,
-        endX: x,
-        endY: y,
-      });
-      drawCanvas();
-    }
-  };
-
-  const handleEnd = () => {
-    if (isDrawing && hasMoved.current) {
-      setIsDrawing(false);
-      if (currentLine) {
-        const newLines = [...lines, currentLine];
-        setLines(newLines);
-      }
-      setCurrentLine(null);
-      drawCanvas();
-    }
-  };
-
-  const drawCanvas = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    const gridSize = 20;
-    const gridColor = "#ccc";
-    const lineWidth = 1;
-
-    for (let x = 0; x < canvas.width; x += gridSize) {
-      context.beginPath();
-      context.moveTo(x, 0);
-      context.lineTo(x, canvas.height);
-      context.strokeStyle = gridColor;
-      context.lineWidth = lineWidth;
-      context.stroke();
-    }
-
-    for (let y = 0; y < canvas.height; y += gridSize) {
-      context.beginPath();
-      context.moveTo(0, y);
-      context.lineTo(canvas.width, y);
-      context.strokeStyle = gridColor;
-      context.lineWidth = lineWidth;
-      context.stroke();
-    }
-
-    context.lineCap = "round";
-    context.strokeStyle = "#009a3d";
-    context.lineWidth = 11;
-
-    lines.forEach((line) => {
-      context.beginPath();
-      context.moveTo(line.startX, line.startY);
-      context.lineTo(line.endX, line.endY);
-      context.stroke();
-    });
-
-    if (currentLine) {
-      context.beginPath();
-      context.moveTo(currentLine.startX, currentLine.startY);
-      context.lineTo(currentLine.endX, currentLine.endY);
-      context.stroke();
-    }
-  };
+  // Add a state for the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedLine, setSelectedLine] = useState(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
 
-    const updateCanvasSize = () => {
-      const rect = canvas.getBoundingClientRect();
-      const devicePixelRatio = window.devicePixelRatio || 1;
-
-      canvas.width = rect.width * devicePixelRatio;
-      canvas.height = rect.height * devicePixelRatio;
-
-      context.scale(devicePixelRatio, devicePixelRatio);
-
-      drawCanvas();
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
-    updateCanvasSize();
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    window.addEventListener("resize", updateCanvasSize);
+    context.lineWidth = 5;
+    context.strokeStyle = 'green';
+    context.lineJoin = 'round';
+    context.lineCap = 'round';
 
     return () => {
-      window.removeEventListener("resize", updateCanvasSize);
+      window.removeEventListener('resize', resizeCanvas);
     };
   }, []);
 
-  useEffect(() => {
+  const drawLine = (ctx, x1, y1, x2, y2) => {
+    const angle = 90; // The angle to display (90 degrees in this case)
+
+    const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+
+    if (length > 0.00) {
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Draw dots at start and end points
+      ctx.beginPath();
+      ctx.arc(x1, y1, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = 'blue';
+      ctx.fill();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.arc(x2, y2, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = 'blue';
+      ctx.fill();
+      ctx.closePath();
+
+      // Calculate the position for the "90-degree" text
+      const textX = x1 + 2; // Adjusted for a 2-pixel gap
+      const textY = y1 - 2; // Adjusted for a 2-pixel gap
+
+      ctx.font = '12px Arial';
+      ctx.fillStyle = 'black';
+      ctx.fillText(`(${angle}°)`, textX, textY);
+
+      // Draw a larger "Edit" button in the center of the line
+      const buttonX = (x1 + x2) / 2 - 20; // Adjusted for a larger button
+      const buttonY = (y1 + y2) / 2 - 10; // Adjusted for a larger button
+
+      ctx.fillStyle = 'lightgray'; // Button background color
+      ctx.fillRect(buttonX, buttonY, 40, 20); // Adjusted for a larger button
+      ctx.font = '14px Arial'; // Adjusted for a larger button
+      ctx.fillStyle = 'black';
+      ctx.fillText('Edit', buttonX + 10, buttonY + 15); // Text on the button
+    }
+  };
+
+  const handleMouseDown = (e) => {
+    setIsDrawing(true);
+    setStartX(e.nativeEvent.offsetX);
+    setStartY(e.nativeEvent.offsetY);
+    setEndX(e.nativeEvent.offsetX);
+    setEndY(e.nativeEvent.offsetY);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDrawing) return;
+
+    setEndX(e.nativeEvent.offsetX);
+    setEndY(e.nativeEvent.offsetY);
+
     const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    const handleTouchMove = (e) => {
-      if (isDrawing) {
-        const x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
-        const y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
-        handleMove(x, y);
-      }
-    };
-
-    const handleTouchEnd = () => {
-      handleEnd();
-    };
-
-    canvas.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      const x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
-      const y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
-      handleStart(x, y);
+    lines.forEach((line) => {
+      drawLine(context, line.startX, line.startY, line.endX, line.endY);
     });
 
-    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
-    canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
+    drawLine(context, startX, startY, endX, endY);
+  };
 
-    return () => {
-      canvas.removeEventListener("touchstart", handleStart);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [isDrawing]);
+  const handleMouseUp = () => {
+    setIsDrawing(false);
+    const length = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+
+    if (length > 0.00) {
+      console.log(`Line length: ${length.toFixed(2)} pixels`);
+      setLines([...lines, { startX, startY, endX, endY }]);
+    }
+  };
+
+  // Touch event handlers for mobile screens
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    handleMouseDown({ nativeEvent: { offsetX: touch.clientX - canvasRef.current.getBoundingClientRect().left, offsetY: touch.clientY - canvasRef.current.getBoundingClientRect().top } });
+  };
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    handleMouseMove({ nativeEvent: { offsetX: touch.clientX - canvasRef.current.getBoundingClientRect().left, offsetY: touch.clientY - canvasRef.current.getBoundingClientRect().top } });
+  };
+
+  const handleTouchEnd = () => {
+    handleMouseUp();
+  };
 
   return (
-    <div className="canvasmain">
+    <div>
       <canvas
-        id="canvas"
-        className="w-full h-5/6"
-        style={{
-          border: "1px solid black",
-          pointerEvents: canvasEnabled ? "auto" : "none",
-        }}
+        className='border-black border'
         ref={canvasRef}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          const x = e.nativeEvent.offsetX;
-          const y = e.nativeEvent.offsetY;
-          handleStart(x, y);
-        }}
-        onMouseMove={(e) => {
-          e.preventDefault();
-          if (isDrawing) {
-            const x = e.nativeEvent.offsetX;
-            const y = e.nativeEvent.offsetY;
-            handleMove(x, y);
-          }
-        }}
-        onMouseUp={handleEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       />
     </div>
   );
