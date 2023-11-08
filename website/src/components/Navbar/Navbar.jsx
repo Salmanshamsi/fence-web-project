@@ -21,7 +21,7 @@ const Navbar = () => {
                 <Link to={"/stores"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Select Store</Link>
                 <Link to={"/drawselection"}  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Design</Link>
                 <Link to={"/materials"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Materials</Link>
-                <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</Link>
+                <Link to={"/summary"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</Link>
                 <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Purchase</Link>
             </ul>
 

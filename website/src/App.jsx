@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import { REACT_APP_GOOGLE_MAPS_KEY } from "./assets/mapApiKey/mapApiKey";
 import Materials from "./screens/MaterialsScreen";
 import Auth from "./screens/Auth";
+import SummaryScreen from "./screens/SummaryScreen";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path='/canvas' element={<CanvasScreen/>}/>
       <Route path='/map' element={<Mapscreen API={REACT_APP_GOOGLE_MAPS_KEY} />}/>
       <Route path='/materials' element={<Materials/>}/>
+      <Route path='/summary' element={<SummaryScreen/>}/>
       <Route path='/login' element={<Auth/>}/>
      </Routes>
     </>
