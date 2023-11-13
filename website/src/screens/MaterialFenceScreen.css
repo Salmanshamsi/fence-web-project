@@ -1,0 +1,36 @@
+.column{
+    display: flex;
+}
+.selectType{
+    font-size: 16px;
+    margin-left: 1rem;
+}
+
+@media screen and (max-width:543px) {
+    .selectType{
+        font-size: 16px;
+        margin-left: 1rem;
+        height: 50px;
+        width: 500px;
+        margin-top: 1.5rem;
+    }
+}
+
+@media screen and (max-width:743px) {
+    .column{
+        display: flex;
+        flex-direction: column;
+    }
+    .cW{
+        width: 100%;
+    }
+    .materialDesignmaincompdiv{
+        margin-top: 3rem;
+    }
+    .addcompW{
+        width: 300%;
+    }
+    .materialDesignmaincompdiv{
+        width: 200%;
+    }
+}

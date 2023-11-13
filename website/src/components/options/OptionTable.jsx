@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OptionsTable = () => {
+const OptionsTables = () => {
   return (
     <div className="col-sm-8 app-right-panel">
       <div className="design-info-overlay-defaults">
@@ -107,4 +107,4 @@ const OptionsTable = () => {
   );
 };
 
-export default OptionsTable;
+export default OptionsTables;

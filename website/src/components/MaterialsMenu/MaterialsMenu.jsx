@@ -1,26 +1,93 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./MaterialMenu.css"
 
 const MaterialsMenu = () => {
+
+  const cUrl = window.location.href;
+
+  const navigate = useNavigate();
+
+  const continueRoute = () => {
+    if(cUrl === "http://localhost:5173/materials/type"){
+     navigate("/materials/fence");
+    }else if(cUrl === "http://localhost:5173/materials/fence"){
+      navigate("/materials/gate");
+    }else if(cUrl === "http://localhost:5173/materials/gate"){
+      navigate("/materials/option");
+    }
+    else if(cUrl === "http://localhost:5173/materials/option"){
+       navigate("/summary");
+    }else if(cUrl === "http://localhost:5173/summary"){
+      navigate("/purchase");
+   }
+  }
+
+
+  const backRoute = () => {
+    if(cUrl === "http://localhost:5173/materials/option"){
+     navigate("/materials/gate");
+    }else if(cUrl === "http://localhost:5173/materials/gate"){
+      navigate("/materials/fence");
+    }else if(cUrl === "http://localhost:5173/materials/fence"){
+      navigate("/materials/type");
+    }
+  }
+
   return (
-    <div
-      className="w-full h-12 border flex items-center justify-between p-3"
-    >
-      <ul className="flex gap-5 ml-6 text-green-600">
-        <li>Type</li>
-        <li>Fence</li>
-        <li>Gates</li>
-        <li>Options</li>
+    <>
+    <div className="typescontainer">
+     <div className="typesdiv">
+      <ul  className="types">
+      <li>Type</li>
+      <li>Fence</li>
+      <li>Gates</li>
+      <li>Options</li>
       </ul>
-      <div className="flex gap-4" >
-        <button className="border border-green-500 text-green-500 p-2 rounded-full" >
-          Back
-        </button>
-        <Link className="bg-green-500 rounded-full p-2 text-white" >
-          Continue
-        </Link>
-      </div>
+     </div>
+    <div className="matMenuDiv">
+         <button
+           style={{
+             border: "1px solid green",
+             padding: ".3rem 1rem",
+             borderRadius: "20px",
+             marginRight: ".5rem",
+           }}
+           onClick={backRoute}
+         >
+           Back
+         </button>
+         <button
+           style={{
+             border: "1px solid green",
+             padding: ".3rem 1rem",
+             borderRadius: "20px",
+             backgroundColor: "#2e9459",
+             color: "#fff",
+             marginRight: ".3rem",
+           }}
+           onClick={continueRoute}
+         >
+           Continue
+         </button>
+     </div>
     </div>
+    </>
+    // <div
+    //   className="w-full h-12 border flex items-center justify-start"
+    //   style={{ display: "flex", justifyContent: "space-between" }}
+    // >
+    //   <ul className="flex gap-5 ml-6 text-green-600">
+    //     <li>Type</li>
+    //     <li>Fence</li>
+    //     <li>Gates</li>
+    //     <li>Options</li>
+    //   </ul>
+    //   <div>
+   
+   
+    //   </div>
+    // </div>
   );
 };
 

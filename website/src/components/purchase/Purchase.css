@@ -1,0 +1,140 @@
+.purchasecontainer{
+    display: flex;
+    justify-content: center;
+}
+.purchasebox{
+    width: 35%;
+    margin-top: 1rem;
+}
+.dId{
+    font-size: 22px;
+}
+.estimateddivone{
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0rem;
+}
+.estimateddivone p{
+    font-size: 22px;
+}
+.estimateddivtwo{
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0rem;
+    border-bottom: 3px solid red;
+}
+.estimateddivthree{
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0rem;
+}
+.estimateddivtwo p{
+    font-size: 22px;
+    padding-bottom: .5rem;
+    color: red;
+}
+.estimateddivthree p{
+    font-size: 22px;
+    color: red;
+}
+.todayeastimate{
+    text-align: center;
+    font-style: italic;
+}
+.cartBtn{
+    display: flex;
+    justify-content: center;
+    margin: 1.2rem 0rem .5rem 0rem;
+}
+.cartBtn button{
+    background-color: green;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: .5rem 1.5rem;
+    color: #fff;
+}
+.centertextinfobox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.innertextInf{
+    width: 45%;
+    margin-top: 1rem;
+}
+.innertextInf p{
+    font-style: italic;
+    font-size: 11px;
+}
+
+@media screen and (max-width:1082px) {
+    .purchasebox{
+        width: 45%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:823px) {
+    .purchasebox{
+        width: 55%;
+        margin-top: 1rem;
+    }
+    .innertextInf{
+        width: 55%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:709px) {
+    .purchasebox{
+        width: 65%;
+        margin-top: 1rem;
+    }
+    .innertextInf{
+        width: 65%;
+        margin-top: 1rem;
+    }
+}
+
+
+@media screen and (max-width:601px) {
+    .todayeastimate{
+        text-align: center;
+        font-style: italic;
+        font-size: 10px;
+        margin-top: 1rem;
+    }
+    .innertextInf{
+        width: 75%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:464px) {
+    .purchasebox{
+        width: 95%;
+        margin-top: 1rem;
+    }
+    .innertextInf{
+        width: 85%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:390px) {
+    .purchasebox{
+        width: 90%;
+        margin-top: 1rem;
+    }
+    .dId{
+        font-size: 17px;
+    }
+    .estimateddivone p , .estimateddivtwo p , .estimateddivthree p{
+        font-size: 17px;
+    }
+    .innertextInf p{
+        font-style: italic;
+        font-size: 10px;
+    }
+}

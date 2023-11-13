@@ -1,0 +1,33 @@
+.columns{
+    display: flex;
+}
+.addcompletewidth{
+    width: 100vw;
+}
+.fullWidthofmaterialPrew{
+    font-size: 16px;
+    margin-left: 1rem;
+}
+
+@media screen and (max-width:543px) {
+    .fullWidthofmaterialPrew{
+        font-size: 16px;
+        margin-left: 1rem;
+        height: 50px;
+        width: 500px;
+        margin-top: 1.5rem;
+    }
+}
+
+@media screen and (max-width:743px) {
+    .columns{
+        display: flex;
+        flex-direction: column;
+    }
+    .addcompletewidth{
+        width: 100%;
+    }
+    .addfullw{
+        width: 300%;
+    }
+}

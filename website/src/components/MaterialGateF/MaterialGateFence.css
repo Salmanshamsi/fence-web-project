@@ -1,0 +1,13 @@
+.designandinfo{
+    margin: .4rem;
+}
+.infoBtn{
+    margin-left: 1rem;
+}
+.designandinfo button{
+    background-color: green;
+    color: #fff;
+    padding: .4rem .8rem;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}

@@ -20,8 +20,8 @@ const Navbar = () => {
             <ul className='flex  w-full gap-5 justify-center h-full items-center ' >
                 <Link to={"/stores"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Select Store</Link>
                 <Link to={"/drawselection"}  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Design</Link>
-                <Link to={"/materials"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Materials</Link>
-                <Link to={"/summary"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</Link>
+                <Link to={"/materials/type"} className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Materials</Link>
+                <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >summary</Link>
                 <Link  className='hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer' >Purchase</Link>
             </ul>
 
@@ -57,7 +57,7 @@ const Navbar = () => {
       <ul className={`w-full fixed mt-14 ${Openmenu}`} >
           <Link to={"/stores"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Select Store</Link>
           <Link to={"/drawselection"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Design</Link>
-          <Link to={"/materials"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Materials</Link>
+          <Link to={"/materials/type"} className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Materials</Link>
           <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >summary</Link>
           <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >Purchase</Link>
           <Link className='w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700' >

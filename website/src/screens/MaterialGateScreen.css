@@ -1,0 +1,13 @@
+.column{
+    display: flex;
+}
+
+@media screen and (max-width:743px) {
+    .column{
+        display: flex;
+        flex-direction: column;
+    }
+    .materialDesignmaincompdiv{
+        margin-top: 3rem;
+    }
+}

@@ -4,7 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   imgSource: '',
   designText: '',
-  gateDetails: {}, // Details for each gate
+  woodS: '',
+  opselect: '',
+  gateDetails: {},
 };
 
 export const FenceDesignSlice = createSlice({
@@ -20,10 +22,16 @@ export const FenceDesignSlice = createSlice({
     setGateDetails: (state, action) => {
       state.gateDetails = action.payload;
     },
+    woodSelection: (state , action) => {
+      state.woodS = action.payload;
+    },
+    optSelect : (state , action)  => {
+        state.opselect = action.payload
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { imgValue, textValue, setGateDetails } = FenceDesignSlice.actions;
+export const { imgValue, textValue, setGateDetails , woodSelection , optSelect } = FenceDesignSlice.actions;
 
 export default FenceDesignSlice.reducer;

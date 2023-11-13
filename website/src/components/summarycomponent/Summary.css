@@ -1,0 +1,22 @@
+.summaryPrice{
+    font-size: 16px;
+    font-weight: bold;
+}
+.designname{
+    font-size: 16px;
+}
+.designId{
+    font-size: 16px;
+}
+.estimate{
+    font-size: 15px;
+    margin-bottom: .5rem;
+}
+.design-para{
+    font-weight: bold;
+    margin-bottom: .2rem;
+}
+.materials-para{
+    font-weight: bold;
+    margin: .2rem 0rem;
+}

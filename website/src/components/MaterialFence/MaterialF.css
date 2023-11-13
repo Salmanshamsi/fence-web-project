@@ -1,0 +1,13 @@
+.selected-row {
+  background-color: yellow !important;
+  /* Add any other styling you want for the highlighted row */
+}
+.woofenceheading{
+  width: 100%;
+}
+
+@media screen and (max-width:743px) {
+  .woofenceheading{
+    width: 300%;
+  }
+}

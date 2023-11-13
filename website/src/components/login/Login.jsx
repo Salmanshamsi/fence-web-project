@@ -12,11 +12,12 @@ import FacebookSharpIcon from "@mui/icons-material/FacebookSharp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
-import MenuIcon from '@mui/icons-material/Menu';
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import AccountHeader from "../accountheader/AccountHeader";
+import AccountNav from "../accountnav/AccountNav";
 
 const Login = () => {
 
@@ -73,7 +74,7 @@ const Login = () => {
         "Password must be at least 8 characters long and meet the strength criteria."
       );
     } else {
-        const response = await fetch("http://localhost:4000/login", {
+        const response = await fetch("http://localhost:4000/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -112,7 +113,7 @@ const Login = () => {
         "Password must be at least 8 characters long and meet the strength criteria."
       );
     } else {
-        const res = await fetch("http://localhost:4000/register", {
+        const res = await fetch("http://localhost:4000/auth/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -170,90 +171,8 @@ const Login = () => {
   return (
     <>
      <div className="auth">
-     <div className="accountheader-container">
-        <div className="accountheader">
-          <div className="twodivcontainer">
-            <div className="firstaccountheaderdiv">
-              <img
-                src="https://tse1.mm.bing.net/th?id=OIP.N3-_hRk0071NKuApnZH4oAHaBl&pid=Api&P=0&h=220"
-                alt=""
-              />
-              <p className="selectstore">Select Your Store</p>
-              <select name="deliver" id="deliver">
-                <option value="Deliver to">Deliver to</option>
-                <option value="first">first</option>
-                <option value="second">second</option>
-                <option value="third">third</option>
-                <option value="fourth">fourth</option>
-              </select>
-            </div>
-            <div className="secondaccountheaderdiv">
-              <select name="credit" id="credit">
-                <option value="Credit Center">Credit Center</option>
-                <option value="first">first</option>
-                <option value="second">second</option>
-                <option value="third">third</option>
-                <option value="fourth">fourth</option>
-              </select>
-
-              <select name="help" id="help">
-                <option value="help">Help</option>
-                <option value="first">first</option>
-                <option value="second">second</option>
-                <option value="third">third</option>
-                <option value="fourth">fourth</option>
-              </select>
-
-              <select name="Gifting" id="Gifting">
-                <option value="Gifting">Gifting</option>
-                <option value="first">first</option>
-                <option value="second">second</option>
-                <option value="third">third</option>
-                <option value="fourth">fourth</option>
-              </select>
-
-              <p className="order-track">Order Tracker</p>
-              <p className="rebate-center">Rebate Center</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="accountnavcontainer">
-        <div className="accountnav">
-          <div className="accountnavcenter">
-            <div className="mainaccountnav">
-              <div className="hamburgerbox">
-              <MenuIcon sx={{fontSize:"30px" , color:"#fff"}}/>
-              </div>
-             <div className="hidebox">
-             <select name="department" id="department">
-                <option value="Department">Department</option>
-              </select>
-
-              <select name="Project Center" id="ProjectCenter">
-                <option value="Project Center">Project Center</option>
-              </select>
-
-              <select name="Weekly Ad" id="WeeklyAd">
-                <option value="Weekly Ad">Weekly Ad</option>
-              </select>
-             </div>
-              <div className="divandinput">
-                <div className="departmentsall">All Departments</div>
-                <input
-                  type="text"
-                  placeholder="Enter SKU , Model # or Keyword"
-                  className="headerInput"
-                />
-              </div>
-              <select name="Sign In" id="SignIn">
-                <option value="Sign In">Sign In</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
+     <AccountHeader/>
+     <AccountNav/>
 
       <div className="createaccountcontainer">
         <div className="twomaindivsincreateaccount">

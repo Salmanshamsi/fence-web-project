@@ -1,0 +1,36 @@
+.gateopening{
+    color: green;
+    font-size: 17px;
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+}
+.gateopeningInfo{
+    margin-left: 1.2rem;
+    margin-top: .5rem;
+    width: 450px;
+}
+.gates{
+    display: flex;
+    justify-content: space-between;
+}
+.gatesbox{
+    border: 1px solid gray;
+    padding: 1rem;
+    cursor: pointer;
+}
+.gatesbox img{
+    height: 110px;
+    width: 120px;
+}
+.gatesmain{
+    display: flex;
+    justify-content: center;
+}
+.gatescontainer{
+    margin-top: 1.5rem;
+    width: 94%;
+}
+.gatesbox p{
+    text-align: center;
+    margin-top: .2rem;
+}
