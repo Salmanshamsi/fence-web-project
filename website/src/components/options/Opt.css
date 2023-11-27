@@ -1,0 +1,28 @@
+.increaseqtycontainer{
+    display: flex;
+    justify-content: center;
+}
+.increaseqty{
+    width: 70%;
+    align-items: center;
+    margin-top: 1rem;
+}
+.increaseqty{
+    display: flex;
+    justify-content: space-evenly;
+}
+.innerqtybtns button{
+    padding: .4rem 1rem;
+    font-weight: bold;
+    font-size: 18px;
+}
+.increaseqty p{
+    font-size: 17px;
+}
+#decreaseBtn , #incBtn{
+    background-color: lightgray;
+}
+#cBr{
+    padding: .3rem 1rem;
+    border: 1px solid black;
+}

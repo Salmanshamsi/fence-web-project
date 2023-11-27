@@ -11,6 +11,7 @@ const Summary = () => {
     const totalPrice = useSelector((state)=>state.price.totalPrice)
     const name = useSelector((state) => state.selecteddesigns.designText);
     const woodse = useSelector((state) => state.selecteddesigns.woodS);
+    const count = useSelector((state) => state.allCartData.value);
     const op = useSelector((state) => state.selecteddesigns.opselect);
 
     const navigate = useNavigate();
@@ -114,7 +115,7 @@ const Summary = () => {
                         <p className='designId'>{`Design ID : ${0}`}</p>
                     </li>
                     <li className='flex gap-3' >
-                        <p className='summaryPrice'>{`Estimated Price : ${totalPrice}$ `}</p>
+                        <p className='summaryPrice'>{`Estimated Price : ${totalPrice*count}$ `}</p>
                     </li>
                 </ul>
             </div>
@@ -122,7 +123,7 @@ const Summary = () => {
             <p className='mx-2 estimate' >*Today's estimated price, future pricing may go up or down. Tax, labor, and delivery not included.</p>
       
             <div className='overflow-x-hidden overflow-y-hidden' >
-                <DrawCanvas/>
+                {/* <DrawCanvas/> */}
             </div>
 
       </div>

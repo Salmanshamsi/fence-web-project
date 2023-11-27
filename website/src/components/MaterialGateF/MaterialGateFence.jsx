@@ -7,10 +7,10 @@ const MaterialGateFence = () => {
     <div>
         <div className="designandinfo">
             <button>Design</button>
-            <button className='infoBtn'>Information</button>
+            {/* <button className='infoBtn'>Information</button> */}
         </div>
          <div className='overflow-x-hidden overflow-y-hidden' >
-                <DrawCanvas/>
+                {/* <DrawCanvas/> */}
             </div>
     </div>
   )

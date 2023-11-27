@@ -2,22 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import HttpsIcon from "@mui/icons-material/Https";
 import SecurityUpdateWarningIcon from "@mui/icons-material/SecurityUpdateWarning";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import PeopleIcon from "@mui/icons-material/People";
-import AndroidIcon from "@mui/icons-material/Android";
-import AppleIcon from "@mui/icons-material/Apple";
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import FacebookSharpIcon from "@mui/icons-material/FacebookSharp";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import AccountHeader from "../accountheader/AccountHeader";
 import AccountNav from "../accountnav/AccountNav";
+import HelpCenter from "../helpcenter/HelpCenter";
 
 const Login = () => {
 
@@ -62,6 +52,10 @@ const Login = () => {
     setSignInState({ ...signInState, [name]: value });
   };
 
+  // else if (!isStrongPassword(password)) {
+  //   setSignInError(
+  //     "Password must be at least 8 characters long and meet the strength criteria."
+  //   );
   const handleSignIn = async () => {
     const { email, password } = signInState;
 
@@ -69,12 +63,9 @@ const Login = () => {
       setSignInError("Please fill in all the required fields");
     } else if (!isEmailValid(email)) {
       setSignInError("Please enter a valid email address");
-    } else if (!isStrongPassword(password)) {
-      setSignInError(
-        "Password must be at least 8 characters long and meet the strength criteria."
-      );
+    
     } else {
-        const response = await fetch("http://localhost:4000/auth/login", {
+        const response = await fetch("http://localhost:3000/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -101,6 +92,12 @@ const Login = () => {
     }
   };
 
+  // else if (!isStrongPassword(password)) {
+  //   setSignUpError(
+  //     "Password must be at least 8 characters long and meet the strength criteria."
+  //   );
+  // }
+
   const userSignUp = async () => {
     const { firstname, lastname, email, password } = signUpState;
 
@@ -108,12 +105,8 @@ const Login = () => {
       setSignUpError("Please fill in all the required fields");
     } else if (!isEmailValid(email)) {
       setSignUpError("Please enter a valid email address");
-    } else if (!isStrongPassword(password)) {
-      setSignUpError(
-        "Password must be at least 8 characters long and meet the strength criteria."
-      );
-    } else {
-        const res = await fetch("http://localhost:4000/auth/register", {
+    }  else {
+        const res = await fetch("http://localhost:3000/auth/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -352,102 +345,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="helpcentercontainer">
-        <div className="helpcenter">
-          <div className="helpcenterbox">
-            <div className="flexone">
-              <HelpOutlineIcon sx={{ fontSize: "40px" }} id="hideIcons"/>
-              <p className="firstpara">Help Center</p>
-            </div>
-            <div className="flextwo">
-              <MailOutlineIcon sx={{ fontSize: "40px" }}id="hideIcons" />
-              <p >Sign up & Save BIG</p>
-            </div>
-            <div className="flexthree">
-              <PeopleIcon sx={{ fontSize: "40px" }} id="hideIcons"/>
-              <p >Careers</p>
-            </div>
-            <div className="flexfour">
-              <AndroidIcon sx={{ fontSize: "40px" }} id="hideIcons"/>
-              <AppleIcon sx={{ fontSize: "40px" }} id="hideIcons"/>
-              <p >Use our App!</p>
-            </div>
-            <div className="flexfive">
-              <HandshakeIcon sx={{ fontSize: "40px" }} id="hideIcons"/>
-              <p > Sell to Us!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="affiliate-website-container">
-        <div className="affilliatewebsite">
-          <div className="firstaffiliatebox">
-            <p>
-              <b className="boldHeadings">Affiliated Websites</b>
-            </p>
-            <p className="info">Midwest Manufacturing</p>
-            <p className="info">Real Estate</p>
-            <p className="info">Nail Plant</p>
-            <p className="info">Menards® Transportation</p>
-            <p className="info">Menards® Self Storage</p>
-          </div>
-          <div className="secondaffiliatebox">
-            <p>
-              <b className="boldHeadings">Business Opportunities</b>
-            </p>
-            <p className="info">Contractor Hauling</p>
-            <p className="info">Suppliers & Service Providers</p>
-          </div>
-          <div className="thirdaffiliatebox">
-            <p>
-              <b className="boldHeadings">Company Information</b>
-            </p>
-            <p className="info">About Us</p>
-            <p className="info">Menards Credit Programs</p>
-            <p className="info">Site Map</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="icons-cotainer">
-        <div className="iconsbox">
-          <FacebookSharpIcon sx={{ fontSize: "35px" }} />
-          <TwitterIcon sx={{ fontSize: "35px" }} />
-          <InstagramIcon sx={{ fontSize: "35px" }} />
-          <PinterestIcon sx={{ fontSize: "35px" }} />
-          <YouTubeIcon sx={{ fontSize: "35px" }} />
-        </div>
-      </div>
-
-      <div className="flinks-container">
-        <div className="f-links">
-          <a href="#">About</a>
-          <a href="#">Site Map</a>
-          <a href="#">Accessibility Statement</a>
-          <a href="#">Privacy Statement</a>
-          <a href="#">Terms</a>
-          <a href="#">Security</a>
-        </div>
-      </div>
-
-      <div className="second-flinks-container">
-        <div className="second-f-links">
-          <a href="#">
-            California Transparency in Supply Chains Act Disclosure
-          </a>
-          <a href="#">California Privacy Rights</a>
-          <a href="#">Your Privacy Choices</a>
-          <a href="#">©2004-2023 Menard, Inc. All Rights Reserved.</a>
-        </div>
-      </div>
-
-      <div className="footerlogo">
-        <img
-          src="https://tse1.mm.bing.net/th?id=OIP.N3-_hRk0071NKuApnZH4oAHaBl&pid=Api&P=0&h=220"
-          alt=""
-        />
-      </div>
+       <HelpCenter/>
      </div>
     </>
   );

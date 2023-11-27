@@ -4,6 +4,7 @@ import "./MaterialFencePrew.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { woodSelection } from '../../redux/slices/FenceDesignSlice'
 import { FencePrice, TotalPrice } from '../../redux/slices/FencePrice'
+import { setSelectedFence } from '../../redux/slices/SelectionSlice'
 
 
 const MaterialFencePrew = () => {
@@ -35,7 +36,7 @@ const MaterialFencePrew = () => {
             onClick={() => {
               let total_price = ele.price * totalLength;
               selectWoodSide(ele.txt,total_price)
-              
+              dispatch(setSelectedFence({ heading: ele.txt }));
             }}
           >
             <img

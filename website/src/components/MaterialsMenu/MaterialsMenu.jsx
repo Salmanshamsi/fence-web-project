@@ -15,8 +15,7 @@ const MaterialsMenu = () => {
       navigate("/materials/gate");
     }else if(cUrl === "http://localhost:5173/materials/gate"){
       navigate("/materials/option");
-    }
-    else if(cUrl === "http://localhost:5173/materials/option"){
+    }else if(cUrl === "http://localhost:5173/materials/option"){
        navigate("/summary");
     }else if(cUrl === "http://localhost:5173/summary"){
       navigate("/purchase");
@@ -72,6 +71,7 @@ const MaterialsMenu = () => {
          </button>
      </div>
     </div>
+     <hr style={{marginTop:"1rem" , width:"100%"}}/>
     </>
     // <div
     //   className="w-full h-12 border flex items-center justify-start"

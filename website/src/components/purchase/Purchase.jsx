@@ -1,13 +1,29 @@
 import React from 'react'
 import "./Purchase.css"
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { imgValue } from '../../redux/slices/FenceDesignSlice';
+import { cartItems } from '../../redux/slices/CartSlice';
 
 const Purchase = () => {
 
+  const totalPrice = useSelector((state)=>state.price.totalPrice)
+  const imgSource = useSelector((state) => state.selecteddesigns.imgSource)
+  const mailInRebat = useSelector((state)=>state.selecteddesigns.mainInRebate)
+  const count = useSelector((state) => state.allCartData.value);
+  // const mailInRebat = 120;
+
+  console.log(mailInRebat)
     const navigate = useNavigate();
+    const disptach = useDispatch();
 
     const addTOCart = () => {
-        navigate("/cart")
+      disptach(cartItems({
+        type:"cartItems",
+        payload:{img: imgSource , pr:totalPrice , qty:count}
+      }))
+       
+      navigate("/cart")
     }
 
   return (
@@ -18,15 +34,15 @@ const Purchase = () => {
           <div className="estimateddivmainbox">
           <div className="estimateddivone">
                 <p>Estimated Price : </p>
-                <p>	$1,093.98</p>
+                <p>	${count*totalPrice}.00</p>
             </div>
             <div className="estimateddivtwo">
                 <p>Mail-In Rebate: </p>
-                <p>$120.34</p>
+                <p>${mailInRebat}.00</p>
             </div>
             <div className="estimateddivthree">
                 <p>Final Price: </p>
-                <p>$973.64</p>
+                <p>${mailInRebat + count*totalPrice}.00</p>
             </div>
             
           </div>

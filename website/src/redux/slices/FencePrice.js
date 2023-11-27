@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   totalDrawLength : 0,
+  LineLength: 0,
   panelPrice : 0,
   fencePrice : 0,
   optionPrice : 0,
@@ -13,8 +14,12 @@ export const FencePriceSlice = createSlice({
   initialState,
   reducers: {
     totalDrawLength : (state , action) => {
-      state.totalDrawLength = action.payload
+      state.totalDrawLength += action.payload;
+      console.log(state.totalDrawLength)
     },
+  //   CanvasTotalLengthCalculation: (state , action) => {
+
+  //  },
     PanelPrice : (state , action) => {
         state.panelPrice = action.payload
       },
@@ -31,6 +36,6 @@ export const FencePriceSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {totalDrawLength, TotalPrice, PanelPrice, FencePrice, optionPrice } = FencePriceSlice.actions;
+export const {totalDrawLength, TotalPrice, PanelPrice, FencePrice, optionPrice ,CanvasTotalLengthCalculation} = FencePriceSlice.actions;
 
 export default FencePriceSlice.reducer;

@@ -7,6 +7,11 @@ const initialState = {
   woodS: '',
   opselect: '',
   gateDetails: {},
+  mainInRebate: 120,
+  storeName:"",
+  storeAdress:"",
+  storeDistance:"",
+  storePhone:""
 };
 
 export const FenceDesignSlice = createSlice({
@@ -28,10 +33,25 @@ export const FenceDesignSlice = createSlice({
     optSelect : (state , action)  => {
         state.opselect = action.payload
     },
+    mailRebat: (state) => {
+      state.mainInRebate
+    },
+    getStoreName : (state , action) => {
+        state.storeName = action.payload;
+    },
+    getStoreDistance : (state , action) => {
+      state.storeDistance = action.payload;
+    },
+    getStoreAdress : (state , action) => {
+      state.storeAdress = action.payload;
+    },
+    getStorePhone : (state , action) => {
+      state.storePhone = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { imgValue, textValue, setGateDetails , woodSelection , optSelect } = FenceDesignSlice.actions;
+export const { imgValue, textValue, setGateDetails , woodSelection , optSelect , mailRebat , getStoreName , getStoreDistance , getStoreAdress , getStorePhone} = FenceDesignSlice.actions;
 
 export default FenceDesignSlice.reducer;

@@ -1,0 +1,41 @@
+@media screen and (max-width:1000px) {
+    .addtopmargin{
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .addtopmargin{
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width:381px) {
+    .addtopmargin{
+        margin-top: 2rem;
+    }
+    .zipCodeInput{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width:338px) {
+    .addtopmargin{
+        margin-top: 2rem;
+    }
+    .zipCodeInput{
+        width: 120px;
+    }
+}
+
+@media screen and (max-width:307px) {
+    .addtopmargin{
+        margin-top: 2rem;
+    }
+    .zipCodeInput{
+        width: 120px;
+    }
+    .zipcodeTxt{
+        font-size: 12px;
+    }
+}

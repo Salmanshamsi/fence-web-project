@@ -1,0 +1,45 @@
+.order-placer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .order-success-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    color: #28a745; /* Green color, you can change it */
+  }
+  
+  .backtohome-btn{
+    padding: .5rem 2rem;
+    background-color: #116825;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+  }
+  .success-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  
+  .success-text {
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

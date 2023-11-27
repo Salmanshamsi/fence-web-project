@@ -14,6 +14,7 @@ const MaterialsPrew = () => {
     dispatch(setGateDetails(gateDetails));
     dispatch(PanelPrice(tp))
     dispatch(TotalPrice())
+    console.log(image)
   };
 
   return (

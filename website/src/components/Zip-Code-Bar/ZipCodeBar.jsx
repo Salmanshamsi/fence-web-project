@@ -1,34 +1,42 @@
 import React, { useState } from "react";
 import jsonStores from "../../assets/stores/Fences.json";
-import {useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux"
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { getPtCode } from "../../redux/slices/ptCodeSlice";
+import { getStoreAdress, getStoreDistance, getStoreName, getStorePhone } from "../../redux/slices/FenceDesignSlice";
+import "./ZipCode.css"
 
 const ZipCodeBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState(jsonStores);
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const getSelectedStoreData = (store, adress, distance, phone) => {
+    console.log(store, adress, distance, phone);
+    dispatch(getStoreName(store));
+    dispatch(getStoreAdress(adress));
+    dispatch(getStoreDistance(distance));
+    dispatch(getStorePhone(phone));
+  };
 
   const RenderHeadHandler = (Arr, inp) => {
-
     for (let i = 0; i < Arr.length; i++) {
       if (Arr[i].ptCode === inp) {
         return (
           <>
-          <tr className="w-full h-auto p-4 border text-sm">
-            <td>
-              For proper pricing, service, and plant production please tell us which
-              store you would like to facilitate your purchase (including delivery
-              if applicable). If you would like to search for stores using a
-              different zip code other than the one above,{" "}
-              <a className="text-blue-700" href="">
-                click here.
-              </a>
-            </td>
-          </tr>
+            <tr className="w-full h-auto p-4 border text-sm">
+              <td>
+                For proper pricing, service, and plant production please tell us
+                which store you would like to facilitate your purchase
+                (including delivery if applicable). If you would like to search
+                for stores using a different zip code other than the one above,{" "}
+                <a className="text-blue-700" href="">
+                  click here.
+                </a>
+              </td>
+            </tr>
 
             <tr
               className={`w-full p-3 border border-gray-800 flex items-center justify-evenly`}
@@ -48,14 +56,15 @@ const ZipCodeBar = () => {
 
   return (
     <>
-      <div className="w-full h-auto p-3 flex items-center gap-2 py-2 px-4 border">
-        <h1 className="lg:text-md text-sm">
+      <div className="w-full h-auto p-3 flex items-center gap-2 py-2 px-4 border addtopmargin">
+        <h1 className="lg:text-md text-sm zipcodeTxt">
           Please enter the zip code to find a store:
         </h1>
         <form action="">
           <input
-            type="text"
-            className="border text-sm h-full rounded-full px-4 shadow-sm"
+            type="number"
+            style={{border:".1px solid gray" , outline:"none" , padding:".4rem" , paddingLeft:"1rem"}}
+            className="border text-sm h-full rounded-full shadow-sm zipCodeInput"
             placeholder="Enter Zip-Code"
             value={inputValue}
             minLength={5}
@@ -71,7 +80,7 @@ const ZipCodeBar = () => {
       <div className="w-full h-full">
         <table className="w-full h-auto hidden flex-col lg:flex">
           <tbody>
-            {RenderHeadHandler(data,inputValue)}
+            {RenderHeadHandler(data, inputValue)}
             {data?.map((CurEl, index) => {
               if (CurEl?.ptCode === inputValue) {
                 return (
@@ -83,7 +92,7 @@ const ZipCodeBar = () => {
                       {CurEl?.store}
                     </td>
                     <td className="w-full h-full text-center">
-                      {CurEl?.address}
+                      {CurEl?.adress}
                     </td>
                     <td className="w-full h-full text-center">
                       {CurEl?.distance}
@@ -92,13 +101,19 @@ const ZipCodeBar = () => {
                       {CurEl?.phone}
                     </td>
                     <td className="w-full h-full text-center">
-                      <button className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
-                      
-                      onClick={(e)=>{
-                        e.preventDefault();
-                        navigate("/drawselection")
-                        dispatch(getPtCode(CurEl.ptCode))
-                      }}
+                      <button
+                        className="cursor-pointer p-4 hover-bg-green-600 flex items-center w-full justify-center hover:bg-green-600 bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white lg:text-md"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate("/drawselection");
+                          dispatch(getPtCode(CurEl.ptCode));
+                          getSelectedStoreData(
+                            CurEl.store,
+                            CurEl.adress,
+                            CurEl.distance,
+                            CurEl.phone
+                          );
+                        }}
                       >
                         select this store
                       </button>
@@ -146,11 +161,18 @@ const ZipCodeBar = () => {
                       </tr>
                       <tr className="flex items-star  items-center justify-end w-full">
                         <td>
-                          <button className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
-                            onClick={(e)=>{
+                          <button
+                            className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
+                            onClick={(e) => {
                               e.preventDefault();
-                              navigate("/drawselection")
-                              dispatch(getPtCode(CurEl.ptCode))
+                              navigate("/drawselection");
+                              dispatch(getPtCode(CurEl.ptCode));
+                              getSelectedStoreData(
+                                CurEl.store,
+                                CurEl.adress,
+                                CurEl.distance,
+                                CurEl.phone
+                              );
                             }}
                           >
                             select this store

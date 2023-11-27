@@ -24,10 +24,10 @@ const MaterialGateScreen = () => {
         <div className='w-full overflow-x-hidden p-5 fixed mt-20 bg flex justify-end' >
           <EstimatePriceModal/>
         </div>
-        <div className='w-full h-screen flex column'>
-            <div className='border w-4/12 h-full fullWidthofmaterialPrew'>
-              <div className='w-full h-8 border text-green-600 flex items-center justify-start p-5 fullWidthofmaterialPrew' >
-               <p>  Select a type and click continue ?</p>
+        <div className='w-full h-screen flex column itemF'>
+            <div className='w-4/12 h-full fullWidthofmaterialPrew addcW'>
+              <div className='w-full h-8 text-green-600 flex items-center justify-start p-1 fullWidthofmaterialPrew' >
+               <p className='selectG' >Select a type and click continue ?</p>
               </div>
                <MaterialGatePrew/>
             </div>

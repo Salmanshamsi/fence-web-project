@@ -15,6 +15,10 @@ import OptionScreen from "./screens/OptionScreen";
 import MaterialGateScreen from "./screens/MaterialGateScreen";
 import PurCHaseScreen from "./screens/PurChaseScreen";
 import ShoppingCart from "./screens/ShoppingCart";
+import CheckOut from "./screens/CheckOut";
+import OrderConfirmation from "./screens/OrderConfirmation";
+import Success from "./components/success/Success"
+import Cancel from "./components/cancel/Cancel"
 
 function App() {
 
@@ -32,8 +36,12 @@ function App() {
       <Route path='/materials/option' element={<OptionScreen/>}/>
       <Route path='/summary' element={<SummaryScreen/>}/>
       <Route path='/purchase' element={<PurCHaseScreen/>}/>
+      <Route path='/checkout' element={<CheckOut/>}/>
+      <Route path='/orderconfirmation' element={<OrderConfirmation/>}/>
       <Route path='/cart' element={<ShoppingCart/>}/>
       <Route path='/login' element={<Auth/>}/>
+      <Route path='/success' element={<Success/>}/>
+      <Route path='/cancel' element={<Cancel/>}/>
      </Routes>
     </>
   )
