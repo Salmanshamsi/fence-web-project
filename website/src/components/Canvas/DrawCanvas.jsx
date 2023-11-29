@@ -7,6 +7,7 @@ import bg from "../../assets/images/graph-bg.jpg"
 import 'react-toastify/dist/ReactToastify.css';
 import { totalDrawLength} from '../../redux/slices/FencePrice';
 
+
 const customStyles = {
   content: {
     width: '80%', // 80% of the viewport width
@@ -29,12 +30,6 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 
-// const T_length = (value) => {
-//   console.log("value : ", value)
-//   value += value;
-//   return value;
-// }
-
 const DrawCanvas = () => {
 
 // .......................................
@@ -51,6 +46,23 @@ const getEnterdLength = (feet,inch) => {
 }
 
 // ........................................
+
+
+// const initialLines = [
+//   {endX : 67.00090665740623, endY : 24.860619689318344 ,startX: 184177242.56300253, startY: 115069710.25940117},
+//   {endX : 67.00090665740623, endY : 46.860619689318344 ,startX: 184177245.22968954, startY: 115069594.25940119},
+//   {endX : 67.00090665740623, endY : 26.860619689318344 ,startX: 184177441.22968954, startY: 115069600.92608818},
+//   {endX : 67.00090665740623, endY : 50.860619689318344 ,startX: 184177438.56300253, startY: 115069699.5927752},
+// ];
+
+
+
+const designFromMap = useSelector(state => state.captureDesign.saveDesign)
+
+console.log(designFromMap)
+
+
+// ..........................................
 
 
   const canvasRef = useRef(null);
@@ -441,6 +453,12 @@ const doLinesIntersect = (line1, line2) => {
 
     drawLines(context);
 
+    // Draw initial lines on the canvas
+    designFromMap.forEach((line) => {
+      drawLine(context, line.startX, line.startY, line.endX, line.endY);
+      console.log(context, line.startX, line.startY, line.endX, line.endY)
+    });
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
@@ -452,6 +470,7 @@ const doLinesIntersect = (line1, line2) => {
     <div className='w-full h-full flex items-center justify-center' >
         <ToastContainer position="bottom-right"/>
       <canvas
+        
         style={{backgroundImage: `url(${bg})`}}
         className={`border-black border bg-center bg-cover`}
         ref={canvasRef}

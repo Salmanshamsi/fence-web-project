@@ -2,11 +2,38 @@ import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { totalDrawLength } from '../../redux/slices/FencePrice';
+import { captureDesignFromMap } from '../../redux/slices/captureDesign';
 
 const libraries = ['drawing'];
 
 const G_Map = ({ API }) => {
 
+  const convertLatLngToPixel = (lat, lng) => {
+    const scale = Math.pow(2, mapRef.current.getZoom());
+    const worldCoordinate = mapRef.current.getProjection().fromLatLngToPoint(new window.google.maps.LatLng(lat, lng));
+    const pixelCoordinate = new window.google.maps.Point(worldCoordinate.x * scale, worldCoordinate.y * scale);
+  
+    dispatch(captureDesignFromMap({
+      startX: (pixelCoordinate.y, pixelCoordinate.x),
+      startY: (pixelCoordinate.y, pixelCoordinate.x),
+      endX: (pixelCoordinate.y, pixelCoordinate.x),
+      endY: (pixelCoordinate.y, pixelCoordinate.x),
+    }));
+
+    // console.log({
+    //   startX: (line.startY, line.startX).x,
+    //   startY: (line.startY, line.startX).y,
+    //   endX: (line.endY, line.endX).x,
+    //   endY: (line.endY, line.endX).y,
+    // })
+  
+    return {
+      x: pixelCoordinate.x,
+      y: pixelCoordinate.y,
+    };
+  };
+  
+  
 
   const [postalCode, setPostalCode] = useState(useSelector((state) => state.ptCode.value));
   const dispatch = useDispatch()
@@ -112,7 +139,7 @@ const G_Map = ({ API }) => {
           const lengthInFeet = lengthInMeters * 3.28084;
 
             // Capture the length in the array
-            drawnLinesLengths.push(lengthInFeet);
+            // drawnLinesLengths.push(lengthInFeet);
 
             // Create markers after capturing the length
             startingPointMarker = new window.google.maps.Marker({
@@ -173,6 +200,28 @@ const G_Map = ({ API }) => {
               });
       
               infoWindow.open(map);
+
+                // ...............................................
+
+
+
+                // const startPoint = path.getAt(0);
+                // const endPoint = path.getAt(pathLength - 1);
+
+                convertLatLngToPixel( path.getAt(0).lat(),  path.getAt(0).lng())
+        
+
+
+               console.log("path :" ,)
+
+              //  console.log("start y  : ",)
+              //  console.log("start x  : ",)
+              //  console.log("end y  : ", path.getAt(pathLength - 1).lat())
+              //  console.log("end X  : ", path.getAt(pathLength - 1).lat())
+
+               // ...............................................
+
+              console.log(drawnLinesLengths)
       
               // Update the sum of line lengths
               const sumLength =  Math.round(drawnLinesLengths.reduce((acc, length) => acc + length, 0));
