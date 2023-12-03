@@ -8,19 +8,19 @@ const MaterialsMenu = () => {
 
   const navigate = useNavigate();
 
-  const continueRoute = () => {
-    if(cUrl === "http://localhost:5173/materials/type"){
-     navigate("/materials/fence");
-    }else if(cUrl === "http://localhost:5173/materials/fence"){
-      navigate("/materials/gate");
-    }else if(cUrl === "http://localhost:5173/materials/gate"){
-      navigate("/materials/option");
-    }else if(cUrl === "http://localhost:5173/materials/option"){
-       navigate("/summary");
-    }else if(cUrl === "http://localhost:5173/summary"){
-      navigate("/purchase");
-   }
-  }
+  // const continueRoute = () => {
+  //   if(cUrl === "http://localhost:5173/materials/type"){
+  //    navigate("/materials/fence");
+  //   }else if(cUrl === "http://localhost:5173/materials/fence"){
+  //     navigate("/materials/gate");
+  //   }else if(cUrl === "http://localhost:5173/materials/gate"){
+  //     navigate("/materials/option");
+  //   }else if(cUrl === "http://localhost:5173/materials/option"){
+  //      navigate("/summary");
+  //   }else if(cUrl === "http://localhost:5173/summary"){
+  //     navigate("/purchase");
+  //  }
+  // }
 
 
   const backRoute = () => {
@@ -65,7 +65,7 @@ const MaterialsMenu = () => {
              color: "#fff",
              marginRight: ".3rem",
            }}
-           onClick={continueRoute}
+          //  onClick={continueRoute}
          >
            Continue
          </button>

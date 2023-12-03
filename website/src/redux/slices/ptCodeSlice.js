@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   value: 0,
+  pCOdeVal: 0,
 }
 
 export const ptCodeSlice = createSlice({
@@ -21,10 +22,13 @@ export const ptCodeSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload
     },
+    checkStoreValue: (state , action) => {
+      state.pCOdeVal = action.payload;
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount,getPtCode } = ptCodeSlice.actions
+export const { increment, decrement, incrementByAmount,getPtCode , checkStoreValue } = ptCodeSlice.actions
 
 export default ptCodeSlice.reducer

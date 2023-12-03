@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import GooglePlaceSearch from '../GooglePlaceSearchBar/GooglePlaceSearch'
 
-const DrawSide = () => {
+const DrawSide = ({linesDrawn , setLinesDrawn}) => {
 
     const baseUrl1 = "https://fence-web-project-402814.uc.r.appspot.com/"
     const baseUrl2 = "http://localhost:5173/"
 
+    const [showModal, setShowModal] = useState(false);
+    const [firstModalVal , setFirstModalVal] = useState('');
+    const [secondModalVal , setSecondModalVal] = useState('');
+    const [modalBtnVal , setModalBtnVal] = useState('');
+    // const [linesDrawn, setLinesDrawn] = useState(false); // Track whether lines have been drawn
+    
+     const currentUrl = window.location.href;
+
+    //   console.log(linesDrawn)
+
+    //   const measureManually = () => {
+    //     if (currentUrl === "http://localhost:5173/map") {
+    //       if (linesDrawn) {
+    //         // If no lines drawn, directly navigate
+    //         navigate("/canvas");
+    //       } else {
+    //         setShowModal(true);
+    //         setFirstModalVal("Are you sure you want to leave without lines drawn?");
+    //         setSecondModalVal("Choose 'Yes' if you still want to leave.");
+    //         setModalBtnVal("Yes");
+    //       }
+    //     }
+    //   };
+    
+
+
     
   return (
-    <div className='w-full h-full border py-10 px-5 flex flex-col gap-9 items-center justify-center' >
+   <>
+   
+   <div className='w-full h-full border py-10 px-5 flex flex-col gap-9 items-center justify-center' >
             <div className='text-green-700' >
                 <h1 className='border-b-2 border-green-700 w-auto mb-10'>Select design method ?</h1>
                 <div className='flex gap-4 p-2' >
@@ -48,6 +76,20 @@ const DrawSide = () => {
             }
             
     </div>
+      {
+        showModal ?   <div className="modal-container">
+        <div className="modal-box">
+             <div className="m-header">
+                <p>{firstModalVal}</p>
+             </div>
+             <div className="m-txt">
+                <p>{secondModalVal}</p>
+                <button onClick={modalBtnChooseYes}>{modalBtnVal}</button>
+             </div>
+        </div>
+       </div> : null
+     }
+   </>
   )
 }
 

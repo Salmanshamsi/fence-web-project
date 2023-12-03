@@ -17,6 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd() + "/public" )));
 
+
 // mongoose initialization...
 
 mongoose.connect(process.env.MONGO_DB_URI).then(() => {

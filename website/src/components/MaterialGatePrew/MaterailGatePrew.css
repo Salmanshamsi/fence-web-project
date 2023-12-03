@@ -12,6 +12,7 @@
 .gates{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
 }
 .gatesbox{
     border: 1px solid gray;
@@ -37,7 +38,57 @@
 }
 
 
-/* @media screen and (max-width:1465px) {
+/* @media screen and (max-width:1330px) {
+    .gatesbox{
+        border: 0px solid gray;
+        padding: 1rem;
+        width: 300px;
+        cursor: pointer;
+        margin-left: -5rem;
+    }
+    .gtXt{
+        margin-left: -10rem;
+    }
+}
+
+@media screen and (max-width:983px) {
+    .gatesbox{
+        border: 0px solid gray;
+        padding: 1rem;
+        width: 300px;
+        cursor: pointer;
+        margin-left: -7rem;
+    }
+    .gtXt{
+        margin-left: -10rem;
+    }
+}
+
+@media screen and (max-width:702px) {
+    .gatesbox{
+        border: 0px solid gray;
+        padding: .2rem;
+        width: 300px;
+        cursor: pointer;
+        margin-left: -7rem;
+    }
+    .gtXt{
+        margin-left: -10rem;
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:1465px) {
     .gateopening{
         margin-left: -8.2rem;
         margin-top: 4rem;
@@ -51,6 +102,10 @@
         border: 1px solid gray;
         padding: 1.5rem;
         cursor: pointer;
+        
+    }
+    .gates{
+        margin-left: -10rem;
     }
     .gatesbox img{
         height: 200px;
@@ -101,6 +156,9 @@
 
 
 @media screen and (max-width:866px) {
+    .gates{
+        margin-left: -6rem;
+    }
     .gateopening{
         margin-left: -6.2rem;
         margin-top: 4rem;
@@ -153,7 +211,7 @@
     .gates{
         display: flex;
         justify-content: space-between;
-        margin-left: -3rem;
+            margin-left: -7rem;
     }
     .gatesbox{
         border: 1px solid gray;
@@ -247,8 +305,8 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        align-items: center;
-        margin-left: 0rem;
+        margin-bottom: 2rem;
+        margin-left: -5rem;
     }
     .gatesbox{
         border: 1px solid gray;
@@ -256,4 +314,4 @@
         cursor: pointer;
         width: 160px;
     }
-} */
+}

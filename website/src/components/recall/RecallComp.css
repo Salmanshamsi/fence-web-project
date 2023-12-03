@@ -1,0 +1,254 @@
+.recall-compo{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0rem 0rem 2.5rem;
+}
+.recallId{
+    border: .1px solid black;
+    outline: none;
+    border-radius: 20px;
+    padding: .3rem .1rem .3rem 1.2rem;
+    width: 170px;
+}
+.recallBtn{
+    padding: .5rem 1.4rem;
+    font-size: 12px;
+    background-color:#008938;
+    color: #fff;
+    margin-left: .5rem;
+    border-radius: 20px;
+}
+.recall-compo input{
+    margin-left: 1rem;
+}
+.recallheader{
+    margin-top: 1rem;
+    margin-left: 2.4rem;
+    width: 52%;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.recallheader p{
+    font-weight: bold;
+    font-size: 16px;
+}
+.recal-data-container{
+    display: flex;
+    justify-content: center;
+}
+.recal-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin-top: .5rem;
+}
+.recal-data p{
+    font-size: 16px;
+}
+#cont-designing{
+    background-color: #0d5da2;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: .5rem 2rem;
+}
+#remove-designing{
+    background-color: #c4130b;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: .5rem 4rem;
+}
+.recall-data-container{
+   margin-left: 2rem;
+}
+.f{
+    display: flex;
+}
+@media screen and (max-width:1095px) {
+    .recal-data{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 98%;
+        margin-top: .5rem;
+    }
+}
+
+@media screen and (max-width:1043px) {
+  .recallheader p{
+    font-size: 13px;
+  }
+  .recal-data p{
+    font-size: 13px;
+  }
+  #cont-designing{
+    background-color: #0d5da2;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: .3rem 1rem;
+    font-size: 13px;
+}
+#remove-designing{
+    background-color: #c4130b;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: .3rem 2rem;
+    font-size: 13px;
+}
+}
+
+
+@media screen and (max-width:749px) {
+    .logintoRetrive{
+        font-size: 14px;
+    }
+    .recallheader p{
+        font-size: 11px;
+      }
+      .recal-data p{
+        font-size: 9px;
+      }
+      #cont-designing{
+        background-color: #0d5da2;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .3rem 1rem;
+        font-size: 9px;
+    }
+    #remove-designing{
+        background-color: #c4130b;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .3rem 2rem;
+        font-size: 9px;
+    }
+  }
+
+  @media screen and (max-width:582px) {
+    .recallheader p{
+        font-size: 11px;
+      }
+      .recal-data p{
+        font-size: 9px;
+      }
+      #cont-designing{
+        background-color: #0d5da2;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .3rem 1rem;
+        font-size: 6px;
+    }
+    #remove-designing{
+        background-color: #c4130b;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .3rem 2rem;
+        font-size: 6px;
+    }
+  }
+
+  @media screen and (max-width:520px) {
+    .recall-compo{
+        display: flex;
+        margin: 1rem 0rem 0rem 2.5rem;
+        flex-direction: column;
+        align-items: right;
+    }
+    .logintoRetrive{
+        font-size: 13px;
+        margin-bottom: .5rem;
+    }
+    .recallId{
+        height: 30px;
+        font-size: 13px;
+        width: 230px;
+        margin-left: -2rem;
+    }
+    .recallheader{
+        margin-top: 1rem;
+        margin-left: 2.4rem;
+        width: 62%;
+        margin-bottom: .5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .recallheader p{
+        font-size: 9px;
+      }
+      .recal-data p{
+        font-size: 7px;
+      }
+      #cont-designing{
+        background-color: #0d5da2;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .25rem .5rem;
+        font-size: 4px;
+    }
+    #remove-designing{
+        background-color: #c4130b;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        padding: .25rem .5rem;
+        font-size: 4px;
+    }
+  }
+
+  @media screen and (max-width:391px) {
+    .recall-compo{
+        display: flex;
+        margin: 1rem 0rem 0rem 2.5rem;
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .logintoRetrive{
+        font-size: 13px;
+        margin-bottom: .5rem;
+    }
+    .recallId{
+        height: 30px;
+        font-size: 13px;
+        width: 200px;
+        margin-right: 1rem;
+    }
+  }
+
+  @media screen and (max-width:363px) {
+    .recall-compo{
+        display: flex;
+        margin: 1rem 0rem 0rem 2.5rem;
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .logintoRetrive{
+        font-size: 13px;
+        margin-bottom: .5rem;
+    }
+    .recallId{
+        height: 30px;
+        font-size: 13px;
+        width: 150px;
+        margin-right: .5rem;
+    }
+  }

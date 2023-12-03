@@ -4,7 +4,13 @@
     background-color: #009a3d!important;
     padding: 10px 10px;
 }
-
+.btnContnue{
+    width: 100%;
+    display: flex;
+    margin-top: -1.7rem;
+    margin-bottom: .2rem;
+    justify-content: right;
+}
 .editcanvasheader h2 {
     font-size: 20px;
     letter-spacing: 1px;
@@ -17,6 +23,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#btnContnueBAck{
+    background-color: white;
+    padding: .4rem 1.5rem;
+    border-radius: 20px;
+    outline: none;
+    border: .1px solid gray;
+    color: black;
+}
+
+#btnContnueContinue{
+    background-color:  #009a3d!important;
+    padding: .4rem 1.5rem;
+    border-radius: 20px;
+    outline: none;
+    border:  none;
+    color: #fff;
 }
 
 .editcanvastext p {

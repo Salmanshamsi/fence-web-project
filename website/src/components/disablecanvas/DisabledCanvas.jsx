@@ -2,18 +2,15 @@ import React, { useRef, useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
-import "./DrawCanvas.css";
-import bg from "../../assets/images/graph-bg.jpg";
+// import "./DisabledCanvas.css";
 import "react-toastify/dist/ReactToastify.css";
 import { totalDrawLength } from "../../redux/slices/FencePrice";
-import DisabledCanvas from "../disablecanvas/DisabledCanvas";
 import { useNavigate } from "react-router-dom";
 import {
   gCoordinatesEndX,
   gCoordinatesEndY,
   gCoordinatesStartX,
   gCoordinatesStartY,
-  showAllLine,
 } from "../../redux/slices/GetCoordinatesSlice";
 
 const customStyles = {
@@ -42,14 +39,10 @@ Modal.setAppElement("#root");
 //   return value;
 // }
 
-const DrawCanvas = () => {
+const DisabledCanvas = () => {
   // .......................................
+
   const dispatch = useDispatch();
-
-  const initialLines = [{ endX: 300, endY: 100, startX: 100, startY: 100 }];
-
-  const designFromMap = useSelector((state) => state.captureDesign.saveDesign);
-  console.log("designFromMap", designFromMap);
 
   const getEnterdLength = (feet, inch) => {
     if (feet) {
@@ -77,13 +70,28 @@ const DrawCanvas = () => {
   // States For Draw Line's Edit Button..
   const [selectedLineIndex, setSelectedLineIndex] = useState(null);
   const [displayEditButton, setDisplayEditButton] = useState(false);
-  const [dispatchingAction, setDispatchingAction] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [firstModalVal , setFirstModalVal] = useState('');
-  const [secondModalVal , setSecondModalVal] = useState('');
-  const [modalBtnVal , setModalBtnVal] = useState('');
+  const [firstModalVal, setFirstModalVal] = useState("");
+  const [secondModalVal, setSecondModalVal] = useState("");
+  const [modalBtnVal, setModalBtnVal] = useState("");
   const navigate = useNavigate();
+
+  let StartOneX = useSelector((state) => state.corrdinates.startX);
+  let StartOneY = useSelector((state) => state.corrdinates.startY);
+  let StartSecondX = useSelector((state) => state.corrdinates.endX);
+  let StartSecondY = useSelector((state) => state.corrdinates.endY);
+
+  const renderlines = [
+    {
+      startXVal: StartOneX,
+      startYVal: StartOneY,
+      endXVal: StartSecondX,
+      endYVal: StartSecondY,
+    },
+  ];
+
+  // console.log(renderlines);
 
   //  states For Modal's..
 
@@ -91,112 +99,38 @@ const DrawCanvas = () => {
   const [enteredFeet, setEnteredFeet] = useState(""); // State to store entered feet
   const [enteredInches, setEnteredInches] = useState(""); // State to store entered inches
   const editLines = useSelector((state) => state.canvas.lines);
-  const rLines = useSelector((state) => state.canvasDesign.cdesign);
-  const t = useSelector((state) => state.price.totalDrawLength);
+  const myAlLines = useSelector((state) => state.corrdinates.allLinesShow);
+  console.log("myAllLines : " + myAlLines);
+  myAlLines.map((ele) => console.log(ele));
 
-  console.log(rLines.lines);
-
-  const recalledDrawing = {
-    randomId: 646614230252,
-    lines: [], // Only drawing data should be here
-    pstTime: "12/1/2023, 10:34:05 PM", // Separate the time
-  };
-
-  //   const initialLines = [
-  //   {endX : 34.00090665740623, endY : 14.860619689318344 ,startX: 18.56300253, startY: 11.25940117},
-  //   {endX : 43.00090665740623, endY : 32.860619689318344 ,startX: 294.22968954, startY: 114.25940119},
-  //   // {endX : 67.00090665740623, endY : 26.860619689318344 ,startX: 184177441.22968954, startY: 115069600.92608818},
-  //   // {endX : 67.00090665740623, endY : 50.860619689318344 ,startX: 184177438.56300253, startY: 115069699.5927752},
-  // ];
+  const initialLines = [
+    {
+      endX: 34.00090665740623,
+      endY: 14.860619689318344,
+      startX: 18.56300253,
+      startY: 11.25940117,
+    },
+    {
+      endX: 43.00090665740623,
+      endY: 32.860619689318344,
+      startX: 294.22968954,
+      startY: 114.25940119,
+    },
+    {
+      endX: 67.00090665740623,
+      endY: 26.860619689318344,
+      startX: 184177441.22968954,
+      startY: 115069600.92608818,
+    },
+    {
+      endX: 67.00090665740623,
+      endY: 50.860619689318344,
+      startX: 184177438.56300253,
+      startY: 115069699.5927752,
+    },
+  ];
 
   // Generate RandomId Function
-
-  const generateRandomId = () => {
-    const length = 12;
-    const characters = "0123456789";
-    let randomId = "";
-
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      randomId += characters.charAt(randomIndex);
-    }
-
-    return randomId;
-  };
-
-  const goTOC = async () => {
-    try {
-      if (lines.length > 0) {
-        // Check if any fence leg has empty feet or inches
-    
-  
-        if (t <= 0) {
-          // Display modal if any fence leg is missing length information
-          setFirstModalVal("Design Warning");
-          setSecondModalVal("You must enter the length of all fence legs before continuing.");
-          setModalBtnVal("Ok");
-          setShowModal(true);
-          return; // Exit the function to prevent further execution
-        }
-  
-        // Generate random ID
-        const randomId = generateRandomId();
-        console.log("Random ID:", randomId);
-  
-        // Get the current time and date in Pakistan Standard Time
-        const pstTime = new Date().toLocaleString("en-US", {
-          timeZone: "Asia/Karachi",
-        });
-        console.log("Current Time (PST):", pstTime);
-  
-        // Prepare data for the API request
-        const requestData = {
-          randomId,
-          lines, // Make sure "lines" is an array of objects
-          pstTime,
-        };
-  
-        const response = await fetch("http://localhost:3000/auth/saveData", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
-  
-        if (!response.ok) {
-          // Handle the case where the server returns an error
-          const errorData = await response.json(); // Attempt to parse error response
-          console.error("Error:", response.statusText, errorData);
-          // Handle other errors as needed
-        } else {
-          const responseData = await response.json();
-          console.log("Data saved successfully:", responseData);
-          dispatch(showAllLine(requestData.lines));
-          setShowModal(true); // Open the modal before navigating
-          navigate("/materials/type")
-        }
-      } else {
-        console.log("No lines on the canvas.");
-        setFirstModalVal("Design Warning");
-        setSecondModalVal("You must draw a shape before continuing.");
-        setModalBtnVal("Ok");
-        setShowModal(true);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle other errors as needed
-    }
-  };
-  
-  
-
-  const calculateLineLength = (line) => {
-    const length = Math.sqrt(
-      (line.endX - line.startX) ** 2 + (line.endY - line.startY) ** 2
-    );
-    return length;
-  };
 
   const drawLine = (ctx, x1, y1, x2, y2, index) => {
     const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
@@ -211,14 +145,14 @@ const DrawCanvas = () => {
 
       // Draw rounded dots at start and end points
       ctx.beginPath();
-      ctx.arc(x1, y1, 8, 0, 3 * Math.PI);
-      ctx.fillStyle = "blue";
+      ctx.arc(x1, y1, 7, 0, 3 * Math.PI);
+      ctx.fillStyle = "#68AEB7";
       ctx.fill();
       ctx.closePath();
 
       ctx.beginPath();
-      ctx.arc(x2, y2, 8, 0, 3 * Math.PI);
-      ctx.fillStyle = "blue";
+      ctx.arc(x2, y2, 7, 0, 3 * Math.PI);
+      ctx.fillStyle = "#68AEB7";
       ctx.fill();
       ctx.closePath();
 
@@ -271,13 +205,13 @@ const DrawCanvas = () => {
     setIsModalOpen(false);
 
     if (selectedLineIndex !== null) {
-      console.log("Selected Line Index:", selectedLineIndex);
+      // console.log("Selected Line Index:", selectedLineIndex);
 
       // Remove the selected line from the lines array
       const updatedLines = [...lines];
       updatedLines.splice(selectedLineIndex, 1);
 
-      console.log("Updated Lines:", updatedLines);
+      // console.log("Updated Lines:", updatedLines);
 
       // Clear the selected line and index
       setSelectedLine(null);
@@ -294,7 +228,7 @@ const DrawCanvas = () => {
 
       setLines(updatedLines);
 
-      console.log("Lines after removal:", updatedLines);
+      // console.log("Lines after removal:", updatedLines);
     }
   };
 
@@ -397,10 +331,6 @@ const DrawCanvas = () => {
 
     return ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1;
   };
-
-
-
-  
 
   // mouse event handlers for screens
 
@@ -574,38 +504,24 @@ const DrawCanvas = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    context.lineWidth = 8.5;
-    context.strokeStyle = "green";
+    context.lineWidth = 7.5;
+    context.strokeStyle = "#66BB6A";
     context.lineJoin = "round";
     context.lineCap = "round";
 
-    
+    // Clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    //   rLines.lines.forEach((line, index) => {
-    //   drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    // })
-
-    // Draw initial lines on the canvas
-    designFromMap.forEach((line) => {
+    // Draw all lines at once without clearing the canvas in between
+    myAlLines.map((line) => {
       drawLine(context, line.startX, line.startY, line.endX, line.endY);
+      console.log(line);
     });
-
-    drawLine(context);
-
-    // Draw current lines
-    lines.forEach((line) => {
-      drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    });
-
-    // initialLines.forEach((line) => {
-    //   drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    //   console.log(context, line.startX, line.startY, line.endX, line.endY)
-    // });
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [rLines, lines]);
+  }, []);
 
   // useEffect(() => {
   //     editLines.forEach((line) => {
@@ -613,23 +529,36 @@ const DrawCanvas = () => {
   // });
   // } , [editLines])
 
+  let cUrl = window.location.href;
+
+  const continueHandler = () => {
+    if (cUrl === "http://localhost:5173/materials/gate") {
+      setShowModal(true);
+      setFirstModalVal("Congratulations on completing your Fence design!");
+      setSecondModalVal("Login or Create an Account");
+      setModalBtnVal("Ok");
+    }
+  };
+  const cModal = () => {
+    setShowModal(false);
+    navigate("/summary");
+  };
+
   return (
     <>
       <div
         className="w-full h-full flex items-center justify-center"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <div className="btnContnue">
-          <button id="btnContnueBAck">Back</button>
-          <button id="btnContnueContinue" onClick={goTOC}>
-            Continue
-          </button>
-        </div>
         <div className="canvsDIv">
           <ToastContainer position="bottom-right" />
           <canvas
-            style={{ backgroundImage: `url(${bg})` }}
-            className={`border-black border bg-center bg-cover`}
+            style={{
+              pointerEvents: "none",
+              backgroundImage:
+                "url(https://www.xmple.com/wallpaper/graph-paper-grey-white-grid-1920x1080-c2-ffffff-d3d3d3-l2-1-11-a-60-f-20.svg)",
+            }}
+            className={`border bg-center bg-cover`}
             ref={canvasRef}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -710,25 +639,50 @@ const DrawCanvas = () => {
               </div>
             </Modal>
           )}
-          {/* <DisabledCanvas lines={lines} /> */}
         </div>
       </div>
-
-      {
-        showModal ?   <div className="modal-container">
-        <div className="modal-box">
-             <div className="m-header">
-                <p>{firstModalVal}</p>
-             </div>
-             <div className="m-txt">
-                <p>{secondModalVal}</p>
-                <button onClick={() => {setShowModal(false)}}>{modalBtnVal}</button>
-             </div>
+      <button onClick={continueHandler}>Continue</button>
+      {showModal ? (
+        <div className="modal-container" style={{ marginTop: "8rem" }}>
+          <div className="modal-box">
+            <div className="m-header">
+              <p>{firstModalVal}</p>
+            </div>
+            <div className="m-txt">
+              <h1
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  margin: "1rem 1rem 0rem 1rem",
+                }}
+              >
+                {secondModalVal}
+              </h1>
+              <p style={{ fontSize: "14px", fontWeight: "200" }}>
+                Saving will give you the ability to recall your design in the
+                future and is highly recommended.
+              </p>
+              <p style={{ fontSize: "14px", fontWeight: "200" }}>
+                To save your design to your Menards.com account, select the ‘OK’
+                button below
+              </p>
+              <p style={{ fontSize: "14px", fontWeight: "200" }}>
+                Select the ‘Login’ button in the upper right corner
+              </p>
+              <p style={{ fontSize: "14px", fontWeight: "200" }}>
+                Once you are logged in, select the ‘Print Design Packet’ button
+              </p>
+              <p style={{ fontSize: "14px", fontWeight: "200" }}>
+                To purchase your materials, go to the Purchase tab and follow
+                the instructions there.
+              </p>
+              <button onClick={cModal}>{modalBtnVal}</button>
+            </div>
+          </div>
         </div>
-       </div> : null
-     }
+      ) : null}
     </>
   );
 };
 
-export default DrawCanvas;
+export default DisabledCanvas;

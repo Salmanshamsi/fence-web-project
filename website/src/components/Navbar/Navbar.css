@@ -1,0 +1,47 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+
+.modal-box {
+    height: 100%;
+    width: 550px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    z-index: 1;
+}
+
+.m-header{
+    height: 70px;
+    width: 100%;
+    background-color: #009a3d;
+    font-family: "Poppins";
+}
+.m-header p{
+    color: #fff;
+    font-size: 19px;
+    letter-spacing: .4px;
+    padding: 1rem 1rem 0rem 1rem;
+}
+.m-txt p{
+    font-family: "Poppins";
+    font-size: 17px;
+    padding: 1rem 1rem 0rem 1rem;
+}
+.m-txt button{
+    padding: .4rem 1rem;
+    background-color: #009a3d;
+    margin: 1rem 1rem 0rem 1rem;
+    color: #fff;
+    font-family: "Poppins";
+    border-radius: 20px;
+}

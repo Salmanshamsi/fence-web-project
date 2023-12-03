@@ -19,8 +19,11 @@ import CheckOut from "./screens/CheckOut";
 import OrderConfirmation from "./screens/OrderConfirmation";
 import Success from "./components/success/Success"
 import Cancel from "./components/cancel/Cancel"
+import RecallScreen from "./screens/RecallScreen";
 
 function App() {
+
+
 
   return (
     <>
@@ -42,6 +45,7 @@ function App() {
       <Route path='/login' element={<Auth/>}/>
       <Route path='/success' element={<Success/>}/>
       <Route path='/cancel' element={<Cancel/>}/>
+      <Route path='/recall' element={<RecallScreen/>}/>
      </Routes>
     </>
   )

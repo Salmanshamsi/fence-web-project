@@ -3,6 +3,7 @@ import DrawCanvas from '../Canvas/DrawCanvas'
 import "./Summary.css"
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import DisabledCanvas from '../disablecanvas/DisabledCanvas'
 
 const Summary = () => {
     let cUrl = window.location.href;
@@ -21,6 +22,10 @@ const Summary = () => {
         if(cUrl === "http://localhost:5173/summary"){
             navigate("/materials/type");
         }
+    }
+
+    const editTheCanvas = () => {
+        navigate("/canvas")
     }
 
 
@@ -62,7 +67,7 @@ const Summary = () => {
                         <div className='w-4/12 h-full border-black border flex p-2 items-center ' >Length</div>
                         <div className='w-8/12 h-full border-black border flex justify-between items-center p-2 ' >
                             <p>{totalLength}</p>
-                            <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square"></i></h1>
+                            <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square" onClick={editTheCanvas}></i></h1>
                         </div>
                     </li>
                 </ul>
@@ -123,7 +128,7 @@ const Summary = () => {
             <p className='mx-2 estimate' >*Today's estimated price, future pricing may go up or down. Tax, labor, and delivery not included.</p>
       
             <div className='overflow-x-hidden overflow-y-hidden' >
-                {/* <DrawCanvas/> */}
+            <DisabledCanvas/>
             </div>
 
       </div>

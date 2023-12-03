@@ -32,7 +32,7 @@ const MaterialGatePrew = () => {
                     <div key={ind}>
                       <div className="gatesbox">
                               <img src={ele.img} alt="" />
-                              <p>{ele.txt}</p>
+                              <p className='gtXt'>{ele.txt}</p>
                     </div>
                     </div>
                   )

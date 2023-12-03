@@ -6,6 +6,14 @@
     margin: 4rem 0rem 4rem -1.2rem;
 }
 
+@media screen and (max-width:1482px) {
+    .selectG{
+        font-size: 16px;
+        margin: 4rem 0rem 4rem -8.2rem;
+    }
+    
+}
+
 @media screen and (max-width:1465px) {
     .itemF{
         display: flex;

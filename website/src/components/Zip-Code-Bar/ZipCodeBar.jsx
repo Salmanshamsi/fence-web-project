@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import jsonStores from "../../assets/stores/Fences.json";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getPtCode } from "../../redux/slices/ptCodeSlice";
+import { checkStoreValue, getPtCode } from "../../redux/slices/ptCodeSlice";
 import { getStoreAdress, getStoreDistance, getStoreName, getStorePhone } from "../../redux/slices/FenceDesignSlice";
 import "./ZipCode.css"
 
@@ -10,8 +10,12 @@ const ZipCodeBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState(jsonStores);
 
+  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  dispatch(checkStoreValue(inputValue))
+
 
   const getSelectedStoreData = (store, adress, distance, phone) => {
     console.log(store, adress, distance, phone);

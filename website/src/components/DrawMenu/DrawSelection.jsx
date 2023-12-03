@@ -5,7 +5,7 @@ const DrawSelection = () => {
 
   return (
     <div className='h-full lg:p-24 lg:gap-8 gap-16 w-full text-gray-700 flex flex-col justify-center items-center '>
-        <div className='text-4xl m-4' >
+        <div className='text-4xl m-4'>
             How would you like to estimate your fence?
         </div>
         <div className='flex w-full lg:flex-row flex-col  lg:gap-0  gap-5 text-green-800' >

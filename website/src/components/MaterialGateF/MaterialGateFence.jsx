@@ -1,6 +1,7 @@
 import React from 'react'
 import "./MaterialGateFence.css"
 import DrawCanvas from '../Canvas/DrawCanvas'
+import DisabledCanvas from '../disablecanvas/DisabledCanvas'
 
 const MaterialGateFence = () => {
   return (
@@ -11,6 +12,7 @@ const MaterialGateFence = () => {
         </div>
          <div className='overflow-x-hidden overflow-y-hidden' >
                 {/* <DrawCanvas/> */}
+                <DisabledCanvas/>
             </div>
     </div>
   )

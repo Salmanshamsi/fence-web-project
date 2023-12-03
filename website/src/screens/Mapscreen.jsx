@@ -2,9 +2,12 @@ import Navbar from '../components/Navbar/Navbar'
 import DrawSide from "../components/DrawSideBar/DrawSide"
 import GooglePlaceSearch from '../components/GooglePlaceSearchBar/GooglePlaceSearch'
 import G_Map from '../components/GoogleMap/GoogleMap'
+import { useState } from 'react'
 
 
 const Mapscreen = ({API}) => {    
+
+  const [linesDrawn, setLinesDrawn] = useState(false);
 
   return (
     <div>
@@ -18,10 +21,10 @@ const Mapscreen = ({API}) => {
               <div className='w-full h-screen fixed pt-10' >
                   <div className='flex' >
                     <div className='w-3/12 lg:flex flex-col hidden ' >
-                      <DrawSide API={API} />
+                      <DrawSide API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn} />
                     </div>
                     <div className='lg:w-9/12 w-full p-5 mt-5' >                  
-                       <G_Map API={API} />
+                       <G_Map API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn} />
                     </div>
                   </div>
               </div>

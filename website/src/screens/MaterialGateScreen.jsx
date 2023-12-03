@@ -7,6 +7,7 @@ import MaterialGatePrew from '../components/MaterialGatePrew/MaterialGatePrew'
 import "./MaterialGateScreen.css"
 import MaterialGateFence from '../components/MaterialGateF/MaterialGateFence'
 import EstimatePriceModal from '../components/EstimatePriceModal/EstimatePriceModal'
+import DisabledCanvas from '../components/disablecanvas/DisabledCanvas'
 
 const MaterialGateScreen = () => {
 
