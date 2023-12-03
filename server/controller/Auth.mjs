@@ -110,6 +110,7 @@ const SaveData = async (req, res) => {
 
 
 const getData = async (req,res) => {
+
     const { randomId } = req.params;
   
     try {
@@ -141,33 +142,30 @@ const dltData = async (req, res) => {
 };
 
 
+const updateData = async (req, res) => {
 
-const updateData = async (id, lines, pstTime) => {
+  const id = req.params.randomId;
+  const upd_data = req.body.lines;
+  const time = req.body.pstTime;
+
+  console.log(upd_data + " id : " + id); // Log the update data and id to check if they are received correctly
+
   try {
-    const response = await fetch(`http://localhost:3000/auth/updateData/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include', // Include credentials (cookies) for cross-origin requests
-      body: JSON.stringify({
-        lines,
-        pstTime,
-      }),
-    });
 
-    if (response.ok) {
-      console.log('Data updated successfully');
-      // Continue with your navigation or other logic
+    const result = await Drawing.updateOne({ randomId: id }, { $set: { lines: upd_data, pstTime: time } });
+    
+    console.log(upd_data + " id : " + id); 
+    console.log(" res :" + result.nModified)
+
+    if (result.nModified === 1) {
+      res.send("Update successful");
     } else {
-      console.error('Error updating data:', response);
-      // Handle the error as needed
+      res.send("Data not found");
     }
   } catch (error) {
-    console.error('Error:', error);
-    // Handle other errors as needed
+    console.error("Error updating todo item:", error); // Log the error to check what went wrong
+    res.status(500).send("Error updating todo item");
   }
 };
-
 
 export { createUser, LoginUser, checkOut, SaveData , getData , dltData , updateData};

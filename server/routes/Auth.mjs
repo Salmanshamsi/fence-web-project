@@ -25,6 +25,7 @@ router.post("/checkout", async (req, res) => {
 router.post("/saveData", async (req, res) => {
   SaveData(req, res);
 });
+
 router.get("/getDrawing/:randomId", async (req, res) => {
 //   console.log("GET request received"); // Add this line
   getData(req, res);
@@ -35,7 +36,7 @@ router.delete("/deleteDrawing", async (req, res) => {
   dltData(req, res);
 });
 
-router.put("/updateData", async (req, res) => {
+router.put("/updateData/:randomId", async (req, res) => {
   updateData(req, res);
 });
 

@@ -163,6 +163,14 @@ const DrawCanvas = () => {
           },
           body: JSON.stringify(requestData),
         });
+
+        // const Update_response = await fetch("http://localhost:3000/auth/updateData/:ran", {
+        //   method: "PUT",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(requestData),
+        // });
   
         if (!response.ok) {
           // Handle the case where the server returns an error

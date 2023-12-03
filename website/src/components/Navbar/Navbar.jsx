@@ -219,7 +219,8 @@ const Navbar = () => {
       </ul>
 
      {
-        showModal ?   <div className="modal-container">
+        showModal ?   
+        <div className="modal-container">
         <div className="modal-box">
              <div className="m-header">
                 <p>{firstModalVal}</p>

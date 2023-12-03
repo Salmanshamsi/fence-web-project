@@ -72,7 +72,7 @@ const MaterialsPrew = () => {
             </p>
           </button>
         ))}
-            <button onClick={handleContinue}>Continue</button>
+            <button className='absolute top-20 right-10'  onClick={handleContinue}>Continue</button>
       </div>
       {
         showModal ?   <div className="modal-container">
