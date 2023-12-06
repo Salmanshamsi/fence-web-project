@@ -6,15 +6,11 @@ import "./DrawCanvas.css";
 import bg from "../../assets/images/graph-bg.jpg";
 import "react-toastify/dist/ReactToastify.css";
 import { totalDrawLength } from "../../redux/slices/FencePrice";
-import DisabledCanvas from "../disablecanvas/DisabledCanvas";
-import { useNavigate } from "react-router-dom";
-import {
-  gCoordinatesEndX,
-  gCoordinatesEndY,
-  gCoordinatesStartX,
-  gCoordinatesStartY,
-  showAllLine,
-} from "../../redux/slices/GetCoordinatesSlice";
+import { postData, updateData } from "../../apiCallings/apiCallings";
+import { useNavigate } from 'react-router-dom'
+import { showAllLine } from "../../redux/slices/GetCoordinatesSlice";
+import { randomIdGET } from "../../redux/slices/randomIdSlice";
+
 
 const customStyles = {
   content: {
@@ -36,33 +32,11 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-// const T_length = (value) => {
-//   console.log("value : ", value)
-//   value += value;
-//   return value;
-// }
 
 const DrawCanvas = () => {
-  // .......................................
-  const dispatch = useDispatch();
-
-  const initialLines = [{ endX: 300, endY: 100, startX: 100, startY: 100 }];
-
-  const designFromMap = useSelector((state) => state.captureDesign.saveDesign);
-  console.log("designFromMap", designFromMap);
-
-  const getEnterdLength = (feet, inch) => {
-    if (feet) {
-      dispatch(totalDrawLength(Number(feet)));
-    } else if (inch) {
-      const newInch = Number(inch / 100);
-      dispatch(totalDrawLength(newInch));
-    }
-  };
-
-  // ........................................
 
   const canvasRef = useRef(null);
+  const navigate = useNavigate()
 
   // state for the Draw Line
 
@@ -77,39 +51,35 @@ const DrawCanvas = () => {
   // States For Draw Line's Edit Button..
   const [selectedLineIndex, setSelectedLineIndex] = useState(null);
   const [displayEditButton, setDisplayEditButton] = useState(false);
-  const [dispatchingAction, setDispatchingAction] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
   const [firstModalVal , setFirstModalVal] = useState('');
   const [secondModalVal , setSecondModalVal] = useState('');
   const [modalBtnVal , setModalBtnVal] = useState('');
-  const navigate = useNavigate();
+  const isLoggedIn = window.localStorage.getItem("loggedIn")
+  console.log(isLoggedIn)
 
   //  states For Modal's..
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [enteredFeet, setEnteredFeet] = useState(""); // State to store entered feet
   const [enteredInches, setEnteredInches] = useState(""); // State to store entered inches
-  const editLines = useSelector((state) => state.canvas.lines);
-  const rLines = useSelector((state) => state.canvasDesign.cdesign);
-  const t = useSelector((state) => state.price.totalDrawLength);
 
-  console.log(rLines.lines);
+    // ..........redux states.............................
 
-  const recalledDrawing = {
-    randomId: 646614230252,
-    lines: [], // Only drawing data should be here
-    pstTime: "12/1/2023, 10:34:05 PM", // Separate the time
-  };
+    const dispatch = useDispatch();
 
-  //   const initialLines = [
-  //   {endX : 34.00090665740623, endY : 14.860619689318344 ,startX: 18.56300253, startY: 11.25940117},
-  //   {endX : 43.00090665740623, endY : 32.860619689318344 ,startX: 294.22968954, startY: 114.25940119},
-  //   // {endX : 67.00090665740623, endY : 26.860619689318344 ,startX: 184177441.22968954, startY: 115069600.92608818},
-  //   // {endX : 67.00090665740623, endY : 50.860619689318344 ,startX: 184177438.56300253, startY: 115069699.5927752},
-  // ];
+    const designFromMap = useSelector((state) => state.captureDesign.saveDesign);
+    const DB_lines_design = useSelector((state) => state.canvasDesign.cdesign);
+    const totalDrawlength = useSelector((state) => state.price.totalDrawLength);
 
-  // Generate RandomId Function
+    // console.log("designFromMap :", designFromMap);
+    // console.log("editLines :", editLines);
+    // console.log("saved lines :", DB_lines_design);
+    // console.log("totalDrawlength :", totalDrawlength);
+  
+    // ..............................................................
+
 
   const generateRandomId = () => {
     const length = 12;
@@ -125,87 +95,69 @@ const DrawCanvas = () => {
   };
 
   const goTOC = async () => {
+
+    const requestData = {
+      randomId : generateRandomId(),
+      pstTime: new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Karachi",
+      }),
+      lines,
+    };
+    const updateReqData = {lines:lines}
+    
     try {
       if (lines.length > 0) {
-        // Check if any fence leg has empty feet or inches
-    
-  
-        if (t <= 0) {
-          // Display modal if any fence leg is missing length information
+        if (totalDrawlength <= 0) {
           setFirstModalVal("Design Warning");
           setSecondModalVal("You must enter the length of all fence legs before continuing.");
           setModalBtnVal("Ok");
           setShowModal(true);
-          return; // Exit the function to prevent further execution
-        }
-  
-        // Generate random ID
-        const randomId = generateRandomId();
-        console.log("Random ID:", randomId);
-  
-        // Get the current time and date in Pakistan Standard Time
-        const pstTime = new Date().toLocaleString("en-US", {
-          timeZone: "Asia/Karachi",
-        });
-        console.log("Current Time (PST):", pstTime);
-  
-        // Prepare data for the API request
-        const requestData = {
-          randomId,
-          lines, // Make sure "lines" is an array of objects
-          pstTime,
-        };
-  
-        const response = await fetch("http://localhost:3000/auth/saveData", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
+          return; 
+        }else{
+            if(DB_lines_design.length > 0){
+              updateData(DB_lines_design[0].randomId,updateReqData).then(resp => {
+                  if (resp.data !== "Data not found") {
+                    dispatch(showAllLine(lines))
+                    dispatch(randomIdGET(randomId));
+                      setShowModal(true);
+                      navigate("/materials/type")
+                      console.log(resp.data)
+                  }else{
+                      console.log(resp.data)
+                  }
+              })
+            }else{
 
-        // const Update_response = await fetch("http://localhost:3000/auth/updateData/:ran", {
-        //   method: "PUT",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(requestData),
-        // });
-  
-        if (!response.ok) {
-          // Handle the case where the server returns an error
-          const errorData = await response.json(); // Attempt to parse error response
-          console.error("Error:", response.statusText, errorData);
-          // Handle other errors as needed
-        } else {
-          const responseData = await response.json();
-          console.log("Data saved successfully:", responseData);
-          dispatch(showAllLine(requestData.lines));
-          setShowModal(true); // Open the modal before navigating
-          navigate("/materials/type")
+              postData(requestData).then((resp)=>{
+                
+                if(resp.message === "Data saved successfully"){
+                  
+                  dispatch(showAllLine(lines))
+                  dispatch(randomIdGET(requestData.randomId));
+                  setShowModal(true);
+                  navigate("/materials/type")
+                  console.log(resp.message)
+
+                }else{
+                  console.log(resp.message)
+                }
+              })
+              
+            }
         }
       } else {
-        console.log("No lines on the canvas.");
+        // console.log("No lines on the canvas.");
         setFirstModalVal("Design Warning");
         setSecondModalVal("You must draw a shape before continuing.");
         setModalBtnVal("Ok");
         setShowModal(true);
       }
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle other errors as needed
-    }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+  
   };
   
-  
-
-  const calculateLineLength = (line) => {
-    const length = Math.sqrt(
-      (line.endX - line.startX) ** 2 + (line.endY - line.startY) ** 2
-    );
-    return length;
-  };
-
   const drawLine = (ctx, x1, y1, x2, y2, index) => {
     const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 
@@ -279,13 +231,13 @@ const DrawCanvas = () => {
     setIsModalOpen(false);
 
     if (selectedLineIndex !== null) {
-      console.log("Selected Line Index:", selectedLineIndex);
+      // console.log("Selected Line Index:", selectedLineIndex);
 
       // Remove the selected line from the lines array
       const updatedLines = [...lines];
       updatedLines.splice(selectedLineIndex, 1);
 
-      console.log("Updated Lines:", updatedLines);
+      // console.log("Updated Lines:", updatedLines);
 
       // Clear the selected line and index
       setSelectedLine(null);
@@ -302,7 +254,7 @@ const DrawCanvas = () => {
 
       setLines(updatedLines);
 
-      console.log("Lines after removal:", updatedLines);
+      // console.log("Lines after removal:", updatedLines);
     }
   };
 
@@ -383,7 +335,15 @@ const DrawCanvas = () => {
     }
   };
 
-  // Function to check if two lines intersect
+  const getEnterdLength = (feet, inch) => {
+    if (feet) {
+      dispatch(totalDrawLength(Number(feet)));
+    } else if (inch) {
+      const newInch = Number(inch / 100);
+      dispatch(totalDrawLength(newInch));
+    }
+  };
+
   const doLinesIntersect = (line1, line2) => {
     const x1 = line1.startX;
     const y1 = line1.startY;
@@ -406,9 +366,6 @@ const DrawCanvas = () => {
     return ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1;
   };
 
-
-
-  
 
   // mouse event handlers for screens
 
@@ -492,9 +449,9 @@ const DrawCanvas = () => {
           { startX, startY, endX, endY, enteredFeet, enteredInches },
         ]);
       } else {
-        console.log(
-          "The new line intersects with an existing line. Not adding it."
-        );
+        // console.log(
+        //   "The new line intersects with an existing line. Not adding it."
+        // );
       }
     }
 
@@ -529,9 +486,10 @@ const DrawCanvas = () => {
     handleMouseUp();
   };
 
-  // use-eff
+  // use-effects....
 
   useEffect(() => {
+
     const handleCanvasClick = (e) => {
       const rect = canvasRef.current.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
@@ -555,15 +513,28 @@ const DrawCanvas = () => {
     };
 
     const canvas = canvasRef.current;
-
     canvas.addEventListener("click", handleCanvasClick);
-
+  
     return () => {
       if (canvas) {
         canvas.removeEventListener("click", handleCanvasClick);
       }
     };
+
   }, [lines]);
+
+  useEffect(()=>{
+
+    if(designFromMap.length > 0){
+      setLines([...designFromMap]);
+    }
+
+    if(DB_lines_design.length > 0){
+      DB_lines_design.map((ele,ind)=>{
+        setLines([...DB_lines_design[ind].lines]);
+      })
+    }
+  },[designFromMap,DB_lines_design])
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -587,39 +558,17 @@ const DrawCanvas = () => {
     context.lineJoin = "round";
     context.lineCap = "round";
 
-    
-
-    //   rLines.lines.forEach((line, index) => {
-    //   drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    // })
-
-    // Draw initial lines on the canvas
-    designFromMap.forEach((line) => {
-      drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    });
-
     drawLine(context);
 
-    // Draw current lines
     lines.forEach((line) => {
       drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    });
-
-    // initialLines.forEach((line) => {
-    //   drawLine(context, line.startX, line.startY, line.endX, line.endY);
-    //   console.log(context, line.startX, line.startY, line.endX, line.endY)
-    // });
+  });
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [rLines, lines]);
+  }, [lines]);
 
-  // useEffect(() => {
-  //     editLines.forEach((line) => {
-  //   drawLine(context, line.startX, line.startY, line.endX, line.endY);
-  // });
-  // } , [editLines])
 
   return (
     <>

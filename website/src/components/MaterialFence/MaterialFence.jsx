@@ -202,7 +202,7 @@ const MaterialFence = () => {
 	  </div>
 	</div>
   </div>
-  <button onClick={handleContinue}>Continue</button>
+  <button onClick={handleContinue} style={{backgroundColor:"green" , position:"absolute" , left:"100%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
 	</>
   );
 };

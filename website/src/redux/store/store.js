@@ -9,6 +9,7 @@ import canvasReducer from "../slices/canvasLine"
 import GetCoordinatesReducer from "../slices/GetCoordinatesSlice"
 import CanvasDesignReducer from "../slices/ContinueToCanvasSlice"
 import captureDesign from '../slices/captureDesign';
+import randomIdSlice from '../slices/randomIdSlice';
 
 export const store = configureStore({
   reducer: {
@@ -22,4 +23,5 @@ export const store = configureStore({
     corrdinates:GetCoordinatesReducer,
     canvasDesign : CanvasDesignReducer,
     captureDesign:captureDesign,
+    randomIdSlice:randomIdSlice,
   }})

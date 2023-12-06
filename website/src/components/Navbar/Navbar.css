@@ -45,3 +45,57 @@
     font-family: "Poppins";
     border-radius: 20px;
 }
+
+@media screen and (max-width: 627px) {
+    
+.modal-box {
+    height: 50%;
+    width: 350px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    z-index: 1;
+}
+.m-header p{
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: .2px;
+    padding: 1rem 1rem 0rem 1rem;
+}
+.m-txt p{
+    font-family: "Poppins";
+    font-size: 15px;
+    padding: 1rem 1rem 0rem 1rem;
+}
+
+
+}
+
+@media screen and (max-width: 360px) {
+    
+    .modal-box {
+        height: 50%;
+        width: 300px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 8px;
+        margin-top: 4rem;
+        padding-bottom: 2rem;
+        z-index: 1;
+    }
+    .m-header p{
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: .2px;
+        padding: 1rem 1rem 0rem 1rem;
+    }
+    .m-txt p{
+        font-family: "Poppins";
+        font-size: 12px;
+        padding: 1rem 1rem 0rem 1rem;
+    }
+    
+    
+    }

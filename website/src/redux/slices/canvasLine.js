@@ -9,11 +9,11 @@ const canvasLine = createSlice({
     addLine: (state, action) => {
       state.lines.push(action.payload);
     },
-    clearLines: (state) => {
+    cleaDB_lines_design: (state) => {
       state.lines = [];
     },
   },
 });
 
-export const { addLine, clearLines } = canvasLine.actions;
+export const { addLine, cleaDB_lines_design } = canvasLine.actions;
 export default canvasLine.reducer;

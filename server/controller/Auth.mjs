@@ -146,25 +146,23 @@ const updateData = async (req, res) => {
 
   const id = req.params.randomId;
   const upd_data = req.body.lines;
-  const time = req.body.pstTime;
 
-  console.log(upd_data + " id : " + id); // Log the update data and id to check if they are received correctly
+  
+  console.log("Data :" + upd_data );
+  console.log(" id : " + id );
 
   try {
 
-    const result = await Drawing.updateOne({ randomId: id }, { $set: { lines: upd_data, pstTime: time } });
+    const result = await Drawing.updateOne({ randomId: id }, { $set: { lines: upd_data} });
     
-    console.log(upd_data + " id : " + id); 
-    console.log(" res :" + result.nModified)
-
-    if (result.nModified === 1) {
+    if (result.modifiedCount === 1) {
       res.send("Update successful");
     } else {
       res.send("Data not found");
     }
   } catch (error) {
     console.error("Error updating todo item:", error); // Log the error to check what went wrong
-    res.status(500).send("Error updating todo item");
+    res.status(500).send("Error updating");
   }
 };
 

@@ -44,7 +44,7 @@ const MaterialsMenu = () => {
       <li>Options</li>
       </ul>
      </div>
-    <div className="matMenuDiv">
+    {/* <div className="matMenuDiv">
          <button
            style={{
              border: "1px solid green",
@@ -69,7 +69,7 @@ const MaterialsMenu = () => {
          >
            Continue
          </button>
-     </div>
+     </div> */}
     </div>
      <hr style={{marginTop:"1rem" , width:"100%"}}/>
     </>

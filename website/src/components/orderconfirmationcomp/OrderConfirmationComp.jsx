@@ -207,7 +207,7 @@ const OrderConfirmationComp = () => {
                       <p>State : {sState}</p>
                       <p>Phone : {Bphone}</p>
                     </div>
-                    <div className="content-of-second-paynment">
+                    {/* <div className="content-of-second-paynment">
                       <h3>Credit Card Information</h3>
                       <label htmlFor="" className="name-of-card">
                         Name Of Card
@@ -286,7 +286,7 @@ const OrderConfirmationComp = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="pickup-second-inner-div">

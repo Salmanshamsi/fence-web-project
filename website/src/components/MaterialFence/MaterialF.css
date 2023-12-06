@@ -6,8 +6,25 @@
   width: 100%;
 }
 
+.headingfence{
+  margin-left: 1rem;
+  font-size:  30px;
+  margin-top: 1rem;
+}
+
 @media screen and (max-width:743px) {
   .woofenceheading{
     width: 300%;
   }
 }
+
+@media screen and (max-width:600px) {
+  .headingfence{
+    border:  1px solid black;
+    width: 100%;
+    margin-left: 1rem;
+    font-size:  30px;
+    margin-top: 1rem;
+  }
+}
+

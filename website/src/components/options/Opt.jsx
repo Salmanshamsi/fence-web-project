@@ -5,6 +5,7 @@ import { optSelect } from "../../redux/slices/FenceDesignSlice";
 import {optionPrice } from "../../redux/slices/FencePrice";
 import "./Opt.css"
 import { decrement, increment } from "../../redux/slices/CartSlice";
+import {useNavigate} from 'react-router-dom'
 
 const Option = () => {
   const [isTable, setisCanvas] = useState(false);
@@ -12,6 +13,13 @@ const Option = () => {
   const count = useSelector((state) => state.allCartData.value);
   const TotalPrice = useSelector((state)=>state.price.totalPrice) 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const navigateToSum = () => {
+    navigate("/summary");
+  };
+
   let arr = [
     {
       imgUrl:
@@ -34,7 +42,6 @@ const Option = () => {
     // dispatch(TotalPrice(tp));
   };
 
-
    const decrementValue = () => {
     dispatch(decrement())
    }
@@ -44,7 +51,8 @@ const Option = () => {
    }
 
   return (
-    <div>
+    <>
+       <div>
       <div className="lg:flex h-full w-full hidden">
         <div className="border h-full lg:w-4/12 w-full border-b-0">
           <div className="w-full p-3 text-green-500 ">
@@ -155,6 +163,21 @@ const Option = () => {
         </div>
       </div>
     </div>
+    <button
+        onClick={navigateToSum}
+        style={{
+          backgroundColor: "green",
+          position: "absolute",
+          right: "2%",
+          top: "8.5%",
+          padding: ".5rem 2rem",
+          color: "#fff",
+          borderRadius: "20px",
+        }}
+      >
+        Continue
+      </button>
+    </>
   );
 };
 

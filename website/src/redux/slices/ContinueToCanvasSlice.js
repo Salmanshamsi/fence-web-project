@@ -10,7 +10,7 @@ export const ContinueToCanvasSlice = createSlice({
   initialState,
   reducers: {
     continueCanvasDesign: (state, action) => {
-      state.cdesign = action.payload;
+      state.cdesign.push(action.payload);
     },
   },
 });

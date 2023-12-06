@@ -1,13 +1,14 @@
 import React from 'react'
-import DrawCanvas from '../Canvas/DrawCanvas'
 import "./Summary.css"
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import DisabledCanvas from '../disablecanvas/DisabledCanvas'
 
 const Summary = () => {
-    let cUrl = window.location.href;
 
+
+    let cUrl = window.location.href;
+    const mRandomID = useSelector((state) => state.randomIdSlice.grandomId);
     const totalLength = useSelector((state)=>state.price.totalDrawLength)
     const totalPrice = useSelector((state)=>state.price.totalPrice)
     const name = useSelector((state) => state.selecteddesigns.designText);
@@ -17,6 +18,10 @@ const Summary = () => {
 
     const navigate = useNavigate();
 
+
+    const goToPurChase = () => {
+        navigate("/purchase")
+    }
     
     const editName = () => {
         if(cUrl === "http://localhost:5173/summary"){
@@ -27,7 +32,6 @@ const Summary = () => {
     const editTheCanvas = () => {
         navigate("/canvas")
     }
-
 
     const editWoodSe = () => {
         if(cUrl === "http://localhost:5173/summary"){
@@ -42,13 +46,13 @@ const Summary = () => {
     }
 
 
-
     const handlePrint = () => {
         window.print();
       };
 
   return (
-    <div className='w-full h-full lg:flex-row flex flex-col'>
+    <>
+        <div className='w-full h-full lg:flex-row flex flex-col'>
       <div className='border h-full lg:w-4/12 w-full'>
       <div className='w-full p-3 text-green-500 ' >
           <h1 className='border-b border-green-500 w-34' >
@@ -117,7 +121,7 @@ const Summary = () => {
                         <p className='designname'>{`Design Name : {Fence Design}`}</p>
                     </li>
                     <li className='flex gap-3' >
-                        <p className='designId'>{`Design ID : ${0}`}</p>
+                        <p className='designId'>{`Design ID : ${mRandomID}`}</p>
                     </li>
                     <li className='flex gap-3' >
                         <p className='summaryPrice'>{`Estimated Price : ${totalPrice*count}$ `}</p>
@@ -132,7 +136,9 @@ const Summary = () => {
             </div>
 
       </div>
-    </div>
+        </div>
+        <button onClick={goToPurChase} style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
+    </>
   )
 }
 

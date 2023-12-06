@@ -50,7 +50,7 @@ const G_Map = ({ API , linesDrawn , setLinesDrawn }) => {
     setShowModal(false);
     if (linesDrawn) {
       // If lines were drawn, perform additional actions
-      console.log("Lines drawn on the map!");
+      // console.log("Lines drawn on the map!");
     }
     navigate("/canvas");
   }
@@ -81,7 +81,7 @@ const G_Map = ({ API , linesDrawn , setLinesDrawn }) => {
 
           setSelectedLocation(updatedLocation);
 
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         } else {
           console.error("Geocoding request failed.");
         }
@@ -146,7 +146,7 @@ const G_Map = ({ API , linesDrawn , setLinesDrawn }) => {
             }
     
             // Now, the `coordinates` array contains the lat/lng pairs of the drawn polyline
-            console.log("Drawn Polyline Coordinates:", coordinates);
+            // console.log("Drawn Polyline Coordinates:", coordinates);
 
 
             // Convert LatLng to pixel coordinates
@@ -156,7 +156,7 @@ const G_Map = ({ API , linesDrawn , setLinesDrawn }) => {
           return { x: pixel.x, y: pixel.y };
         });
 
-        console.log("Drawn Polyline Coordinates (Pixel):", pixelCoordinates);
+        // console.log("Drawn Polyline Coordinates (Pixel):", pixelCoordinates);
 
             // Snap to 90-degree angles
             for (let i = 0; i < pathLength - 1; i++) {
@@ -310,7 +310,7 @@ function convertToPixels(startX, startY, endX, endY, canvasWidth, canvasHeight, 
                 convertToPixels(startX,startY,endX,endY,canvasWidth,canvasHeight,mapBounds)
                 }
 
-                console.log(canvasWidth,canvasHeight)
+                // console.log(canvasWidth,canvasHeight)
                 // ...............................................
 
             // Set the state to indicate lines have been drawn

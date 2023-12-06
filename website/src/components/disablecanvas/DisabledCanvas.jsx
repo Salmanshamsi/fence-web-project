@@ -6,12 +6,6 @@ import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 import { totalDrawLength } from "../../redux/slices/FencePrice";
 import { useNavigate } from "react-router-dom";
-import {
-  gCoordinatesEndX,
-  gCoordinatesEndY,
-  gCoordinatesStartX,
-  gCoordinatesStartY,
-} from "../../redux/slices/GetCoordinatesSlice";
 
 const customStyles = {
   content: {
@@ -541,7 +535,7 @@ const DisabledCanvas = () => {
   };
   const cModal = () => {
     setShowModal(false);
-    navigate("/summary");
+    navigate("/materials/option");
   };
 
   return (
@@ -641,7 +635,7 @@ const DisabledCanvas = () => {
           )}
         </div>
       </div>
-      <button onClick={continueHandler}>Continue</button>
+      <button onClick={continueHandler} style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
       {showModal ? (
         <div className="modal-container" style={{ marginTop: "8rem" }}>
           <div className="modal-box">
@@ -676,7 +670,7 @@ const DisabledCanvas = () => {
                 To purchase your materials, go to the Purchase tab and follow
                 the instructions there.
               </p>
-              <button onClick={cModal}>{modalBtnVal}</button>
+              <button onClick={cModal} >{modalBtnVal}</button>
             </div>
           </div>
         </div>
@@ -684,5 +678,7 @@ const DisabledCanvas = () => {
     </>
   );
 };
+
+
 
 export default DisabledCanvas;

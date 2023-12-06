@@ -22,8 +22,6 @@ const Navbar = () => {
   };
 
   const currentUrl = window.location.href;
-  console.log(currentUrl);
-
 
   const clickMaterailToCheckStore = () => {
     if (checkInpVal.length < 5) {
