@@ -114,6 +114,7 @@ const MaterialFence = () => {
 
 	  if (!selectedFence) {
 		return (
+		  <>
 		  <div className="col-sm-8 app-right-panel woofenceheading">
 			<h1 style={{ marginLeft: "1rem", fontSize: "30px", marginTop: "1rem" }}>WOOD FENCE SELECTION GUIDE</h1>
 			<div className="design-info-overlay-defaults"></div>
@@ -153,6 +154,16 @@ const MaterialFence = () => {
 			  </div>
 			</div>
 		  </div>
+		  <button onClick={handleContinue}   style={{
+          backgroundColor: "green",
+          position: "absolute",
+          right: "2%",
+          top: "8.5%",
+          padding: ".5rem 2rem",
+          color: "#fff",
+          borderRadius: "20px",
+        }}>Continue</button>
+		  </>
 		);
 	  }
 
@@ -162,6 +173,15 @@ const MaterialFence = () => {
 
   return (
 	<>
+	  <button onClick={handleContinue}   style={{
+          backgroundColor: "green",
+          position: "absolute",
+          right: "2%",
+          top: "8.5%",
+          padding: ".5rem 2rem",
+          color: "#fff",
+          borderRadius: "20px",
+        }}>Continue</button>
 	<div className="col-sm-8 app-right-panel woofenceheading">
 	<h1 style={{ marginLeft: "1rem", fontSize: "30px", marginTop: "1rem" }}>WOOD FENCE SELECTION GUIDE</h1>
 	<div className="design-info-overlay-defaults"></div>
@@ -200,9 +220,10 @@ const MaterialFence = () => {
 		  </table>
 		</div>
 	  </div>
+ 
 	</div>
   </div>
-  <button onClick={handleContinue} style={{backgroundColor:"green" , position:"absolute" , left:"100%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
+
 	</>
   );
 };

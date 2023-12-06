@@ -72,7 +72,7 @@ const MaterialsPrew = () => {
             </p>
           </button>
         ))}
-            <button className='absolute top-20 right-10'  onClick={handleContinue}>Continue</button>
+            <button className='absolute top-20 right-10' style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}  onClick={handleContinue}>Continue</button>
       </div>
       {
         showModal ?   <div className="modal-container">
