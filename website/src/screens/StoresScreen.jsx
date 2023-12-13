@@ -10,7 +10,7 @@ const StoreScreen = () => {
         <div>
           <Navbar/>
         </div>
-        <div className='md:mt-12 mt-6'>
+        <div className='md:mt-12 mt-9'>
           <ZipCodeBar/>
         </div>
     </div>

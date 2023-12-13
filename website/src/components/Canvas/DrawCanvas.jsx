@@ -10,6 +10,7 @@ import { postData, updateData } from "../../apiCallings/apiCallings";
 import { useNavigate } from 'react-router-dom'
 import { showAllLine } from "../../redux/slices/GetCoordinatesSlice";
 import { randomIdGET } from "../../redux/slices/randomIdSlice";
+import { setIsLoading } from '../../redux/slices/loading';
 
 
 const customStyles = {
@@ -115,7 +116,9 @@ const DrawCanvas = () => {
           return; 
         }else{
             if(DB_lines_design.length > 0){
+              dispatch(setIsLoading(true))
               updateData(DB_lines_design[0].randomId,updateReqData).then(resp => {
+                dispatch(setIsLoading(false))
                   if (resp.data !== "Data not found") {
                     dispatch(showAllLine(lines))
                     dispatch(randomIdGET(randomId));
@@ -127,11 +130,11 @@ const DrawCanvas = () => {
                   }
               })
             }else{
-
-              postData(requestData).then((resp)=>{
                 
+              dispatch(setIsLoading(true))
+              postData(requestData).then((resp)=>{
+                dispatch(setIsLoading(false))
                 if(resp.message === "Data saved successfully"){
-                  
                   dispatch(showAllLine(lines))
                   dispatch(randomIdGET(requestData.randomId));
                   setShowModal(true);
@@ -576,12 +579,14 @@ const DrawCanvas = () => {
         className="w-full h-full flex items-center justify-center"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <div className="btnContnue">
-          <button id="btnContnueBAck">Back</button>
-          <button id="btnContnueContinue" onClick={goTOC}>
-            Continue
-          </button>
-        </div>
+<div className="w-full h-2 mb-7 flex items-center justify-end">
+            <button
+            className="border md:p-3 p-2 rounded-full bg-green-600 text-white"
+            onClick={goTOC}
+            >
+              continue
+            </button>
+      </div>
         <div className="canvsDIv">
           <ToastContainer position="bottom-right" />
           <canvas

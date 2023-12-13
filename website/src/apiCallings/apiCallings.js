@@ -6,7 +6,7 @@ const postData = (data) => {
   return new Promise((resolve, reject) => {
     
     try{
-      axios.post(`http://localhost:3000/auth/saveData`, data)
+      axios.post(`https://comfortable-tan-wig.cyclic.app/auth/saveData`, data)
       .then(response => {
         resolve(response.data)
       })
@@ -30,7 +30,7 @@ const updateData = (id, data) => {
 
     try {
 
-      axios.put(`http://localhost:3000/auth/updateData/${id}`, _data, {
+      axios.put(`https://comfortable-tan-wig.cyclic.app/auth/updateData/${id}`, _data, {
         headers: {
           'Content-Type': 'application/json',
         },

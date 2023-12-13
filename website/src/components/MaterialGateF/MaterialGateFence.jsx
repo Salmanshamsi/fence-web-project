@@ -1,6 +1,5 @@
 import React from 'react'
 import "./MaterialGateFence.css"
-import DrawCanvas from '../Canvas/DrawCanvas'
 import DisabledCanvas from '../disablecanvas/DisabledCanvas'
 
 const MaterialGateFence = () => {

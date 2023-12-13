@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Summary.css"
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import DisabledCanvas from '../disablecanvas/DisabledCanvas'
 
 const Summary = () => {
@@ -16,12 +15,6 @@ const Summary = () => {
     const count = useSelector((state) => state.allCartData.value);
     const op = useSelector((state) => state.selecteddesigns.opselect);
 
-    const navigate = useNavigate();
-
-
-    const goToPurChase = () => {
-        navigate("/purchase")
-    }
     
     const editName = () => {
         if(cUrl === "http://localhost:5173/summary"){
@@ -137,8 +130,7 @@ const Summary = () => {
 
       </div>
         </div>
-        <button onClick={goToPurChase} style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
-    </>
+        </>
   )
 }
 

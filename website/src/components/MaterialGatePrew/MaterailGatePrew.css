@@ -37,7 +37,55 @@
     margin-top: .2rem;
 }
 
+.ffInput input{
+    width: 100px;
+    border: .1px solid gray;
+    outline: none;
+    padding-left: .5rem;
+    border-radius: 20px;
+    height: 30px;
+    padding-right: .4rem;
+    margin-left: .3rem;
+}
+.ffInput{
+    display: flex;
+    align-items: center;
+}
 
+.ssInput{
+    display: flex;
+    align-items: center;
+}
+.btnPlace{
+    display: flex;
+    align-items: center;
+}
+.place-gate{
+    display: flex;
+}
+.ssInput input{
+    width: 100px;
+    border: .1px solid gray;
+    outline: none;
+    padding-left: .5rem;
+    border-radius: 20px;
+    height: 30px;
+    padding-right: .4rem;
+    margin-left: .3rem;
+}
+.ssInput p{
+    margin-left: .4rem;
+}
+
+.btnPlace{
+    margin-left: 1rem;
+}
+.btnPlace button{
+    padding: .4rem 1.8rem;
+    border-radius: 20px;
+    color: #fff;
+    background-color: green;
+}
 /* @media screen and (max-width:1330px) {
     .gatesbox{
         border: 0px solid gray;

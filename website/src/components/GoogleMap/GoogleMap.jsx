@@ -32,7 +32,7 @@ const G_Map = ({ API , linesDrawn , setLinesDrawn }) => {
   const navigate = useNavigate();
 
   const nToC = () => {
-    if (currentUrl === "http://localhost:5173/map") {
+    if ((currentUrl === "https://comfortable-tan-wig.cyclic.app/map") || (currentUrl === "http://localhost:5173/map")) {
       if (linesDrawn) {
         // If no lines drawn, directly navigate
         navigate("/canvas");
@@ -351,10 +351,13 @@ function convertToPixels(startX, startY, endX, endY, canvasWidth, canvasHeight, 
 
   return (
     <>
-    <div className="gmap-cBtn-cont">
-      <div className="gmap-cbtn" style={{display:"flex" , justifyContent:"right" , marginTop:"-1rem" , marginBottom:".5rem"}}>
-        <button style={{backgroundColor:  "#009a3d" ,  padding: ".4rem 1.5rem" , borderRadius: "20px" ,  outline: "none" , border: "none" , color: "#fff"}} onClick={nToC}>Continue</button>
-      </div>
+    <div className="w-full h-14 mb-5 flex items-center justify-end">
+      <button
+      className="border md:p-3 p-2 rounded-full bg-green-600 text-white"
+      onClick={nToC}
+      >
+        continue
+      </button>
     </div>
     {
         showModal ?   <div className="modal-container">

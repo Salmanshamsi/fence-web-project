@@ -1,11 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 const MaterialFence = () => {
 
 	const selectedFence = useSelector((state) => state.selection);
-	const navigate = useNavigate();
 
 	const fenceData = [
 		{
@@ -108,9 +106,6 @@ const MaterialFence = () => {
 		  }
 	  ];
 
-	  const handleContinue = () => {
-		navigate("/materials/gate");
-	  }
 
 	  if (!selectedFence) {
 		return (
@@ -154,15 +149,6 @@ const MaterialFence = () => {
 			  </div>
 			</div>
 		  </div>
-		  <button onClick={handleContinue}   style={{
-          backgroundColor: "green",
-          position: "absolute",
-          right: "2%",
-          top: "8.5%",
-          padding: ".5rem 2rem",
-          color: "#fff",
-          borderRadius: "20px",
-        }}>Continue</button>
 		  </>
 		);
 	  }
@@ -173,15 +159,6 @@ const MaterialFence = () => {
 
   return (
 	<>
-	  <button onClick={handleContinue}   style={{
-          backgroundColor: "green",
-          position: "absolute",
-          right: "2%",
-          top: "8.5%",
-          padding: ".5rem 2rem",
-          color: "#fff",
-          borderRadius: "20px",
-        }}>Continue</button>
 	<div className="col-sm-8 app-right-panel woofenceheading">
 	<h1 style={{ marginLeft: "1rem", fontSize: "30px", marginTop: "1rem" }}>WOOD FENCE SELECTION GUIDE</h1>
 	<div className="design-info-overlay-defaults"></div>

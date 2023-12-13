@@ -20,13 +20,18 @@ import OrderConfirmation from "./screens/OrderConfirmation";
 import Success from "./components/success/Success"
 import Cancel from "./components/cancel/Cancel"
 import RecallScreen from "./screens/RecallScreen";
+import { useSelector } from "react-redux"
 
 function App() {
 
-
+  const loading = useSelector(state => state.loading.isLoading)
+  console.log("load : ", loading)
 
   return (
     <>
+    <div className={`${loading ? "fixed" : "hidden"} z-50  top-0 h-screen w-full flex items-center justify-center bg-slate-200 opacity-90`} >
+        <div className="text-7xl"><i className="fa-solid fa-spinner fa-spin" style={{ color: '#38f06f' }}></i></div>
+    </div>
      <Routes>
       <Route path='/' element={<HomeScreen/>}/>
       <Route path='/stores' element={<StoreScreen/>}/>

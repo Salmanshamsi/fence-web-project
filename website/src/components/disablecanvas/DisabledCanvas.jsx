@@ -525,21 +525,29 @@ const DisabledCanvas = () => {
 
   let cUrl = window.location.href;
 
-  const continueHandler = () => {
-    if (cUrl === "http://localhost:5173/materials/gate") {
-      setShowModal(true);
-      setFirstModalVal("Congratulations on completing your Fence design!");
-      setSecondModalVal("Login or Create an Account");
-      setModalBtnVal("Ok");
-    }
-  };
+  // const continueHandler = () => {
+  //   if ((cUrl === "https://comfortable-tan-wig.cyclic.app/materials/gate") || (cUrl === "http://localhost:5173/materials/gate")) {
+  //     setShowModal(true);
+  //     setFirstModalVal("Congratulations on completing your Fence design!");
+  //     setSecondModalVal("Login or Create an Account");
+  //     setModalBtnVal("Ok");
+  //     navigate("/materials/option");
+  //   }
+  // };
   const cModal = () => {
     setShowModal(false);
-    navigate("/materials/option");
   };
 
   return (
     <>
+      {/* <div className="w-full h-12 p-4 my-3 md:justify-end justify-start flex items-center ">
+            <button
+            className="border md:p-3 p-2 rounded-full bg-green-600 text-white"
+            onClick={continueHandler}
+            >
+              continue
+            </button>
+      </div> */}
       <div
         className="w-full h-full flex items-center justify-center"
         style={{ display: "flex", flexDirection: "column" }}
@@ -635,7 +643,6 @@ const DisabledCanvas = () => {
           )}
         </div>
       </div>
-      <button onClick={continueHandler} style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}>Continue</button>
       {showModal ? (
         <div className="modal-container" style={{ marginTop: "8rem" }}>
           <div className="modal-box">

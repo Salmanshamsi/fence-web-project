@@ -45,7 +45,7 @@ const Navbar = () => {
         setModalBtnVal("Ok");
         setShowModal(true);
       }
-      if(currentUrl === "http://localhost:5173/drawselection"){
+      if((currentUrl === "https://comfortable-tan-wig.cyclic.app/drawselection") || (currentUrl === "http://localhost:5173/drawselection")){
         setShowModal(true)
         setFirstModalVal("Design Warning");
         setSecondModalVal("You must choose design type before continuing.");
@@ -60,7 +60,7 @@ const Navbar = () => {
         setShowModal(true);
       }
 
-      if(currentUrl === "http://localhost:5173/drawselection"){
+      if(currentUrl === ("https://comfortable-tan-wig.cyclic.app/drawselection") || (currentUrl === "http://localhost:5173/drawselection")){
         setShowModal(true)
         setFirstModalVal("Design Warning");
         setSecondModalVal("You must choose design type before continuing.");

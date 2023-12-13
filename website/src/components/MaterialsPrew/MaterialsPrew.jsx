@@ -43,6 +43,14 @@ const MaterialsPrew = () => {
   } 
   return (
     <>
+      <div className="w-full h-12 p-4 my-3 md:justify-end justify-start flex items-center ">
+            <button
+            className="border md:p-3 p-2 rounded-full bg-green-600 text-white"
+            onClick={handleContinue}
+            >
+              continue
+            </button>
+      </div>
       <div className='gateSelectedArea'>
         {JSON_DATA.map((ele,ind) => (
           <button
@@ -72,8 +80,7 @@ const MaterialsPrew = () => {
             </p>
           </button>
         ))}
-            <button className='absolute top-20 right-10' style={{backgroundColor:"green" , position:"absolute" , right:"2%" , top:"8.5%" , padding:".5rem 2rem" , color:"#fff" , borderRadius:"20px"}}  onClick={handleContinue}>Continue</button>
-      </div>
+       </div>
       {
         showModal ?   <div className="modal-container">
         <div className="modal-box">

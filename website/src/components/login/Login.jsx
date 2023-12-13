@@ -65,7 +65,7 @@ const Login = () => {
       setSignInError("Please enter a valid email address");
     
     } else {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch("/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const Login = () => {
     } else if (!isEmailValid(email)) {
       setSignUpError("Please enter a valid email address");
     }  else {
-        const res = await fetch("http://localhost:3000/auth/register", {
+        const res = await fetch("/auth/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

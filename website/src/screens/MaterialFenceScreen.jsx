@@ -17,7 +17,7 @@ const MaterialFenceScreen = () => {
         <div className='mt-12'>
           <MaterialsMenu/>
         </div>
-        <div className='w-full overflow-x-hidden p-5 fixed mt-20 bg flex justify-end' >
+        <div className='w-auto overflow-x-hidden  fixed right-5 mt-20 bg flex justify-end' >
           <EstimatePriceModal/>
         </div>
         <div className='w-full h-screen flex column cW'>

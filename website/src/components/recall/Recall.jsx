@@ -3,6 +3,7 @@ import "./RecallComp.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { continueCanvasDesign } from "../../redux/slices/ContinueToCanvasSlice";
+import { setIsLoading } from "../../redux/slices/loading";
 
 const Recall = () => {
   const [recallID, setRecallID] = useState("");
@@ -34,7 +35,7 @@ const Recall = () => {
 
       // Fetch the drawing using the API
       const response = await fetch(
-        `http://localhost:3000/auth/getDrawing/${recallID}`
+        `/auth/getDrawing/${recallID}`
       );
 
       if (!response.ok) {
@@ -65,12 +66,13 @@ const Recall = () => {
   };
 
   const deleteDrawingHandler = async (id) => {
+    dispatch(setIsLoading(true))
     try {
       console.log('Deleting drawing with ID:', id);
   
   
       // Send a POST request to the server to delete the drawing by ID
-      const response = await fetch('http://localhost:3000/auth/deleteDrawing', {
+      const response = await fetch('https://comfortable-tan-wig.cyclic.app/auth/deleteDrawing', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +91,10 @@ const Recall = () => {
       // Handle errors if needed
       console.error('Error deleting drawing. Server returned:', response.status, response.statusText);
     }
+
+    dispatch(setIsLoading(false))
   } catch (error) {
+    dispatch(setIsLoading(false))
     console.error('Error deleting drawing:', error);
   }
 
@@ -100,7 +105,7 @@ const Recall = () => {
       const formattedId = id.toString();
       // Fetch the drawing using the API
       const response = await fetch(
-        `http://localhost:3000/auth/getDrawing/${formattedId}`
+        `/auth/getDrawing/${formattedId}`
       );
 
       if (!response.ok) {
@@ -130,33 +135,6 @@ const Recall = () => {
     }
   };
 
-  // const updateData = async (id, lines, pstTime) => {
-  //   try {
-  //     const response = await fetch("http://localhost:3000/auth/updateData", {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include", // Include credentials (cookies) for cross-origin requests
-  //       body: JSON.stringify({
-  //         randomId: id,
-  //         lines,
-  //         pstTime,
-  //       }),
-  //     });
-
-  //     if (response.ok) {
-  //       console.log("Data updated successfully");
-  //       // Continue with your navigation or other logic
-  //     } else {
-  //       console.error("Error updating data:", response);
-  //       // Handle the error as needed
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     // Handle other errors as needed
-  //   }
-  // };
 
   return (
     <>

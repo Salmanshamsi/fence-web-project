@@ -60,6 +60,14 @@ const Option = () => {
               Select a post and click continue
             </h1>
           </div>
+          <div className="w-full h-12 p-4 my-3 md:justify-end justify-start flex items-center cursor-pointer">
+            <button
+            className="border md:p-3 p-2 rounded-full bg-green-600 text-white cursor-pointer"
+            onClick={navigateToSum}
+            >
+              continue
+            </button>
+        </div>
           <div className="flex gap-3 p-2">
             {arr.map((ele, ind) => {
               return (
@@ -85,13 +93,21 @@ const Option = () => {
           </div>
          
          <div className="increaseqtycontainer">
-            <div className="increaseqty">
+            {/* <div className="increaseqty">
                 <p>Spacing In Inches (0-12):</p>
                 <div className="innerqtybtns">
-                    <button id="decreaseBtn" onClick={decrementValue}>-</button>
-                    <button id="cBr">{count}</button>
-                    <button id="incBtn" onClick={incrementValue}>+</button>
+                    <button >-</button>
+                    <button ></button>
+                    <button >+</button>
                 </div>
+            </div> */}
+            <div>
+              <h1>{`Spacing In Inches (0-12):`}</h1>
+              <div className="flex justify-center items-center gap-2" >
+                <button id="decreaseBtn" onClick={decrementValue} className="border bg-gray-400 px-4 py-2 text-white">-</button>
+                <input type="number" disabled={true} id="cBr" value={count} className="border border-black h-10 w-10 text-center" />
+                <button id="incBtn" onClick={incrementValue} className="border bg-gray-400 px-4 py-2 text-white">+</button>
+              </div>
             </div>
          </div>
 
@@ -111,6 +127,16 @@ const Option = () => {
                 Select a post and click continue
               </h1>
             </div>
+            
+            <div className="w-full h-12 p-4 my-3 md:justify-end justify-start flex items-center cursor-pointer">
+                <button
+                className="border md:p-3 p-2 rounded-full bg-green-600 text-white cursor-pointer"
+                onClick={navigateToSum}
+                >
+                  continue
+                </button>
+            </div>
+
             <div className="flex gap-3 p-2">
               {arr.map((ele, ind) => {
                 return (
@@ -163,7 +189,7 @@ const Option = () => {
         </div>
       </div>
     </div>
-    <button
+    {/* <button
         onClick={navigateToSum}
         style={{
           backgroundColor: "green",
@@ -176,7 +202,7 @@ const Option = () => {
         }}
       >
         Continue
-      </button>
+      </button> */}
     </>
   );
 };
