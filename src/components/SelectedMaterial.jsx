@@ -20,7 +20,7 @@ const SelectedMaterial = () => {
       </ul>
       <img
         src={Data?.img}
-        className='bg-contain bg-center h-64 w-full'
+        className='bg-contain bg-center h-96 w-full'
         alt=""
       />
     </div>

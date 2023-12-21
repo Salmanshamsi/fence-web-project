@@ -4,7 +4,6 @@ import { deleteDesign, getDesign } from '../API_Calls/API_Calls_';
 import {useDispatch, useSelector} from "react-redux";
 import  {useNavigate} from "react-router-dom";
 import WarningModal from '../components/WarningModal';
-import { setIsLoading } from '../redux/slices/Loading';
 import { captureDesignFrom_DB, setDesignId } from '../redux/slices/selectedDesign';
 
 
@@ -24,7 +23,6 @@ const SavedDesignScreen = () => {
   
     const getDesignfromDB = (id) => {
         
-      dispatch(setIsLoading(true))
   
       if (recall_Id.length === 12){
   
@@ -39,7 +37,6 @@ const SavedDesignScreen = () => {
   
               }
   
-              dispatch(setIsLoading(false))
   
             }).catch((err)=>{
   
@@ -48,24 +45,19 @@ const SavedDesignScreen = () => {
                 setSecondModalVal(` Design from this ${id} Not Found`)
   
               })
-    
-            dispatch(setIsLoading(false))
   
       }else{
   
         setFirstModalVal("Recall Design");
         setSecondModalVal("Invalid Design ID. Please enter a valid 12-character Design ID.")
         setShowModal(true);
-        dispatch(setIsLoading(false))
       }
   
-      dispatch(setIsLoading(false))
   
     }
   
     const deleteDesignfromDB = (id) => {
         
-      dispatch(setIsLoading(true))
   
             deleteDesign(id).then((resp)=>{
 
@@ -80,8 +72,6 @@ const SavedDesignScreen = () => {
                   
               }
   
-              
-              dispatch(setIsLoading(false))
   
             }).catch((err)=>{
   
@@ -90,8 +80,7 @@ const SavedDesignScreen = () => {
               setSecondModalVal(`Design from this ${DataBase_Design_randomId} Id is do not Deleted !`);
             
               })
-    
-            dispatch(setIsLoading(false))
+  
     
         
     }

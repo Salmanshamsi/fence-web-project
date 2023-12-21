@@ -25,7 +25,7 @@ import { useEffect } from "react";
 
 function App() {
 
-  const loading = useSelector(state => state.Loading.isLoading)
+  // const loading = useSelector(state => state.Loading.isLoading)
   const navigate = useNavigate()
   const isLoggedIn = Boolean(localStorage.getItem("loggedIn"))
 
@@ -70,9 +70,9 @@ function App() {
             {/* <Route path='/signup' element={</>}/> */}
         </Routes>
     </div>
-     <div className={`${loading ? "fixed" : "hidden"} z-50  top-0 h-screen w-full flex items-center justify-center bg-slate-200 opacity-90`} >
+     {/* <div className={`${loading ? "fixed" : "hidden"} z-50  top-0 h-screen w-full flex items-center justify-center bg-slate-200 opacity-90`} >
         <div className="text-7xl"><i className="fa-solid fa-spinner fa-spin" style={{ color: '#38f06f' }}></i></div>
-    </div>
+    </div> */}
     </>
   )
 }

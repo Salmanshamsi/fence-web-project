@@ -16,7 +16,7 @@ const MaterialType = () => {
               <div className='h-8 text-green-600 flex items-center justify-start p-5'>
                 <p className=''>  Select a type and click continue ?</p>
               </div>
-              <div className='lg:h-96 h-full overflow-scroll' >
+              <div className='lg:h-auto h-full overflow-scroll' >
                 <MaterialsCard _Route={"type"} Data={jsonData} />
               </div>
             </div>

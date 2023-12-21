@@ -16,7 +16,7 @@ const MaterialFence = () => {
               <div className='h-8 text-green-600 flex w-full items-center justify-start ' >
                 <p>  Select a type and click continue ?</p>
               </div>
-              <div className='lg:h-96 h-full overflow-scroll' >
+              <div className='lg:h-auto h-full overflow-scroll' >
                 <MaterialsCard Data={jsonData} _Route={"fence"} />
               </div>
             </div>

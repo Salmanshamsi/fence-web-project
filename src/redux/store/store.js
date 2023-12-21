@@ -1,6 +1,5 @@
 import {configureStore } from '@reduxjs/toolkit';
 import selectedStoreData from '../slices/selectedStoreData';
-import Loading from '../slices/Loading';
 import selectedDesign from '../slices/selectedDesign';
 import selectedMaterials from '../slices/selectedMaterials';
 import CartData from '../slices/CartData';
@@ -10,7 +9,6 @@ import baseUrl from '../slices/baseUrl';
 
 export const store = configureStore({
   reducer: {
-        Loading,
         selectedStoreData,
         selectedDesign,
         selectedMaterials,

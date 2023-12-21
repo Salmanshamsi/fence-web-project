@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import {useSelector, useDispatch} from "react-redux"
 import DisabledCanvas from '../components/DisabledCanvas'
 import { setIsPurchase } from '../redux/slices/RoutesChecking'
+import {useNavigate} from "react-router-dom"
 
 
 
@@ -16,6 +17,7 @@ const SummaryScreen = () => {
     const _Option = useSelector(state => state.selectedMaterials.Option_M[0].txt);
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
 
     if(Design_ID && totalLength && totalPrice && _Type && _Fence && _Option){
@@ -55,9 +57,6 @@ const SummaryScreen = () => {
                                 <div className='w-4/12 h-full border-black border flex p-2 items-center ' >Length</div>
                                 <div className='w-8/12 h-full border-black border flex justify-between items-center p-2 ' >
                                     <p>{totalLength}</p>
-                                    <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square" onClick={(e)=>{
-                                        e.preventDefault();
-                                    }}></i></h1>
                                 </div>
                             </li>
                         </ul>
@@ -72,6 +71,7 @@ const SummaryScreen = () => {
                                     <p>{_Type}</p>
                                     <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square" onClick={(e)=>{
                                         e.preventDefault();
+                                        navigate("/materials/type")
                                     }}></i></h1>
                                 </div>
                             </li>
@@ -85,6 +85,7 @@ const SummaryScreen = () => {
                                     <p>{_Fence}</p>
                                     <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square" onClick={(e)=>{
                                         e.preventDefault();
+                                        navigate("/materials/fence")
                                     }}></i></h1>
                                 </div>
                             </li>
@@ -98,6 +99,7 @@ const SummaryScreen = () => {
                                     <p>{_Option}</p>
                                     <h1 className='text-green-500' ><i className="fa-solid fa-pen-to-square" onClick={(e)=>{
                                         e.preventDefault();
+                                        navigate("/materials/option")
                                     }}></i></h1>
                                 </div>
                             </li>

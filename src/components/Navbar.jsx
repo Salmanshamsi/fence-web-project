@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {useNavigate} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import WarningModal from './WarningModal';
-import { setIsLoading } from '../redux/slices/Loading';
 import { create_Design, updateDesign } from '../API_Calls/API_Calls_';
 import MaterialsMenu from './MaterialsMenu';
 import EstimatePriceModal from './EstimatePriceModal';
@@ -106,7 +105,6 @@ const Navbar = () => {
     
     const setDesignToDB = (Data) => {
 
-      dispatch(setIsLoading(true));
       
       try{
             create_Design(Data).then((resp)=>{
@@ -125,12 +123,9 @@ const Navbar = () => {
                 console.log("Error from setting Data in DB :", err)
               })
 
-        dispatch(setIsLoading(false))
-
         }catch(err){
 
             console.log("error from setting data to db")
-        dispatch(setIsLoading(false))
           }
   }
 
@@ -209,8 +204,6 @@ const Navbar = () => {
 
                   dispatch(setDesignId(randomId))
 
-                  dispatch(setIsLoading(true))
-
                   setDesignToDB({
                     randomId:randomId,
                     pstTime: formattedDate,
@@ -218,8 +211,6 @@ const Navbar = () => {
                   })
 
                   dispatch(setIsMaterials(true))
-
-                  dispatch(setIsLoading(false))
                 }
                 
                }else {
@@ -245,14 +236,10 @@ const Navbar = () => {
           }
     }
     if((currentUrl === `${baseUrl}/materials/fence`)){
-
-    dispatch(setIsLoading(true))    
         if(Fence_M.length > 1){
-              dispatch(setIsLoading(false))
               navigate("/materials/gate")
             }else{
               
-              dispatch(setIsLoading(false))
               setShowModal(true);
               setFirstModalVal("Material Selection Warning");
               setSecondModalVal("Please Select the Material First !");
@@ -260,36 +247,20 @@ const Navbar = () => {
     }
     if((currentUrl === `${baseUrl}/materials/gate`)){
 
-      // if(!isEmptyObject(Gate_M)){
-      //   setShowModal(true);
-      //   setFirstModalVal("Material Selection Warning");
-      //   setSecondModalVal("Please Select the Material First !");
-      // }else{
-      //   dispatch(setIsLoading(false))
-
-      // }
-
       navigate("/materials/option")
 
     }
     if((currentUrl === `${baseUrl}/materials/option`)){
-      
-
-      dispatch(setIsLoading(true))  
       if(Option_M.length > 1){
-        dispatch(setIsLoading(false))
         navigate("/summary")
         }else{
-            dispatch(setIsLoading(false))  
             setShowModal(true);
             setFirstModalVal("Material Selection Warning");
             setSecondModalVal("Please Select the Material First !");
         }
     }
     if((currentUrl === `${baseUrl}/summary`)){
-      dispatch(setIsLoading(true)) 
       navigate("/gotoCart")
-      dispatch(setIsLoading(false))
     }
 
   }
