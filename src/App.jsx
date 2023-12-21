@@ -28,7 +28,6 @@ function App() {
   const loading = useSelector(state => state.Loading.isLoading)
   const navigate = useNavigate()
   const isLoggedIn = Boolean(localStorage.getItem("loggedIn"))
-  console.log(isLoggedIn)
 
   const isStore  = useSelector((state)=>state.RoutesChecking.isStores);
   const isDraw  = useSelector((state)=>state.RoutesChecking.isDraw);

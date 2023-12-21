@@ -6,6 +6,7 @@ import selectedMaterials from '../slices/selectedMaterials';
 import CartData from '../slices/CartData';
 import BillingDetails from '../slices/BillingDetails';
 import RoutesChecking from '../slices/RoutesChecking';
+import baseUrl from '../slices/baseUrl';
 
 export const store = configureStore({
   reducer: {
@@ -16,4 +17,5 @@ export const store = configureStore({
         CartData,
         BillingDetails,
         RoutesChecking,
+        baseUrl,
   }})

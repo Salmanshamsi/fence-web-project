@@ -19,7 +19,7 @@ const Navbar = () => {
   
     // ----------------Url--Defining------------------------------
   
-      const baseUrl = "http://localhost:5173"
+      const baseUrl = useSelector((state)=>state.baseUrl.baseUrl)
       const currentUrl = window.location.href;
   
     // -------------------stack navigation bar handling----------------------------
@@ -105,6 +105,8 @@ const Navbar = () => {
   };
     
     const setDesignToDB = (Data) => {
+
+      dispatch(setIsLoading(true));
       
       try{
             create_Design(Data).then((resp)=>{
@@ -123,14 +125,18 @@ const Navbar = () => {
                 console.log("Error from setting Data in DB :", err)
               })
 
-            dispatch(setIsLoading(true))
+        dispatch(setIsLoading(false))
 
         }catch(err){
+
             console.log("error from setting data to db")
-        }
+        dispatch(setIsLoading(false))
+          }
   }
 
   const updateDesignToDB = (Data, id) => {
+
+    dispatch(setIsLoading(true))
 
     try{
           updateDesign(id,Data).then((resp)=>{
@@ -146,9 +152,13 @@ const Navbar = () => {
           
           })
 
+          dispatch(setIsLoading(false))
+
       }catch(err){
         
         throw new err
+
+        dispatch(setIsLoading(false))
 
       }
   }

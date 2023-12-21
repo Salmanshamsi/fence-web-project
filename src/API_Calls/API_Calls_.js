@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { setIsLoading } from '../redux/slices/Loading';
+import {useDispatch} from "react-redux"
+
 
 const baseUrl = ""
-const DeployUrl = "http://localhost:3000" 
+const DeployUrl = "https://comfortable-tan-wig.cyclic.app" 
 
 const create_Design = (data) => {
 
@@ -14,7 +17,7 @@ const create_Design = (data) => {
         response.then((resp)=>{
         
           resolve(resp);
-        
+
         }).catch((err)=>{
 
           reject(err)
@@ -22,6 +25,7 @@ const create_Design = (data) => {
         })
 
     }, response)
+
 
   } catch (error) { throw new error }
 

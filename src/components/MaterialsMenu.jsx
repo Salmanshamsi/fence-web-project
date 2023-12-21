@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import {useSelector} from "react-redux"
+
 
 const MaterialsMenu = () => {
 
       // ----------------Url--Defining------------------------------
   
-      const baseUrl = "http://localhost:5173"
+      const baseUrl = useSelector((state)=>state.baseUrl.baseUrl)
       const currentUrl = window.location.href;
 
       // ................material menu routes........
