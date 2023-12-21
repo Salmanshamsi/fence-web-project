@@ -142,10 +142,10 @@ const loginUser = () => {
 
 };
 
-const payment = () => {
+const payment = (Data) => {
 
   try {
-    const response = axios.post(`${baseUrl || DeployUrl}/payment/checkout`);
+    const response = axios.post(`${baseUrl || DeployUrl}/payment/checkout/`, Data);
 
     return  new Promise((resolve, reject) => {
       

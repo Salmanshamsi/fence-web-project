@@ -1,11 +1,11 @@
-import Navbar from '../components/Navbar/Navbar'
-import DrawSide from "../components/DrawSideBar/DrawSide"
-import GooglePlaceSearch from '../components/GooglePlaceSearchBar/GooglePlaceSearch'
-import G_Map from '../components/GoogleMap/GoogleMap'
+import DrawSide from '../components/DrawSide'
+// import GooglePlaceSearch from '../components/GooglePlaceSearchBar/GooglePlaceSearch'
 import { useState } from 'react'
+import Map from '../components/GoogleMap'
+import Navbar from "../components/Navbar"
 
 
-const Mapscreen = ({API}) => {    
+const MapScreen = ({API}) => {    
 
   const [linesDrawn, setLinesDrawn] = useState(false);
     
@@ -21,11 +21,11 @@ const Mapscreen = ({API}) => {
               </div>
               <div className='w-full mt-20' >
                   <div className='flex' >
-                    <div className='lg:w-3/12 w-full lg:flex flex-col hidden ' >
-                      <DrawSide API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn} />
+                    <div className='lg:w-6/12 w-full lg:flex flex-col hidden ' >
+                      <DrawSide API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn}/>
                     </div>
                     <div className='w-full lg:pt-10 lg:px-10 px-2 pt-2' >                  
-                       <G_Map API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn} />
+                       <Map API={API} linesDrawn={linesDrawn} setLinesDrawn={setLinesDrawn}/>
                     </div>
                   </div>
               </div>
@@ -34,4 +34,4 @@ const Mapscreen = ({API}) => {
   )
 }
 
-export default Mapscreen
+export default MapScreen

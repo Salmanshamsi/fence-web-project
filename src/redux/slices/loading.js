@@ -1,4 +1,3 @@
-// selectionSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 export const LoadingSlice = createSlice({
@@ -8,7 +7,6 @@ export const LoadingSlice = createSlice({
   },
   reducers: {
     setIsLoading:(state,action) => {
-      console.log(        state.isLoading)
         state.isLoading = action.payload;
     }
   },

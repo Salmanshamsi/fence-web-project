@@ -1,29 +1,27 @@
-import Navbar from '../components/Navbar/Navbar'
-import DrawSide from "../components/DrawSideBar/DrawSide"
-import DrawCanvas from '../components/Canvas/DrawCanvas'
+import React from 'react'
+import Navbar from '../components/Navbar'
+import DrawSide from '../components/DrawSide'
+import Canvas from '../components/Canvas'
 
 const CanvasScreen = () => {
-  
   return (
-    <>
-          <div className='flex flex-col' >
+    <div>
+      <div className='flex flex-col' >
               <div>
                 <Navbar/>
               </div>
               <div className='h-full w-full mt-16'>
                   <div className='flex pt-10 lg:fixed'>
-                    <div className='w-5/12 lg:flex flex-col hidden' >
+                    <div className='lg:w-6/12 w-full lg:flex flex-col hidden' >
                       <DrawSide/>
                     </div>
                     <div className='w-full pb-16 lg:mt-0 md:mt-0 mt-16' >                  
-                      <DrawCanvas/>
+                      <Canvas/>
                     </div>
                   </div>
               </div>
           </div>
-
-              
-    </>
+    </div>
   )
 }
 

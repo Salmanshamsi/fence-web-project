@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const selectedMaterials = createSlice({
   name: 'selection',
   initialState:{
-    selectedLines:[],
+
+    PriceTotal : 0,
+
     Type_M : [
         {
         img:"https://designit.menards.com/media/Fence/selection/type/vinyl.jpg",
@@ -14,7 +16,9 @@ export const selectedMaterials = createSlice({
             txt_3:"Installed heights range from 4' to 8'",
             txt_4:"Add your own stain or paint for the custom look you desire",
         },
+        price:12
     },],
+
     Fence_M : [
         {
             txt: "4'x8' Cedar Dog Ear",
@@ -22,13 +26,18 @@ export const selectedMaterials = createSlice({
             price: "96",
             index:0
         }, ],
+
     Option_M : [{
             txt: "4'x8' Cedar Dog Ear",
             img: "https://designit.menards.com/media/Fence/selection/item/wood/1731374_4'%20x%208'%20Cedar%20Dog%20Ear%20Fence%20Panel.jpg",
             price: "96",
             index:0
         },],
-    Gate_M: {},
+
+    Gate_M: [{
+        width : 0,
+        price : 0,
+    },],
 },
   reducers: {
     setType_M_Data :(state,action) => {
@@ -54,12 +63,19 @@ export const selectedMaterials = createSlice({
           }          
           pushToZerothIndex(state.Option_M, action.payload)
     },
-    setSelectedLines:(state,action)=>{
-        state.selectedLines =  action.payload
-    }
+    setGate_M_Data : (state,action) => {
+      function pushToZerothIndex(arr, element) {
+        arr.splice(0, 0, element);
+        return arr;
+      }          
+      pushToZerothIndex(state.Gate_M, action.payload)
+    },
+    setPriceTotal :(state) => {
+      state.PriceTotal = Math.ceil(state.Type_M[0].price + state.Fence_M[0].price + state.Option_M[0].price + state.Gate_M[0].price)
+  },
   },
 });
 
-export const { setType_M_Data, setFence_M_Data, setOption_M_Data, setSelectedLines } = selectedMaterials.actions;
+export const { setType_M_Data, setGate_M_Data,setFence_M_Data,setPriceTotal, setOption_M_Data, setSelectedLines } = selectedMaterials.actions;
 
 export default selectedMaterials.reducer;
