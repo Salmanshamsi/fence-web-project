@@ -4,7 +4,10 @@ import {useSelector} from "react-redux";
 const MaterialsTable = ({_route}) => {
 
     const indexOfFence = useSelector((state) => state.selectedMaterials.Fence_M[0].index);
-	const indexOfOption = useSelector((state) => state.selectedMaterials.Option_M[0].index);
+
+	const indexOfOption = useSelector((state) => state.selectedMaterials.Option_M[0][0].index);
+
+	const indexOfOption2 = useSelector((state) => state.selectedMaterials.Option_M[1][0].index);
 
 
     const [activeRow_1 , setActiveRow_1] = useState(false);
@@ -16,6 +19,7 @@ const MaterialsTable = ({_route}) => {
 	const [activeRow_7 , setActiveRow_7] = useState(false);
 	
 	const CheckActivationRow = (index) => {
+		console.log(index , "ind")
 		if(index === 1){
 			setActiveRow_1(true);
 			setActiveRow_2(false);
@@ -89,7 +93,7 @@ const MaterialsTable = ({_route}) => {
 				CheckActivationRow(indexOfOption + 1);
 			}
 	
-	},[indexOfFence,indexOfOption]);
+	},[indexOfFence,indexOfOption,_route]);
 
 	return (
 	<>
@@ -178,7 +182,8 @@ const MaterialsTable = ({_route}) => {
 				<td className={`border-black border text-center md:text-base text-xs ${(activeRow_7) ? "bg-yellow-400" : "bg-white"} '`} >Back Yard</td>
 			</tr>
 			</tbody>
-		</table></>) : (<>
+		</table></>):("")}
+		 {(_route === "optionpost") ? (<>
 		<h1 className='w-full text-2xl p-3' >FENCE POST SELECTION GUIDE</h1>
 		<table className='w-full h-96' >
 			<tbody>
@@ -231,7 +236,38 @@ const MaterialsTable = ({_route}) => {
 				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_5) ? "bg-yellow-400" : "bg-white"} `} >Cedar 4x4</td>
 			</tr>
 			</tbody>
-		</table></>)}
+		</table></>) : ""}
+		{(_route === "optionpostfooting") ? (<>
+		<h1 className='w-full text-2xl p-3' >FENCE POST SELECTION GUIDE</h1>
+		<table className='w-full h-96' >
+			<tbody>
+			<tr className='border border-black bg-green-700 text-white md:text-base text-xs'>
+				<th className='border-black border text-center  w-13 ' ></th>
+				<th className='border-black border text-center md:text-base text-xs ' >Cedar Pointed</th>
+				<th className='border-black border text-center md:text-base text-xs ' >Cedar Dog Ear</th>
+				<th className='border-black border text-center md:text-base text-xs ' >Cedar Gothic</th>
+				<th className='border-black border text-center md:text-base text-xs ' >Treated Dog Ear</th>
+				<th className='border-black border text-center md:text-base text-xs ' >Natural Wood</th>
+			</tr>							
+			<tr className='border border-black '>
+				<th className='border-black border text-center bg-green-700 text-white md:text-base text-xs' >treatment</th>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_1) ? "bg-yellow-400" : "bg-white"} `} >None-Cedar</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_2) ? "bg-yellow-400" : "bg-white"} `} >None-Cedar</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_3) ? "bg-yellow-400" : "bg-white"} `} >None-Cedar</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_4) ? "bg-yellow-400" : "bg-white"} `} >None-Cedar</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_5) ? "bg-yellow-400" : "bg-white"} `} >None-Cedar</td>
+			</tr>
+			<tr className='border border-black '>
+				<th className='border-black border text-center bg-green-700 text-white md:text-base text-xs' >nominalHeight</th>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_1) ? "bg-yellow-400" : "bg-white"}`} >72"</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_2) ? "bg-yellow-400" : "bg-white"}`} >72"</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_3) ? "bg-yellow-400" : "bg-white"}`} >72"</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_4) ? "bg-yellow-400" : "bg-white"}`} >72"</td>
+				<td className={`border-black border text-center md:text-base text-xs' ${(activeRow_5) ? "bg-yellow-400" : "bg-white"}`} >72"</td>
+			</tr>
+			</tbody>
+		</table></>) : ""}
+		
 	</>
   )
 

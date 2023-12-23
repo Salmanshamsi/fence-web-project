@@ -27,12 +27,22 @@ export const selectedMaterials = createSlice({
             index:0
         }, ],
 
-    Option_M : [{
-            txt: "4'x8' Cedar Dog Ear",
-            img: "https://designit.menards.com/media/Fence/selection/item/wood/1731374_4'%20x%208'%20Cedar%20Dog%20Ear%20Fence%20Panel.jpg",
-            price: "96",
-            index:0
-        },],
+    Option_M : [
+      [{
+        txt: "4'x8' Cedar Dog Ear",
+        img: "https://designit.menards.com/media/Fence/selection/item/wood/1731374_4'%20x%208'%20Cedar%20Dog%20Ear%20Fence%20Panel.jpg",
+        price: "96",
+        index:0,
+        type:"post"
+      },],
+      [{
+        txt: "4'x8' Cedar Dog Ear",
+        img: "https://designit.menards.com/media/Fence/selection/item/wood/1731374_4'%20x%208'%20Cedar%20Dog%20Ear%20Fence%20Panel.jpg",
+        price: "96",
+        index:0,
+        type:"postfence"
+    },]
+    ],
 
     Gate_M: [{
         width : 0,
@@ -60,8 +70,12 @@ export const selectedMaterials = createSlice({
         function pushToZerothIndex(arr, element) {
             arr.splice(0, 0, element);
             return arr;
-          }          
-          pushToZerothIndex(state.Option_M, action.payload)
+          }
+          if(state.Option_M[0][0].type === "post"){
+            pushToZerothIndex(state.Option_M[0], action.payload);
+          }else{
+            pushToZerothIndex(state.Option_M[1], action.payload);
+          }     
     },
     setGate_M_Data : (state,action) => {
       function pushToZerothIndex(arr, element) {
@@ -71,7 +85,7 @@ export const selectedMaterials = createSlice({
       pushToZerothIndex(state.Gate_M, action.payload)
     },
     setPriceTotal :(state) => {
-      state.PriceTotal = Math.ceil(state.Type_M[0].price + state.Fence_M[0].price + state.Option_M[0].price + state.Gate_M[0].price)
+      state.PriceTotal = Math.ceil((state.Type_M[0].price + state.Fence_M[0].price +( state.Option_M[0][0].price + state.Option_M[1][0].price )) + state.Gate_M[0].price)
   },
   },
 });

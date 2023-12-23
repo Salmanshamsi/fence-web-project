@@ -173,7 +173,8 @@ const StoreScreen = () => {
                             className="hover:bg-green-500 p-2 flex w-44 items-center justify-center bg-blue-600 shadow-sm hover:shadow-md rounded-full text-white text-xs lg:text-md"
                             onClick={(e) => {
                               e.preventDefault();
-                              // navigate("/drawselection");
+                              navigate("/drawoptions");
+                              dispatch(getZip_code(CurEl.ptCode))
                               getSelectedStoreData(
                                 CurEl.store,
                                 CurEl.adress,

@@ -14,7 +14,7 @@ const MaterialGate = () => {
           </div>
           <div className='w-full md:flex-row flex-col flex h-full mt-36 '>
               <div className='lg:w-6/12 w-full h-full flex flex-col  lg:mt-2 md:mt-2 mt-10'>
-                  <div className='h-full overflow-scroll' >
+                  <div className='h-full overflow-scroll lg:mt-0 mt-10' >
                     <MaterialsCard Data={jsonData} _Route={"gate"} />
                   </div>
               </div>

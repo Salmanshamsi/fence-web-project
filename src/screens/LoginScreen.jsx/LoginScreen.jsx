@@ -4,13 +4,17 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import WarningModal from "../../components/WarningModal";
 import HelpCenter from "../../components/HelpCenter";
+import{useSelector} from "react-redux"
 
 const LoginScreen = () => {
 
     const [personalandBusiness, setPersonalandBusiness] = useState(true);
+    const [shoModal, setshoModal] = useState(false);
+    const [ModalHeading, setModalHeading] = useState("");
+    const [ModalContnt, setModalContnt] = useState("");    
+    const isSummary  = useSelector((state)=>state.RoutesChecking.isSummary);
     
-    const [userDetails,setUserDetails] = useState();
-    const [enabledName,setEnabledName] = useState(false);
+    
 
     const handleBusiness = () => {
       setPersonalandBusiness(false);
@@ -28,11 +32,13 @@ const LoginScreen = () => {
     email: "",
     password: "",
   });
+  
 
   const [signInState, setSignInState] = useState({
     email: "",
     password: "",
   });
+
   const [signInError, setSignInError] = useState("");
   const [signUpError, setSignUpError] = useState("");
 
@@ -50,10 +56,6 @@ const LoginScreen = () => {
     setSignInState({ ...signInState, [name]: value });
   };
 
-  // else if (!isStrongPassword(password)) {
-  //   setSignInError(
-  //     "Password must be at least 8 characters long and meet the strength criteria."
-  //   );
   const handleSignIn = async () => {
     const { email, password } = signInState;
 
@@ -63,7 +65,7 @@ const LoginScreen = () => {
       setSignInError("Please enter a valid email address");
     
     } else {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch("https://comfortable-tan-wig.cyclic.app/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -76,11 +78,14 @@ const LoginScreen = () => {
           
           const data = await response.json();
           if (data.status === "ok") {
-            alert("Sign In Successfully");
-            navigate("/stores ")
             window.localStorage.setItem("token" , data.data)
             window.localStorage.setItem("loggedIn" , true)
+            isSummary ? navigate("/gotoCart ") : navigate("/stores ")
           } else {
+            
+            setshoModal(true)
+            setModalHeading("signIn failure")
+            setModalContnt("user not found ! ")
             const errorData = await res.json();
             console.error(errorData.message); // Log the error message from the server
             // You can display an error message to the user or handle the error as needed.
@@ -90,11 +95,6 @@ const LoginScreen = () => {
     }
   };
 
-  // else if (!isStrongPassword(password)) {
-  //   setSignUpError(
-  //     "Password must be at least 8 characters long and meet the strength criteria."
-  //   );
-  // }
 
   const userSignUp = async () => {
 
@@ -105,7 +105,7 @@ const LoginScreen = () => {
     } else if (!isEmailValid(email)) {
       setSignUpError("Please enter a valid email address");
     }  else {
-        const res = await fetch("http://localhost:3000/auth/register", {
+        const res = await fetch("https://comfortable-tan-wig.cyclic.app/auth/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -122,10 +122,15 @@ const LoginScreen = () => {
 
           if (data) {
             // HTTP response status code is in the range 200-299 (successful)
-            alert("User Created Successfully");
+            setshoModal(true)
+            setModalHeading("signup sucess")
+            setModalContnt("you are signed up successfully ")
             setToggle(false);
           } else {
             // Handle the error, e.g., display an error message
+            setshoModal(true)
+            setModalHeading("signup failure")
+            setModalContnt("you are not signed up please try latter ! ")
             const errorData = await res.json();
             console.error(errorData.message); // Log the error message from the server
             // You can display an error message to the user or handle the error as needed.
@@ -134,23 +139,10 @@ const LoginScreen = () => {
     }
   };
 
-  const Create_User = () => {
-
-    if (!firstname || !lastname || !email || !password) {
-      setSignUpError("Please fill in all the required fields");
-    }
-
-  }
 
   const isEmailValid = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
-  };
-
-  const isStrongPassword = (password) => {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&!*_])[A-Za-z\d@#$%^&!*_]{8,}$/;
-    return passwordRegex.test(password);
   };
 
   const [toggle, setToggle] = useState(true);
@@ -164,16 +156,11 @@ const LoginScreen = () => {
   };
 
 
-  
-
-
 
   return (
     <>
     <Navbar/>
      <div className="auth pt-20">
-     {/* <AccountHeader/>
-     <AccountNav/> */}
 
       <div className="createaccountcontainer">
         <div className="twomaindivsincreateaccount">
@@ -271,8 +258,6 @@ const LoginScreen = () => {
                       </div>
                     </div>
               </div>
-       
-            
                     
                     :      <div className="signinaccountcontainer">
                   <div className="signinaccount">
@@ -354,6 +339,7 @@ const LoginScreen = () => {
       </div>
           <HelpCenter/>
      </div>
+     <WarningModal setIsOpen={setshoModal} isOpen={shoModal} heading={ModalHeading} content={ModalContnt} />
     </>
   );
 };

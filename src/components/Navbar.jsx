@@ -18,9 +18,8 @@ const Navbar = () => {
   
     // ----------------Url--Defining------------------------------
   
-      const baseUrl = useSelector((state)=>state.baseUrl.baseUrl)
-      const currentUrl = window.location.href;
-  
+      const currentUrl = window.location.pathname;
+
     // -------------------stack navigation bar handling----------------------------
   
     const [Openmenu, setOpenMenu] = useState("hidden");
@@ -63,10 +62,10 @@ const Navbar = () => {
 
   const displayNavbarHandling = () => {
 
-      if((currentUrl === `${baseUrl}/stores`) ||
-         (currentUrl === `${baseUrl}/drawoptions`) ||
-         (currentUrl === `${baseUrl}/savedesign`) ||
-         (currentUrl === `${baseUrl}/gotoCart`) ){
+      if((currentUrl === `/stores`) ||
+         (currentUrl === `/drawoptions`) ||
+         (currentUrl === `/savedesign`) ||
+         (currentUrl === `/gotoCart`) ){
 
             setshowBottomNav(false);
             setshowBottomNav_2(false)
@@ -74,29 +73,31 @@ const Navbar = () => {
       
         }
     
-      if (currentUrl === `${baseUrl}/map`) {
+      if (currentUrl === `/map`) {
+
         setshowBottomNav(false);
         setshowBottomNav_2(true);
         setshowBottomNav_3(true);
         setisCanvas(false);
+      
       }
-      if (currentUrl === `${baseUrl}/canvas`) {
+      if (currentUrl === `/canvas`) {
         setshowBottomNav(false);
         setshowBottomNav_2(true);
         setshowBottomNav_3(true);
         setisCanvas(true);
       }
       if (
-        currentUrl === `${baseUrl}/materials/type` ||
-        currentUrl === `${baseUrl}/materials/fence` ||
-        currentUrl === `${baseUrl}/materials/gate` ||
-        currentUrl === `${baseUrl}/materials/option`
+        currentUrl === `/materials/type` ||
+        currentUrl === `/materials/fence` ||
+        currentUrl === `/materials/gate` ||
+        currentUrl === `/materials/option`
       ) {
         setshowBottomNav(true);
         setshowBottomNav_2(true);
         setshowBottomNav_3(false);
       }
-      if (currentUrl === `${baseUrl}/summary`) {
+      if (currentUrl === `/summary`) {
         setshowBottomNav(false);
         setshowBottomNav_2(true);
         setshowBottomNav_3(false);
@@ -173,7 +174,7 @@ const Navbar = () => {
 
   const ContinueButtonHandling = () => {
 
-    if((currentUrl === `${baseUrl}/map`)){    
+    if((currentUrl === `/map`)){    
           if (mapDesign.length  > 0 ) {
 
               setShowModal(true);
@@ -183,7 +184,7 @@ const Navbar = () => {
       
             }
     }    
-    if((currentUrl === `${baseUrl}/canvas`)){
+    if((currentUrl === `/canvas`)){
       
             if(FinalDesign.length > 0 ){
 
@@ -222,7 +223,7 @@ const Navbar = () => {
             }
   
   }
-    if((currentUrl === `${baseUrl}/materials/type`)){
+    if((currentUrl === `/materials/type`)){
       
       if(Types_M.length > 1){
           
@@ -235,7 +236,7 @@ const Navbar = () => {
             setSecondModalVal("Please Select the Material First !");
           }
     }
-    if((currentUrl === `${baseUrl}/materials/fence`)){
+    if((currentUrl === `/materials/fence`)){
         if(Fence_M.length > 1){
               navigate("/materials/gate")
             }else{
@@ -245,12 +246,12 @@ const Navbar = () => {
               setSecondModalVal("Please Select the Material First !");
             }
     }
-    if((currentUrl === `${baseUrl}/materials/gate`)){
+    if((currentUrl === `/materials/gate`)){
 
       navigate("/materials/option")
 
     }
-    if((currentUrl === `${baseUrl}/materials/option`)){
+    if((currentUrl === `/materials/option`)){
       if(Option_M.length > 1){
         navigate("/summary")
         }else{
@@ -259,7 +260,7 @@ const Navbar = () => {
             setSecondModalVal("Please Select the Material First !");
         }
     }
-    if((currentUrl === `${baseUrl}/summary`)){
+    if((currentUrl === `/summary`)){
       navigate("/gotoCart")
     }
 
@@ -382,7 +383,7 @@ const Navbar = () => {
           </Link>
          
          
-          <Link to={"/materials/type"}
+          <Link
             className="hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer"
             onClick={(e)=>{
               e.preventDefault();
@@ -400,7 +401,7 @@ const Navbar = () => {
           </Link>
          
          
-          <Link to={"/summary"}
+          <Link 
             className="hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer"
             onClick={(e)=>{
               e.preventDefault();
@@ -418,7 +419,7 @@ const Navbar = () => {
           </Link>
          
          
-          <Link to={"/gotoCart"}
+          <Link 
             className="hover:bg-white hover:text-green-700 h-full flex items-center p-2 cursor-pointer"
             onClick={(e)=>{
               e.preventDefault();
@@ -486,7 +487,9 @@ const Navbar = () => {
         </div>
 
         <div className="w-full h-full flex items-center justify-end pr-5 gap-7">
-          <Link>
+          <Link
+            to={"/login"}
+          >
             <i className="fa-solid fa-user"></i>
           </Link>
           <Link to={"/Cart"} >
@@ -504,7 +507,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <ul className={`w-full fixed mt-14 ${Openmenu}`}>
+      <ul className={`w-full fixed mt-12 ${Openmenu} z-50`}>
         <Link
           to={"/stores"}
           className="w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700"
@@ -512,24 +515,62 @@ const Navbar = () => {
           Select Store
         </Link>
         <Link
-          to={"/drawoptions"}
+          onClick={(e)=>{
+            e.preventDefault();
+            if(isDraw){
+              navigate("/drawoptions")
+            }else{
+              setShowModal(true);
+              setFirstModalVal("Warning");
+              setSecondModalVal(" Select previous before continue !");
+            }
+          }}
           className="w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700"
         >
           Design
         </Link>
         <Link
-          to={"/materials/type"}
+          onClick={(e)=>{
+            e.preventDefault();
+            if(isMaterials){
+              navigate("/materials/type")
+              dispatch(setIsSummary(true))
+            }else{
+              setShowModal(true);
+              setFirstModalVal("Warning");
+              setSecondModalVal(" Select previous before continue !");
+            }
+          }}
           className="w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700"
         >
           Materials
         </Link>
         <Link 
-        to={"/summary"}
+        onClick={(e)=>{
+          e.preventDefault();
+          if(isSummary){
+            navigate("/summary")
+            dispatch(setIsSummary(true))
+          }else{
+            setShowModal(true);
+            setFirstModalVal("Warning");
+            setSecondModalVal("Draw previous Routes First !");
+          }
+        }}
         className="w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700">
           summary
         </Link>
         <Link 
-        to={"/gotocart"}
+        onClick={(e)=>{
+          e.preventDefault();
+          if(isPurchase){
+            navigationRoutesChecking("/gotoCart")
+          }else{
+            setShowModal(true);
+            setFirstModalVal("Warning");
+            setSecondModalVal("Draw previous Routes First !");
+          }
+        }}
         className="w-full flex items-center justify-center border p-3 bg-green-700 hover:bg-white text-white hover:text-green-700">
           Purchase
         </Link>

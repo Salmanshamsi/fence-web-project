@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import {useNavigate} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import { setCartData } from '../redux/slices/CartData'
+import WarningModal from '../components/WarningModal'
 
-const PurchaseScreen = () => {
+const PurchaseScreen = ({isLoggedIn}) => {
 
     const DesignId = useSelector((state)=> state.selectedDesign.DesignId );
     const TotalPrice = useSelector((state)=> state.selectedMaterials.PriceTotal );
@@ -14,6 +15,11 @@ const PurchaseScreen = () => {
     const Option_M = useSelector((state) => state.selectedMaterials.Option_M);
     const totalPrice = useSelector((state)=>state.selectedMaterials.PriceTotal)
     const Main_in_Rebate = 120  
+
+    const [showModal,setShowModal] = useState(false);
+    const [modalContent,setmodalContent] = useState("");
+    const [modalHeading,setmodalHeading] = useState("");
+    
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -29,11 +35,18 @@ const PurchaseScreen = () => {
 
         }
 
-        console.log(AddtoCartData)
 
-        dispatch(setCartData(AddtoCartData))
+        if(isLoggedIn){
 
-        navigate("/Cart")
+            dispatch(setCartData(AddtoCartData))
+            navigate("/Cart")
+        
+        }else{
+            setShowModal(true);
+            setmodalHeading("Sign in")
+            setmodalContent("to Add products in your cart you need to sign in")
+        }
+
 
     }
 
@@ -79,6 +92,7 @@ const PurchaseScreen = () => {
             </div>
             
         </div>
+        <WarningModal isOpen={showModal} setIsOpen={setShowModal} content={modalContent} heading={modalHeading} isCart={true} navigate={"/login"} />
     </div>
   )
 }

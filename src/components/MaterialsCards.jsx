@@ -4,7 +4,7 @@ import WarningModal from './WarningModal';
 import { setFence_M_Data, setGate_M_Data, setOption_M_Data, setPriceTotal, setType_M_Data } from '../redux/slices/selectedMaterials';
 import {setIsSummary } from '../redux/slices/RoutesChecking';
 
-const MaterialsCard = ({Data ,_Route}) => {
+const MaterialsCard = ({Data ,_Route, type}) => {
   
     const dispatch = useDispatch();      
     const [showModal, setShowModal] = useState(false);
@@ -20,17 +20,35 @@ const MaterialsCard = ({Data ,_Route}) => {
     const [gateInpShow,setGateinpShow] = useState(false);
     const [gateWeidthInInchs,setGateWeidthInInchs] = useState(0);
     const [gateWeidthInFts,setGateWeidthInFts] = useState(0);
-    const [gatePrice,setGatePrice] = useState(0);
+    const [CurrentGateAdd,setCurrentGateAdd] = useState("");
+    const [gatePrice,setgatePrice] = useState(0);
     const [gateType,setGateType] = useState("remove");
 
     
     const handlePlaceButtonClick = () => {
+
+      const w = ((gateWeidthInFts/1) + (gateWeidthInInchs/10)).toFixed(2)
+      const price = gatePrice
+      const cutLenght = (totalLength - w)  
+
       if (gateWeidthInFts || gateWeidthInInchs) {
 
+          if(CurrentGateAdd === "gate"){
+
             dispatch(setGate_M_Data({
-                width : (gateWeidthInFts+(Number(gateWeidthInInchs/1000))),
-                price : 10 * totalLength
-              }))
+              width : (gateWeidthInFts+(gateWeidthInInchs/1000)),
+              price : w * price
+         }))
+         dispatch(setPriceTotal())
+          }else{
+           
+            dispatch(setGate_M_Data({
+              width : (gateWeidthInFts+(gateWeidthInInchs/1000)),
+              price : cutLenght
+         }))
+         dispatch(setPriceTotal())  
+          }
+
 
         
       } else {
@@ -81,11 +99,14 @@ const MaterialsCard = ({Data ,_Route}) => {
               setGateType("remove");
           }else if(ele.txt === "Build a Gate"){
               setgateInputHeader(`"Build A Gate (width 3'0" ~ 10'0")"`)
+              setgatePrice(ele.price)
+              setCurrentGateAdd("gate")
               setGateinpShow(true);
               setGateType("gate");
           }else if(ele.txt === "Add Opening"){
               setgateInputHeader(`"Openings (width 2'0" ~ 100'0")`)
               setGateinpShow(true);
+              setCurrentGateAdd("open")
               setGateType("openings");
           }
 
@@ -96,12 +117,9 @@ const MaterialsCard = ({Data ,_Route}) => {
           img: ele.img,
           name: ele.txt,
           index:ind,
-          price: totalPrice
-      }));
-
-      // setActiveBg(ind);
-      // dispatch(TotalPrice());
-      // dispatch(OptionPrice(totalPrice));
+          price: totalPrice,
+          type: type
+        }));
     
     }
 
@@ -137,7 +155,7 @@ const MaterialsCard = ({Data ,_Route}) => {
         })
       }
 
-        {gateInpShow ? <div className='w-full h-full mt-5' >
+            {gateInpShow ? <div className='w-full h-full mt-5' >
                       <div className='w-full h-12 bg-gray-400 flex items-center justify-between px-5' >
                           <h1>{gateInputHeader}</h1>
                           <h1 className='text-green-800 text-2xl' ><i className="fa-solid fa-angle-down"></i></h1>

@@ -62,7 +62,7 @@ function App() {
             {isMaterials ? <Route path='/materials/gate' element={<MaterialGate/>}/> : "NotFound !" }
             {isMaterials ? <Route path='/materials/option' element={<MaterialOption/>}/> : "Not Found !" }
             {isMaterials ? <Route path='/summary' element={<SummaryScreen/>}/> : "Not Found !" }
-            {isMaterials ?<Route path='/gotoCart' element={<PurchaseScreen/>}/> : "Not Found !" }
+            {isMaterials ?<Route path='/gotoCart' element={<PurchaseScreen isLoggedIn={isLoggedIn} />}/> : "Not Found !" }
             <Route path='/cart' element={<CartScreen/>}/>
             <Route path='/checkoutdetails' element={<CheckoutDetails/>}/>
             <Route path='/orderconfirmation' element={<OrderConfirmationScreen/>}/>

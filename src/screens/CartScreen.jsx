@@ -16,7 +16,7 @@ const CartScreen = () => {
             </div>
         <div className='flex items-center h-screen lg:fixed w-full bg-slate-200 p-2' >
             <div className='h-auto w-full flex gap-2 lg:flex-row flex-col' >
-                <div className='h-full w-full flex flex-col gap-2 p-6 bg-slate-300' >
+                <div className='h-full w-full lg:mt-0 mt-20 flex flex-col gap-2 p-6 bg-slate-300' >
                     <div className='w-full h-full bg-white flex flex-col gap-2 border p-4' >
                         <h1 className='font-semibold text-xl' >Your Shopping Cart</h1>
                         <p className='text-sm' >Please verify and/or choose the delivery destination and shipping for each product before proceeding through the checkout.</p>

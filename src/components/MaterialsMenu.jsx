@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {useSelector} from "react-redux"
 
 
 const MaterialsMenu = () => {
 
       // ----------------Url--Defining------------------------------
   
-      const baseUrl = useSelector((state)=>state.baseUrl.baseUrl)
-      const currentUrl = window.location.href;
+      const currentUrl = window.location.pathname;
 
       // ................material menu routes........
 
@@ -18,25 +16,25 @@ const MaterialsMenu = () => {
 
     useEffect(()=>{
 
-      if((currentUrl === `${baseUrl}/materials/type`)){
+      if((currentUrl === `/materials/type`)){
         setisTypeActive(true);
         setisFenceActive(false);
         setisGateActive(false);
         setisOptionActive(false);
       }
-      if((currentUrl === `${baseUrl}/materials/fence`)){
+      if((currentUrl === `/materials/fence`)){
         setisTypeActive(false);
         setisFenceActive(true);
         setisGateActive(false);
         setisOptionActive(false);
       }
-      if((currentUrl === `${baseUrl}/materials/gate`)){
+      if((currentUrl === `/materials/gate`)){
         setisTypeActive(false);
         setisFenceActive(false);
         setisGateActive(true);
         setisOptionActive(false);
       }
-      if((currentUrl === `${baseUrl}/materials/option`)){
+      if((currentUrl === `/materials/option`)){
         setisTypeActive(false);
         setisFenceActive(false);
         setisGateActive(false);
