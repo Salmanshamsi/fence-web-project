@@ -18,8 +18,8 @@ import CheckoutDetails from "./screens/CheckoutDetails";
 import LoginScreen from "./screens/LoginScreen.jsx/LoginScreen";
 import {useNavigate} from "react-router-dom"
 import { useEffect } from "react";
-import Map_Screen from "./screens/Map_Screen";
-import PurchaseScreen from "./screens/PurchaseScreen";
+import Map_Screen from "./screens/Map_Screen";import Purchase_Screen from "./screens/Purchase_Screen";
+\
 
 
 
@@ -59,7 +59,7 @@ function App() {
             {isMaterials ? <Route path='/materials/gate' element={<MaterialGate/>}/> : "NotFound !" }
             {isMaterials ? <Route path='/materials/option' element={<MaterialOption/>}/> : "Not Found !" }
             {isMaterials ? <Route path='/summary' element={<SummaryScreen/>}/> : "Not Found !" }
-            {isMaterials ?<Route path='/gotoCart' element={<PurchaseScreen isLoggedIn={isLoggedIn} />}/> : "Not Found !" }
+            {isMaterials ?<Route path='/gotoCart' element={<Purchase_Screen isLoggedIn={isLoggedIn} />}/> : "Not Found !" }
             <Route path='/cart' element={<CartScreen/>}/>
             <Route path='/checkoutdetails' element={<CheckoutDetails/>}/>
             <Route path='/orderconfirmation' element={<OrderConfirmationScreen/>}/>

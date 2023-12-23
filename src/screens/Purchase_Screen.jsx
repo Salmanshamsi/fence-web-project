@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { setCartData } from '../redux/slices/CartData'
 import WarningModal from '../components/WarningModal'
 
-const PurchaseScreen = ({isLoggedIn}) => {
+const Purchase_Screen = ({isLoggedIn}) => {
 
     const DesignId = useSelector((state)=> state.selectedDesign.DesignId );
     const TotalPrice = useSelector((state)=> state.selectedMaterials.PriceTotal );
@@ -97,4 +97,4 @@ const PurchaseScreen = ({isLoggedIn}) => {
   )
 }
 
-export default PurchaseScreen
+export default Purchase_Screen
