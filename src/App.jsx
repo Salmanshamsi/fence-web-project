@@ -5,7 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import StoreScreen from "./screens/StoreScreen";
 import SavedDesignScreen from "./screens/SavedDesignScreen";
 import {useSelector} from "react-redux"
-import CanvasScreen from "./screens/canvasScreen";
+import CanvasScreen from "./screens/CanvasScreen";
 import MapScreen from "./screens/MapScreen";
 import DrawingOptions from "./screens/DrawingOptionScreen";
 import MaterialType from "./screens/MaterialSelectionScreens/MaterialType";
