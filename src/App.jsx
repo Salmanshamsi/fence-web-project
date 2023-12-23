@@ -19,7 +19,6 @@ import LoginScreen from "./screens/LoginScreen.jsx/LoginScreen";
 import {useNavigate} from "react-router-dom"
 import { useEffect } from "react";
 import Map_Screen from "./screens/Map_Screen";import Purchase_Screen from "./screens/Purchase_Screen";
-\
 
 
 
