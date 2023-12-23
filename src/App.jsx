@@ -30,10 +30,7 @@ function App() {
   const isLoggedIn = Boolean(localStorage.getItem("loggedIn"))
 
   const isStore  = useSelector((state)=>state.RoutesChecking.isStores);
-  const isDraw  = useSelector((state)=>state.RoutesChecking.isDraw);
   const isMaterials  = useSelector((state)=>state.RoutesChecking.isMaterials);
-  const isSummary  = useSelector((state)=>state.RoutesChecking.isSummary);
-  const isPurchase  = useSelector((state)=>state.RoutesChecking.isPurchase);
 
   function handlePageReload() {
     window.addEventListener('load', function () {
