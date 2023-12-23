@@ -12,7 +12,6 @@ import MaterialFence from "./screens/MaterialSelectionScreens/MaterialFence";
 import MaterialGate from "./screens/MaterialSelectionScreens/MaterialGate";
 import MaterialOption from "./screens/MaterialSelectionScreens/MaterialOption";
 import SummaryScreen from "./screens/SummaryScreen";
-import PurchaseScreen from "./screens/PurchaseScreen";
 import CartScreen from "./screens/CartScreen";
 import OrderConfirmationScreen from "./screens/OrderConfirmationScreen";
 import CheckoutDetails from "./screens/CheckoutDetails";
@@ -20,6 +19,7 @@ import LoginScreen from "./screens/LoginScreen.jsx/LoginScreen";
 import {useNavigate} from "react-router-dom"
 import { useEffect } from "react";
 import Map_Screen from "./screens/Map_Screen";
+import PurchaseScreen from "./screens/PurchaseScreen";
 
 
 
