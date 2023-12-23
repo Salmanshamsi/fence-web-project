@@ -1,7 +1,4 @@
 import axios from 'axios';
-import { setIsLoading } from '../redux/slices/Loading';
-import {useDispatch} from "react-redux"
-
 
 const baseUrl = ""
 const DeployUrl = "https://comfortable-tan-wig.cyclic.app" 
