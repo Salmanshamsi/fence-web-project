@@ -6,7 +6,6 @@ import StoreScreen from "./screens/StoreScreen";
 import SavedDesignScreen from "./screens/SavedDesignScreen";
 import {useSelector} from "react-redux"
 import CanvasScreen from "./screens/CanvasScreen";
-import MapScreen from "./screens/MapScreen";
 import DrawingOptions from "./screens/DrawingOptionScreen";
 import MaterialType from "./screens/MaterialSelectionScreens/MaterialType";
 import MaterialFence from "./screens/MaterialSelectionScreens/MaterialFence";
@@ -20,6 +19,7 @@ import CheckoutDetails from "./screens/CheckoutDetails";
 import LoginScreen from "./screens/LoginScreen.jsx/LoginScreen";
 import {useNavigate} from "react-router-dom"
 import { useEffect } from "react";
+import Map_Screen from "./screens/Map_Screen";
 
 
 
@@ -56,7 +56,7 @@ function App() {
             <Route path='/savedesign' element={<SavedDesignScreen/>}/>
             {isStore ? <Route path='/drawoptions' element={<DrawingOptions/>}/> : "Not Found !" }
             {isStore ? <Route path='/canvas' element={<CanvasScreen/>}/> : "Not Found !" }
-            {isStore ? <Route path='/map' element={<MapScreen API={REACT_APP_GOOGLE_MAPS_KEY} />}/> :  "Not Found !" }
+            {isStore ? <Route path='/map' element={<Map_Screen/>}/> :  "Not Found !" }
             {isMaterials ? <Route path='/materials/type' element={<MaterialType/>}/> : "Not found" }
             {isMaterials ? <Route path='/materials/fence' element={<MaterialFence/>}/> : "Not Found !"}
             {isMaterials ? <Route path='/materials/gate' element={<MaterialGate/>}/> : "NotFound !" }

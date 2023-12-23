@@ -5,7 +5,7 @@ import Map from '../components/GoogleMap'
 import Navbar from "../components/Navbar"
 
 
-const MapScreen = ({API}) => {    
+const Map_Screen = ({API}) => {    
 
   const [linesDrawn, setLinesDrawn] = useState(false);
     
@@ -34,4 +34,4 @@ const MapScreen = ({API}) => {
   )
 }
 
-export default MapScreen
+export default Map_Screen
