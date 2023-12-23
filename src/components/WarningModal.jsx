@@ -27,7 +27,7 @@ const WarningModal = ({isOpen, heading, content,setIsOpen, navigate,isCart}) => 
               <button onClick={(e)=>{
                 e.preventDefault();
                 setIsOpen(false)
-                }} className='bg-green-500 rounded-full px-8 py-3 text-white font-bold' >cencel</button>
+                }} className='bg-green-500 rounded-full px-8 py-3 text-white font-bold' >cancel</button>
                 
                 <button onClick={(e)=>{
                 e.preventDefault();

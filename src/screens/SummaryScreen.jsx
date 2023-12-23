@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from '../components/Navbar'
 import {useSelector, useDispatch} from "react-redux"
 import DisabledCanvas from '../components/DisabledCanvas'
@@ -6,8 +6,8 @@ import { setIsPurchase } from '../redux/slices/RoutesChecking'
 import {useNavigate} from "react-router-dom"
 
 
-
 const SummaryScreen = () => {
+
         
     const Design_ID = useSelector((state) => state.selectedDesign.DesignId);   
     const totalLength = useSelector((state)=>state.selectedDesign.Design_length);
@@ -15,6 +15,70 @@ const SummaryScreen = () => {
     const _Type = useSelector(state => state.selectedMaterials.Type_M[0].txt);
     const _Fence = useSelector(state => state.selectedMaterials.Fence_M[0].txt);
     const _Option = useSelector(state => state.selectedMaterials.Option_M[0].txt);
+    const renderlines = useSelector((state) => state.selectedDesign.Design);
+    const canvasRef = useRef(null);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedInfo, setSelectedInfo] = useState(null);
+  
+    const drawLine = (ctx, x1, y1, x2, y2) => {
+      const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+  
+      if (Math.ceil(length) > 0) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.closePath();
+  
+        ctx.beginPath();
+        ctx.arc(x1, y1, 7, 0, 3 * Math.PI);
+        ctx.fillStyle = "#68AEB7";
+        ctx.fill();
+        ctx.closePath();
+  
+        ctx.beginPath();
+        ctx.arc(x2, y2, 7, 0, 3 * Math.PI);
+        ctx.fillStyle = "#68AEB7";
+        ctx.fill();
+        ctx.closePath();
+      }
+    };
+  
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+  
+      const resizeCanvas = () => {
+        if (window.innerHeight <= 1100 && window.innerWidth <= 800) {
+          canvas.width = window.innerWidth - 40;
+          canvas.height = window.innerHeight - 20;
+        } else {
+          canvas.width = window.innerWidth - 400;
+          canvas.height = window.innerHeight - 200;
+        }
+      };
+  
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+  
+      context.lineWidth = 7.5;
+      context.strokeStyle = "#66BB6A";
+      context.lineJoin = "round";
+      context.lineCap = "round";
+  
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+  
+      // Draw all lines at once without clearing the canvas in between
+      renderlines.forEach((line) => {
+        drawLine(context, line.startX, line.startY, line.endX, line.endY);
+      });
+  
+      return () => {
+        window.removeEventListener("resize", resizeCanvas);
+      };
+    }, [renderlines]);
+  
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -129,7 +193,23 @@ const SummaryScreen = () => {
                     <p className='mx-2 estimate' >*Today's estimated price, future pricing may go up or down. Tax, labor, and delivery not included.</p>
             
                     <div className='' >
-                        <DisabledCanvas/>
+                    <div className="w-full h-full flex items-center gap-1 p-2 justify-center flex-col">
+        <div className="self-start ms-0">
+          <button
+            className="px-4 py-1 bg-green-500 rounded-b-none rounded-md text-white"
+          >
+            Design
+          </button>
+        </div>
+        <canvas
+          style={{
+            backgroundImage:
+              "url(https://www.xmple.com/wallpaper/graph-paper-grey-white-grid-1920x1080-c2-ffffff-d3d3d3-l2-1-11-a-60-f-20.svg)",
+          }}
+          className={`border bg-center bg-cover pointer-events-none`}
+          ref={canvasRef}
+        />
+      </div>
                     </div>
 
             </div>

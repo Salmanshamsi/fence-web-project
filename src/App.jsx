@@ -52,7 +52,7 @@ function App() {
             <Route path='/savedesign' element={<SavedDesignScreen/>}/>
             {isStore ? <Route path='/drawoptions' element={<DrawingOptions/>}/> : "Not Found !" }
             {isStore ? <Route path='/canvas' element={<CanvasScreen/>}/> : "Not Found !" }
-            {isStore ? <Route path='/map' element={<Map_Screen/>}/> :  "Not Found !" }
+            {isStore ? <Route path='/map' element={<Map_Screen API={REACT_APP_GOOGLE_MAPS_KEY} />}/> :  "Not Found !" }
             {isMaterials ? <Route path='/materials/type' element={<MaterialType/>}/> : "Not found" }
             {isMaterials ? <Route path='/materials/fence' element={<MaterialFence/>}/> : "Not Found !"}
             {isMaterials ? <Route path='/materials/gate' element={<MaterialGate/>}/> : "NotFound !" }

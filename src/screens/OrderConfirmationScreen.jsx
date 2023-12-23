@@ -15,7 +15,7 @@ const OrderConfirmationScreen = () => {
     const customer_Phone = useSelector((state)=> state.BillingDetails.customerDetails.Customer_PhoneNumber)
 
     const count = 2
-    const TotalPrice = 50;
+    const Totalprice = useSelector((state) => state.selectedMaterials.PriceTotal);
     const name = "ITEMNAME";
 
     const GoToPayment = (data) =>{
@@ -34,7 +34,7 @@ const OrderConfirmationScreen = () => {
 
     const goToStripe = async () => {
       try {
-        const res = await fetch("http://localhost:3000/payment/checkout", {
+        const res = await fetch("https://comfortable-tan-wig.cyclic.app/payment/checkout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const OrderConfirmationScreen = () => {
             items: [
               {
                 quantity: count,
-                price: TotalPrice,
+                price: Totalprice,
                 name: name,
               },
             ],
