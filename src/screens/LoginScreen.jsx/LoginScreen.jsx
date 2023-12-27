@@ -57,6 +57,7 @@ const LoginScreen = () => {
   };
 
   const handleSignIn = async () => {
+
     const { email, password } = signInState;
 
     if (!email || !password) {
@@ -90,8 +91,6 @@ const LoginScreen = () => {
             console.error(errorData.message); // Log the error message from the server
             // You can display an error message to the user or handle the error as needed.
           }
-          
-  
     }
   };
 
@@ -101,11 +100,16 @@ const LoginScreen = () => {
     const { firstname, lastname, email, password } = signUpState;
 
     if (!firstname || !lastname || !email || !password) {
+
       setSignUpError("Please fill in all the required fields");
+    
     } else if (!isEmailValid(email)) {
+    
       setSignUpError("Please enter a valid email address");
+    
     }  else {
-        const res = await fetch("https://comfortable-tan-wig.cyclic.app/auth/register", {
+    
+      const res = await fetch("https://comfortable-tan-wig.cyclic.app/auth/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -121,19 +125,28 @@ const LoginScreen = () => {
           const data = await res.json();
 
           if (data) {
-            // HTTP response status code is in the range 200-299 (successful)
-            setshoModal(true)
-            setModalHeading("signup sucess")
-            setModalContnt("you are signed up successfully ")
-            setToggle(false);
-          } else {
-            // Handle the error, e.g., display an error message
+    
+
+            if(data.error === "User already exists"){
+
+              setshoModal(true)
+              setModalHeading("signup failure")
+              setModalContnt("change Email Address this email already Exsist ! ")
+
+            }else{
+              setshoModal(true)
+              setModalHeading("signup sucess")
+              setModalContnt("you are signed up successfully ")
+              setToggle(false);
+            }
+
+          }else{
+    
             setshoModal(true)
             setModalHeading("signup failure")
             setModalContnt("you are not signed up please try latter ! ")
             const errorData = await res.json();
-            console.error(errorData.message); // Log the error message from the server
-            // You can display an error message to the user or handle the error as needed.
+            console.error(errorData.message);
           }
           
     }

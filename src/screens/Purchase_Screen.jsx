@@ -9,10 +9,10 @@ const Purchase_Screen = ({isLoggedIn}) => {
 
     const DesignId = useSelector((state)=> state.selectedDesign.DesignId );
     const TotalPrice = useSelector((state)=> state.selectedMaterials.PriceTotal );
-    const Types_M = useSelector((state) => state.selectedMaterials.Type_M[0]);
+    const Types_M = useSelector((state) => state.selectedMaterials.Type_M);
     const Fence_M = useSelector((state) => state.selectedMaterials.Fence_M);
     const Gate_M = useSelector((state) => state.selectedMaterials.Gate_M);
-    const Option_M = useSelector((state) => state.selectedMaterials.Option_M);
+    const Option_M = useSelector((state) => state.selectedMaterials.Option_M_t1);
     const totalPrice = useSelector((state)=>state.selectedMaterials.PriceTotal)
     const Main_in_Rebate = 120  
 
@@ -42,9 +42,11 @@ const Purchase_Screen = ({isLoggedIn}) => {
             navigate("/Cart")
         
         }else{
+
             setShowModal(true);
             setmodalHeading("Sign in")
             setmodalContent("to Add products in your cart you need to sign in")
+        
         }
 
 

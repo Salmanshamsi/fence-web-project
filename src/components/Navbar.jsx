@@ -8,6 +8,7 @@ import MaterialsMenu from './MaterialsMenu';
 import EstimatePriceModal from './EstimatePriceModal';
 import { setDesignId } from '../redux/slices/selectedDesign';
 import { setIsDraw, setIsMaterials, setIsStore, setIsSummary } from '../redux/slices/RoutesChecking';
+import { setOption_M_Data_t1 } from '../redux/slices/selectedMaterials';
 
 
 
@@ -47,7 +48,8 @@ const Navbar = () => {
     const Types_M = useSelector((state) => state.selectedMaterials.Type_M);
     const Fence_M = useSelector((state) => state.selectedMaterials.Fence_M);
     const Gate_M = useSelector((state) => state.selectedMaterials.Gate_M);
-    const Option_M = useSelector((state) => state.selectedMaterials.Option_M);
+    const Option_M_t1 = useSelector((state) => state.selectedMaterials.Option_M_t1);
+    const Option_M_t2 = useSelector((state) => state.selectedMaterials.option_M_t2);
     const storeData = useSelector((state)=> state.selectedStoreData.storeName)
 
 
@@ -132,7 +134,6 @@ const Navbar = () => {
 
   const updateDesignToDB = (Data, id) => {
 
-    dispatch(setIsLoading(true))
 
     try{
           updateDesign(id,Data).then((resp)=>{
@@ -148,13 +149,10 @@ const Navbar = () => {
           
           })
 
-          dispatch(setIsLoading(false))
 
       }catch(err){
         
         throw new err
-
-        dispatch(setIsLoading(false))
 
       }
   }
@@ -225,7 +223,7 @@ const Navbar = () => {
   }
     if((currentUrl === `/materials/type`)){
       
-      if(Types_M.length > 1){
+      if(Types_M.index){
           
           navigate("/materials/fence")
           
@@ -237,7 +235,7 @@ const Navbar = () => {
           }
     }
     if((currentUrl === `/materials/fence`)){
-        if(Fence_M.length > 1){
+        if(Fence_M.index){
               navigate("/materials/gate")
             }else{
               
@@ -252,16 +250,22 @@ const Navbar = () => {
 
     }
     if((currentUrl === `/materials/option`)){
-      if(Option_M.length > 1){
+      if(Option_M_t1 && Option_M_t2){
+        
         navigate("/summary")
+
         }else{
+        
             setShowModal(true);
             setFirstModalVal("Material Selection Warning");
             setSecondModalVal("Please Select the Material First !");
-        }
+        
+          }
     }
     if((currentUrl === `/summary`)){
+
       navigate("/gotoCart")
+    
     }
 
   }

@@ -4,7 +4,7 @@ import {useSelector} from "react-redux"
 const SelectedMaterial = () => {
 
     
-  const Data = useSelector((state) => state.selectedMaterials.Type_M[0]);
+  const Data = useSelector((state) => state.selectedMaterials.Type_M);
 
   return (
     <div className=''>

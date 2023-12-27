@@ -68,14 +68,14 @@ const CheckoutDetails = () => {
   return (
     <div className='' >
       <Navbar/>
-      <div className='w-full bg-slate-200 h-full items-center flex flex-col justify-center  pt-20' >
+      <div className='w-full items-center flex flex-col justify-center  pt-20' >
         
-        <div className='w-full p-2' >
+        {/* <div className='w-full p-2' >
              <h1 className='font-semibold text-2xl text-gray-800 text-center' >Billing Information</h1>
              <div className='flex w-full justify-center' >
               <hr className='border-green-700 rounded-full border-2 w-96' />
              </div>
-        </div>
+        </div> */}
 
         <div className='flex' >
           <form action="">
@@ -87,14 +87,14 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setFirstName(e.target.value);
-                  }} type="text" placeholder='Enter First Name' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter First Name' className='rounded-md  border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
                 <div className='w-full' >
                   <h1 className='text-lg text-gray-900' >Last Name</h1>
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setLastName(e.target.value);
-                  }} type="text" placeholder='Enter Last Name' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Last Name' className='rounded-md text-center border-gray-900 shadow-md border h-10 w-full' />
                 </div>
               </div>
 
@@ -104,7 +104,7 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setBuiessnessName(e.target.value);
-                  }} type="text" placeholder='Enter Buiessness Name' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Buiessness Name' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
               </div>
 
@@ -114,14 +114,14 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setAddress_1(e.target.value);
-                  }} type="text" placeholder='Enter Address Line 1' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Address Line 1' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
                 <div className='w-full' >
                   <h1 className='text-lg text-gray-900' >Address Line 2</h1>
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setAddress_2(e.target.value);
-                  }} type="text" placeholder='Enter Address Line 2' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Address Line 2' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
               </div>
 
@@ -131,21 +131,21 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setZip_code(e.target.value);
-                  }} type="text" placeholder='Enter Zip/postal Code' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Zip/postal Code' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
                 <div className='w-full' >
                   <h1 className='text-lg text-gray-900' >City</h1>
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setcity(e.target.value);
-                  }} type="text" placeholder='Enter City Name' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter City Name' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
                 <div className='w-full' >
                   <h1 className='text-lg text-gray-900' >Country</h1>
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setCounty(e.target.value);
-                  }} type="text" placeholder='Enter Country Name' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter Country Name' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
               </div>
 
@@ -156,7 +156,7 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setState(e.target.value);
-                  }} type="text" placeholder='Enter State' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Enter State' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
  
                 <div className='w-full' >
@@ -164,7 +164,7 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setPhone(e.target.value);
-                  }} type="text" placeholder='Cell Phone Number' className='rounded-full text-center shadow-md border h-10 w-full' />
+                  }} type="text" placeholder='Cell Phone Number' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
  
               </div>

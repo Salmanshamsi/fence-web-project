@@ -4,13 +4,14 @@ import WarningModal from './WarningModal';
 import {
   setFence_M_Data,
   setGate_M_Data,
-  setOption_M_Data,
+  setOption_M_Data_t1,
+  setOption_M_Data_t2,
   setPriceTotal,
   setType_M_Data,
 } from '../redux/slices/selectedMaterials';
 import { setIsSummary } from '../redux/slices/RoutesChecking';
 
-const MaterialsCard = ({ Data, _Route, type }) => {
+const MaterialsCard = ({ Data, _Route}) => {
 
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,6 @@ const MaterialsCard = ({ Data, _Route, type }) => {
   const [gateType, setGateType] = useState("remove");
 
   useEffect(() => {
-    // Retrieve gate selection from local storage
     const storedGateType = localStorage.getItem('gate');
     if (storedGateType) {
       setGateType(storedGateType);
@@ -68,18 +68,22 @@ const MaterialsCard = ({ Data, _Route, type }) => {
   };
 
   const onClickHandler = (ele, ind) => {
-    dispatch(setPriceTotal());
+
     let totalPrice = ele.price * totalLength;
     setActiveBg(ind);
 
     if (_Route === "type") {
+
       dispatch(setType_M_Data({
         img: ele.img,
         txt: ele.txt,
         Details: ele.Details,
-        price: totalPrice
+        price: totalPrice,
+        index: ind,
       }));
+
       dispatch(setIsSummary(true));
+      dispatch(setPriceTotal());
     }
     if (_Route === "fence") {
       dispatch(setFence_M_Data({
@@ -88,6 +92,7 @@ const MaterialsCard = ({ Data, _Route, type }) => {
         index: ind,
         price: totalPrice
       }));
+      dispatch(setPriceTotal());
     }
     if (_Route === "gate") {
       if (ele.txt === "Remove Selection") {
@@ -113,14 +118,27 @@ const MaterialsCard = ({ Data, _Route, type }) => {
         localStorage.setItem('gate', 'openings');
       }
     }
-    if (_Route === "option") {
-      dispatch(setOption_M_Data({
+    if (_Route === "option/t1") {
+
+      dispatch(setOption_M_Data_t1({
         img: ele.img,
         name: ele.txt,
         index: ind,
         price: totalPrice,
-        type: type
       }));
+      dispatch(setPriceTotal());
+    
+    }
+    if (_Route === "option/t2") {
+
+      dispatch(setOption_M_Data_t2({
+        img: ele.img,
+        name: ele.txt,
+        index: ind,
+        price: totalPrice,
+      }));
+      dispatch(setPriceTotal());
+    
     }
   }
 

@@ -11,10 +11,12 @@ const SummaryScreen = () => {
         
     const Design_ID = useSelector((state) => state.selectedDesign.DesignId);   
     const totalLength = useSelector((state)=>state.selectedDesign.Design_length);
-    const totalPrice = useSelector((state)=>state.selectedMaterials.PriceTotal) 
-    const _Type = useSelector(state => state.selectedMaterials.Type_M[0].txt);
-    const _Fence = useSelector(state => state.selectedMaterials.Fence_M[0].txt);
-    const _Option = useSelector(state => state.selectedMaterials.Option_M[0].txt);
+    const totalPrice = useSelector((state)=>state.selectedMaterials.PriceTotal)
+
+    const _Type = useSelector(state => state.selectedMaterials.Type_M.txt);
+    const _Fence = useSelector(state => state.selectedMaterials.Fence_M.name);
+    const _Option = useSelector(state => state.selectedMaterials.Option_M_t1.name);
+    
     const renderlines = useSelector((state) => state.selectedDesign.Design);
     const canvasRef = useRef(null);
     const [showModal, setShowModal] = useState(false);
@@ -85,8 +87,10 @@ const SummaryScreen = () => {
     
 
     if(Design_ID && totalLength && totalPrice && _Type && _Fence && _Option){
+
             dispatch(setIsPurchase(true))
-    }
+    
+        }
 
 
   return (

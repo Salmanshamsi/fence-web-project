@@ -32,10 +32,10 @@ const MaterialOption = () => {
                               setPost(false);
                             }else{
                               setPost(true);
-                              setcurrentTable("optionpost")
+                              setcurrentTable("option/t1")
                             }
                           }} ><i class={`fa-solid fa-chevron-${post ? "down" : "right" }`}></i></button> </div>
-                          { post ? <div className='p-3 inline-block' ><MaterialsCard Data={jsonData} _Route={"option"} type={"post"} /></div> : ""}
+                          { post ? <div className='p-3 inline-block' ><MaterialsCard Data={jsonData} _Route={"option/t1"} /></div> : ""}
 
 
                             <div className='w-full bg-slate-300 rounded-sm h-12 flex justify-between p-4 items-center text-green-700' ><span className='text-sm' >Post Footing (Concrete Mix - 60 lb)</span> <button onClick={(e)=>{
@@ -44,10 +44,10 @@ const MaterialOption = () => {
                               setPostFooting(false);
                             }else{
                               setPostFooting(true);
-                              setcurrentTable("optionpostfooting")
+                              setcurrentTable("option/t2")
                             }
                           }} ><i class={`fa-solid fa-chevron-${postFooting ? "down" : "right" }`}></i></button> </div>
-                          { postFooting ? <div className='p-3' ><MaterialsCard Data={jsonData_2} _Route={"option"} type={"postfooting"} /></div> : ""}
+                          { postFooting ? <div className='p-3' ><MaterialsCard Data={jsonData_2} _Route={"option/t2"} /></div> : ""}
 
                         </div>
                     </div>  

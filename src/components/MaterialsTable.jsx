@@ -3,11 +3,16 @@ import {useSelector} from "react-redux";
 
 const MaterialsTable = ({_route}) => {
 
-    const indexOfFence = useSelector((state) => state.selectedMaterials.Fence_M[0].index);
+    const indexOfFence = useSelector((state) => state.selectedMaterials.Fence_M.index);
 
-	const indexOfOption = useSelector((state) => state.selectedMaterials.Option_M[0][0].index);
+	const indexOfOption_t1 = useSelector((state) => state.selectedMaterials.Option_M_t1.index);
+	const indexOfOption_t2 = useSelector((state) => state.selectedMaterials.option_M_t2.index);
 
-	const indexOfOption2 = useSelector((state) => state.selectedMaterials.Option_M[1][0].index);
+	// console.log("from Table option : ", a)
+
+	// const indexOfOption = useSelector((state) => state.selectedMaterials.Option_M[0][0].index);
+
+	// const indexOfOption2 = useSelector((state) => state.selectedMaterials.Option_M[1][0].index);
 
 
     const [activeRow_1 , setActiveRow_1] = useState(false);
@@ -19,7 +24,6 @@ const MaterialsTable = ({_route}) => {
 	const [activeRow_7 , setActiveRow_7] = useState(false);
 	
 	const CheckActivationRow = (index) => {
-		console.log(index , "ind")
 		if(index === 1){
 			setActiveRow_1(true);
 			setActiveRow_2(false);
@@ -86,14 +90,16 @@ const MaterialsTable = ({_route}) => {
 	}
 
 	useEffect(()=>{
-
+			console.log()
 			if(_route === "fence"){
 				CheckActivationRow(indexOfFence + 1);
-			}else{
-				CheckActivationRow(indexOfOption + 1);
+			}else if(_route === "option/t1"){
+				CheckActivationRow(indexOfOption_t1 + 1);
+			}else if(_route === "option/t2"){
+				CheckActivationRow(indexOfOption_t2 + 1);
 			}
 	
-	},[indexOfFence,indexOfOption,_route]);
+	},[_route,indexOfFence,indexOfOption_t1,indexOfOption_t2]);
 
 	return (
 	<>
@@ -183,7 +189,7 @@ const MaterialsTable = ({_route}) => {
 			</tr>
 			</tbody>
 		</table></>):("")}
-		 {(_route === "optionpost") ? (<>
+		 {(_route === "option/t1") ? (<>
 		<h1 className='w-full text-2xl p-3' >FENCE POST SELECTION GUIDE</h1>
 		<table className='w-full h-96' >
 			<tbody>
@@ -237,7 +243,7 @@ const MaterialsTable = ({_route}) => {
 			</tr>
 			</tbody>
 		</table></>) : ""}
-		{(_route === "optionpostfooting") ? (<>
+		{(_route === "option/t2") ? (<>
 		<h1 className='w-full text-2xl p-3' >FENCE POST SELECTION GUIDE</h1>
 		<table className='w-full h-96' >
 			<tbody>
