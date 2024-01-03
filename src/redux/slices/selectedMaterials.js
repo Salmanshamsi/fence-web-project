@@ -37,10 +37,11 @@ export const selectedMaterials = createSlice({
       price : 0
     },
 
-    Gate_M: [{
-        width : 0,
-        price : 0,
-    },],
+    Gate_M:{
+      price:0,
+      width:0
+    }
+
 },
   reducers: {
     setType_M_Data :(state,action) => {
@@ -61,14 +62,10 @@ export const selectedMaterials = createSlice({
     },
 
     setGate_M_Data : (state,action) => {
-      function pushToZerothIndex(arr, element) {
-        arr.splice(0, 0, element);
-        return arr;
-      }          
-      pushToZerothIndex(state.Gate_M, action.payload)
+      state.Gate_M = action.payload
     },
     setPriceTotal :(state) => {
-      state.PriceTotal = state.Type_M.price + state.Fence_M.price + state.Option_M_t1.price + state.option_M_t2.price
+      state.PriceTotal = state.Type_M.price + state.Fence_M.price + state.Option_M_t1.price + state.option_M_t2.price + state.Gate_M?.price
     }
   },
 });

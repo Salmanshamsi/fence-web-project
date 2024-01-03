@@ -1,7 +1,7 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 
-const WarningModal = ({isOpen, heading, content,setIsOpen, navigate,isCart}) => {
+const WarningModal = ({isOpen, heading, content,setIsOpen, navigate,isCart, isLogout}) => {
 
   const _nevigate = useNavigate()
 
@@ -22,7 +22,7 @@ const WarningModal = ({isOpen, heading, content,setIsOpen, navigate,isCart}) => 
                 <h1 className='text-center text-base'>{content}</h1>
           </div>
 
-          {isCart ? (
+          {isCart || isLogout ? (
             <div className='w-full flex justify-evenly items-center p-2 ' >
               <button onClick={(e)=>{
                 e.preventDefault();
@@ -32,8 +32,12 @@ const WarningModal = ({isOpen, heading, content,setIsOpen, navigate,isCart}) => 
                 <button onClick={(e)=>{
                 e.preventDefault();
                 navigate?_nevigate(navigate):""
+                localStorage.removeItem("loggedIn")
+                localStorage.removeItem("token")
                 setIsOpen(false)
-                }} className='bg-green-500 rounded-full px-8 py-3 text-white font-bold' >sign In</button>
+                }} className='bg-green-500 rounded-full px-8 py-3 text-white font-bold' >
+                {isCart? "sign In" : "Sign Out"}  
+                </button>
             </div>
           )
           :(<div className='w-full flex justify-center items-center p-2 ' >

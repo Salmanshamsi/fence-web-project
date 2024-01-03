@@ -39,33 +39,33 @@ const MaterialsCard = ({ Data, _Route}) => {
     }
   }, []);
 
-  const handlePlaceButtonClick = () => {
-    const w = ((gateWeidthInFts / 1) + (gateWeidthInInchs / 10)).toFixed(2);
-    const price = gatePrice;
-    const cutLenght = (totalLength - w);
+  // const handlePlaceButtonClick = () => {
+  //   const w = ((gateWeidthInFts / 1) + (gateWeidthInInchs / 10)).toFixed(2);
+  //   const price = gatePrice;
+  //   const cutLenght = (totalLength - w);
 
-    if (gateWeidthInFts || gateWeidthInInchs) {
+  //   if (gateWeidthInFts || gateWeidthInInchs) {
 
-      if (CurrentGateAdd === "gate") {
-        dispatch(setGate_M_Data({
-          width: (gateWeidthInFts + (gateWeidthInInchs / 1000)),
-          price: w * price
-        }));
-        dispatch(setPriceTotal());
-      } else {
-        dispatch(setGate_M_Data({
-          width: (gateWeidthInFts + (gateWeidthInInchs / 1000)),
-          price: cutLenght
-        }));
-        dispatch(setPriceTotal());
-      }
+  //     if (CurrentGateAdd === "gate") {
+  //       dispatch(setGate_M_Data({
+  //         width: (gateWeidthInFts + (gateWeidthInInchs / 1000)),
+  //         price: w * price
+  //       }));
+  //       dispatch(setPriceTotal());
+  //     } else {
+  //       dispatch(setGate_M_Data({
+  //         width: (gateWeidthInFts + (gateWeidthInInchs / 1000)),
+  //         price: cutLenght
+  //       }));
+  //       dispatch(setPriceTotal());
+  //     }
 
-    } else {
-      setShowModal(true);
-      setFirstModalVal("Selection Warning")
-      setSecondModalVal(`add width for the selected ${gateType} to calculate price !`)
-    }
-  };
+  //   } else {
+  //     setShowModal(true);
+  //     setFirstModalVal("Selection Warning")
+  //     setSecondModalVal(`add width for the selected ${gateType} to calculate price !`)
+  //   }
+  // };
 
   const onClickHandler = (ele, ind) => {
 
@@ -171,7 +171,7 @@ const MaterialsCard = ({ Data, _Route}) => {
         })
       }
 
-      {gateInpShow ?
+      {/* {gateInpShow ?
         <div className='w-full h-full mt-5' >
           <div className='w-full h-12 bg-gray-400 flex items-center justify-between px-5' >
             <h1>{gateInputHeader}</h1>
@@ -190,7 +190,7 @@ const MaterialsCard = ({ Data, _Route}) => {
             <button onClick={handlePlaceButtonClick} className='p-2 rounded-full bg-green-500 text-white' >Place</button>
           </div>
         </div> : ""
-      }
+      } */}
 
       <WarningModal isOpen={showModal} setIsOpen={setShowModal} heading={firstModalVal} content={secondModalVal} />
 

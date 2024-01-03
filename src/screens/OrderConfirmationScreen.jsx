@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useSelector} from "react-redux"
 import { payment } from '../API_Calls/API_Calls_';
 
@@ -17,23 +17,13 @@ const OrderConfirmationScreen = () => {
     const count = 2
     const Totalprice = useSelector((state) => state.selectedMaterials.PriceTotal);
     const name = "ITEMNAME";
-
-    const GoToPayment = (data) =>{
-
-      payment(data).then((resp)=>{
-
-        console.log("pyment response from the server :", resp)
-
-      }).catch((err)=>{
-
-        console.log("pyment error from the server :", err)
-
-        })
-
-    }
+    const [disabled,setisDisabled] = useState(false);
 
     const goToStripe = async () => {
+      
       try {
+        setisDisabled(true);
+        
         const res = await fetch("https://comfortable-tan-wig.cyclic.app/payment/checkout", {
           method: "POST",
           headers: {
@@ -59,6 +49,7 @@ const OrderConfirmationScreen = () => {
         window.location = data.url;
       } catch (err) {
         console.error("Error during fetch:", err);
+        setisDisabled(false)
       }
     };
 
@@ -107,7 +98,7 @@ const OrderConfirmationScreen = () => {
             <h2 className="font-bold mt-5" >by purchasing today save $124.00 with mail in rebates!</h2>
             <div className="flex justify-center items-center gap-4 w-full h-12 mt-10" >
                   <button className="w-full bg-gray-100 h-full rounded-full" >Back</button>
-                  <button onClick={goToStripe} className="w-full bg-blue-500 text-white h-full rounded-full" >Continue</button>
+                  <button disabled={disabled} onClick={goToStripe} className="w-full bg-blue-500 text-white h-full rounded-full" >Continue</button>
             </div>
           </div>
         </div>

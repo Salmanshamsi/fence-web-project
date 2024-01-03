@@ -65,10 +65,7 @@ const CartScreen = () => {
                                     
                                     </li>
                                     <li>
-                                        <input type="number" onChange={(e)=>{
-                                            e.preventDefault();
-                                            QtyTotal += 1
-                                        }} defaultValue={1} className='border border-gray-700 text-center w-20 rounded-full' name="" id="" />
+                                        <input type="number" value={1} disabled={true} className='border border-gray-700 text-center w-20 rounded-full' name="" id="" />
                                     </li>
                                     <li className='h-full items-center flex' >
                                         ${QtyTotal}

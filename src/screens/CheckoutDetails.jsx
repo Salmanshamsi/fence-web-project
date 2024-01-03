@@ -131,7 +131,7 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setZip_code(e.target.value);
-                  }} type="text" placeholder='Enter Zip/postal Code' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
+                  }} type="number" placeholder='Enter Zip/postal Code' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
                 <div className='w-full' >
                   <h1 className='text-lg text-gray-900' >City</h1>
@@ -164,7 +164,7 @@ const CheckoutDetails = () => {
                   <input onChange={(e)=>{
                     e.preventDefault();
                     setPhone(e.target.value);
-                  }} type="text" placeholder='Cell Phone Number' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
+                  }} type="number" placeholder='Cell Phone Number' className='rounded-md border-gray-900 text-center shadow-md border h-10 w-full' />
                 </div>
  
               </div>

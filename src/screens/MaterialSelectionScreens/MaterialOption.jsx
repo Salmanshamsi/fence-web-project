@@ -24,30 +24,33 @@ const MaterialOption = () => {
                 <p className=''>  Select a type and click continue ?</p>
                 </div>
                 <div>
-                  <div className='lg:h-auto h-full overflow-scroll flex flex-col gap-1' >
+                  <div className='lg:h-auto h-full overflow-scroll flex flex-col-reverse  gap-1' >
 
-                          <div className='w-full bg-slate-300 rounded-sm h-12 flex justify-between p-4 items-center text-green-700' ><span className='text-sm' >Post (4 x 4 x 8' #2 Ground Contact AC2® Timber)</span> <button onClick={(e)=>{
-                            e.preventDefault();
-                            if(post){
-                              setPost(false);
-                            }else{
-                              setPost(true);
-                              setcurrentTable("option/t1")
-                            }
-                          }} ><i class={`fa-solid fa-chevron-${post ? "down" : "right" }`}></i></button> </div>
-                          { post ? <div className='p-3 inline-block' ><MaterialsCard Data={jsonData} _Route={"option/t1"} /></div> : ""}
+                            <div>
+                                  <div className='w-full bg-slate-300 rounded-sm h-12 flex justify-between p-4 items-center text-green-700' ><span className='text-sm' >Post (4 x 4 x 8' #2 Ground Contact AC2® Timber)</span> <button onClick={(e)=>{
+                                  e.preventDefault();
+                                  if(post){
+                                    setPost(false);
+                                  }else{
+                                    setPost(true);
+                                    setcurrentTable("option/t1")
+                                  }
+                                }} ><i class={`fa-solid fa-chevron-${post ? "down" : "right" }`}></i></button> </div>
+                                { post ? <div className='p-3 inline-block' ><MaterialsCard Data={jsonData} _Route={"option/t1"} /></div> : ""}
+                            </div>
 
-
-                            <div className='w-full bg-slate-300 rounded-sm h-12 flex justify-between p-4 items-center text-green-700' ><span className='text-sm' >Post Footing (Concrete Mix - 60 lb)</span> <button onClick={(e)=>{
-                            e.preventDefault();
-                            if(postFooting){
-                              setPostFooting(false);
-                            }else{
-                              setPostFooting(true);
-                              setcurrentTable("option/t2")
-                            }
-                          }} ><i class={`fa-solid fa-chevron-${postFooting ? "down" : "right" }`}></i></button> </div>
-                          { postFooting ? <div className='p-3' ><MaterialsCard Data={jsonData_2} _Route={"option/t2"} /></div> : ""}
+                              <div>
+                                    <div className='w-full bg-slate-300 rounded-sm h-12 flex justify-between p-4 items-center text-green-700' ><span className='text-sm' >Post Footing (Concrete Mix - 60 lb)</span> <button onClick={(e)=>{
+                                  e.preventDefault();
+                                  if(postFooting){
+                                    setPostFooting(false);
+                                  }else{
+                                    setPostFooting(true);
+                                    setcurrentTable("option/t2")
+                                  }
+                                }} ><i class={`fa-solid fa-chevron-${postFooting ? "down" : "right" }`}></i></button> </div>
+                                { postFooting ? <div className='p-3' ><MaterialsCard Data={jsonData_2} _Route={"option/t2"} /></div> : ""}
+                              </div>
 
                         </div>
                     </div>  
